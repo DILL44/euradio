@@ -1,10 +1,13 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: knp.yml }
+    - { resource: fos.yml }
+    - { resource: sonata.yml }
 
 framework:
-    #esi:             ~
-    #translator:      { fallback: %locale% }
+    esi:             ~
+    translator:      { fallback: %locale% }
     secret:          %secret%
     charset:         UTF-8
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
@@ -43,6 +46,8 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
