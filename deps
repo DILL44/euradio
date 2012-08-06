@@ -91,8 +91,16 @@
 [Exporter]
     git=http://github.com/sonata-project/exporter.git
     target=/exporter
-    
-Knp
+
+[EWZRecaptchaBundle]
+    git=http://github.com/excelwebzone/EWZRecaptchaBundle.git
+    target=/bundles/EWZ/Bundle/RecaptchaBundle
+
+[TinymceBundle]
+    git=git://github.com/stfalcon/TinymceBundle.git
+    target=/bundles/Stfalcon/Bundle/TinymceBundle
+   
+#Knp
 [KnpMarkdownBundle]
     git=http://github.com/KnpLabs/KnpMarkdownBundle.git
     target=/bundles/Knp/Bundle/MarkdownBundle
@@ -105,22 +113,35 @@ Knp
     git=https://github.com/KnpLabs/KnpMenu.git
     target=/knp/menu
     
-FOS    
+[knp-components]
+    git=http://github.com/KnpLabs/knp-components.git
+
+[KnpPaginatorBundle]
+    git=http://github.com/KnpLabs/KnpPaginatorBundle.git
+    target=bundles/Knp/Bundle/PaginatorBundle
+
+    
+#FOS    
 [FOSTwitterBundle]
     git=https://github.com/FriendsOfSymfony/FOSTwitterBundle.git
     target=/bundles/FOS/TwitterBundle
+    version=v1.0
 
 [FOSFacebookBundle]
     git=git://github.com/FriendsOfSymfony/FOSFacebookBundle.git
     target=/bundles/FOS/FacebookBundle
-    version=origin/master
+    version=1.0.0
 
 [FOSUserBundle]
     git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
     target=bundles/FOS/UserBundle
     version=1.2.0
 
-Sonata
+[FOSCommentBundle]
+    git=https://github.com/FriendsOfSymfony/FOSCommentBundle.git
+    target=bundles/FOS/CommentBundle
+    
+#Sonata
 [SonataDoctrineORMAdminBundle]
     git=http://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
     target=/bundles/Sonata/DoctrineORMAdminBundle

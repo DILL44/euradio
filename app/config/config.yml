@@ -4,7 +4,8 @@ imports:
     - { resource: knp.yml }
     - { resource: fos.yml }
     - { resource: sonata.yml }
-
+    - { resource: other.yml }
+    
 framework:
     esi:             ~
     translator:      { fallback: %locale% }

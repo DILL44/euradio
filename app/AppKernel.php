@@ -19,12 +19,16 @@ class AppKernel extends Kernel
 		new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
 		new COil\ToolsBundle\ToolsBundle(),
+		new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+		new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
 
 		new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 		new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+		new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
 		new FOS\UserBundle\FOSUserBundle(),
-		//new FOS\FacebookBundle\FOSFacebookBundle(),
+		new FOS\CommentBundle\FOSCommentBundle(),
+		new FOS\FacebookBundle\FOSFacebookBundle(),
 		//new FOS\TwitterBundle\FOSTwitterBundle(),
 
 		new Sonata\PageBundle\SonataPageBundle(),

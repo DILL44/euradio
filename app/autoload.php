@@ -19,18 +19,22 @@ $loader->registerNamespaces(array(
 	//adding namespace
 	'FOS'			   => __DIR__.'/../vendor/bundles',	
 	'COil'             => __DIR__.'/../vendor/bundles',
-    'Sonata'        => array(
+	'Stfalcon'         => __DIR__.'/../vendor/bundles',
+	'EWZ'              => __DIR__.'/../vendor/bundles',
+    'Knp\\Component'   => __DIR__.'/../vendor/knp-components/src',
+    'Knp\\Bundle'      => __DIR__.'/../vendor/bundles',
+    'Sonata'           => array(
         __DIR__.'/../vendor/bundles',
         __DIR__.'/../vendor/bundles/Sonata/sonata-doctrine-extensions/src',
     ),
 	'Application'      => __DIR__,
 	'Knp\Bundle'       => __DIR__.'/../vendor/bundles',
     'Knp\Menu'         => __DIR__.'/../vendor/knp/menu/src',
-	'Tutorial'      => __DIR__.'/../src',
-    'PhpAmqpLib'      => __DIR__ . '/../vendor/php-amqplib',
-    'Imagine'       => __DIR__.'/../vendor/imagine/lib',
-    'Gaufrette'     => __DIR__.'/../vendor/gaufrette/src',
-    'Buzz'          => __DIR__.'/../vendor/buzz/lib',
+	'Tutorial'         => __DIR__.'/../src',
+    'PhpAmqpLib'       => __DIR__ . '/../vendor/php-amqplib',
+    'Imagine'          => __DIR__.'/../vendor/imagine/lib',
+    'Gaufrette'        => __DIR__.'/../vendor/gaufrette/src',
+    'Buzz'             => __DIR__.'/../vendor/buzz/lib',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',

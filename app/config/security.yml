@@ -1,9 +1,15 @@
 # app/config/security.yml
 security:
+#   factories:
+#          - "%kernel.root_dir%/../vendor/bundles/FOS/TwitterBundle/Resources/config/security_factories.xml"
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
             id: fos_user.user_manager
+#        fos_twitter:
+#            id: fos_twitter.auth
+#        my_fos_twitter_provider:
+#            id: my.twitter.user 
     encoders:
         "FOS\UserBundle\Model\UserInterface": sha512 
     role_hierarchy:
@@ -24,6 +30,18 @@ security:
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY } 
 
     firewalls:
+#        secured:
+#            pattern:   /secured/.*
+#            fos_twitter: true
+#        public:
+#            pattern:   /.*
+#            anonymous: true
+#            fos_twitter:
+#                login_path: /twitter/login
+#                check_path: /twitter/login_check
+#                default_target_path: /
+#                provider: my_fos_twitter_provider
+#            logout: true
         admin:
             switch_user:        true
             context:            user
