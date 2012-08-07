@@ -99,7 +99,48 @@
 [TinymceBundle]
     git=git://github.com/stfalcon/TinymceBundle.git
     target=/bundles/Stfalcon/Bundle/TinymceBundle
-   
+
+[WowoQueueBundle]
+    git=git://github.com/wowo/WowoQueueBundle.git
+    target=bundles/Wowo/QueueBundle
+
+[pheanstalk]
+    git=https://github.com/pda/pheanstalk
+    target=/pheanstalk
+    version=v1.1.0 
+
+[WowoNewsletterBundle]
+    git=git://github.com/wowo/WowoNewsletterBundle.git
+    target=bundles/Wowo/Bundle/NewsletterBundle
+
+[VichGeographicalBundle]
+    git=git://github.com/dustin10/VichGeographicalBundle.git
+    target=/bundles/Vich/GeographicalBundle
+
+[PdfBundle]
+    git=git://github.com/psliwa/PdfBundle.git
+    target=/bundles/Ps/PdfBundle
+
+[PHPPdf]
+   git=git://github.com/psliwa/PHPPdf.git
+   version=origin/1.1.x
+
+[EkoFeedBundle]
+    git=https://github.com/eko/FeedBundle.git
+    target=/bundles/Eko/FeedBundle
+
+[UrlShortenerBundle]
+    git=git://github.com/Ph3nol/UrlShortenerBundle
+    target=/bundles/Sly/UrlShortenerBundle
+
+[GregwarImageBundle]
+    git=http://github.com/Gregwar/ImageBundle.git
+    target=/bundles/Gregwar/ImageBundle
+
+[SensioBuzzBundle]
+    git=http://github.com/sensio/SensioBuzzBundle.git
+    target=bundles/Sensio/Bundle/BuzzBundle
+
 #Knp
 [KnpMarkdownBundle]
     git=http://github.com/KnpLabs/KnpMarkdownBundle.git

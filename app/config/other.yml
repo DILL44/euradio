@@ -59,3 +59,30 @@ ewz_recaptcha:
     private_key: 6Lf05dQSAAAAAI1jINZyhoEH2KYSLg2f8BrT0rRp
     secure:       true
     locale_key:   kernel.default_locale
+    
+ps_pdf:
+    nodes_file: ~
+    fonts_file: ~
+    complex_attributes_file: ~
+    colors_file: ~
+    use_cache_in_stylesheet: ~
+    cache:
+      type: ~
+      options: ~
+    markdown_stylesheet_filepath: ~
+    markdown_document_template_filepath: ~
+    document_parser_type: ~
+
+gregwar_image: ~
+
+vich_geographical:
+    db_driver: orm
+   
+#eko_feed:
+#    feeds:
+#        article:
+#            title:       'My articles/posts'
+#            description: 'Latests articles'
+#            link:        'http://localhost/euradio/app_dev.php'
+#            encoding:    'utf-8'
+#            author:      'Vincent Composieux' # Only required for Atom feeds

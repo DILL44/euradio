@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__.'/../vendor/pheanstalk/pheanstalk_init.php';
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
@@ -35,6 +35,19 @@ $loader->registerNamespaces(array(
     'Imagine'          => __DIR__.'/../vendor/imagine/lib',
     'Gaufrette'        => __DIR__.'/../vendor/gaufrette/src',
     'Buzz'             => __DIR__.'/../vendor/buzz/lib',
+    'Wowo'             => __DIR__.'/../vendor/bundles',
+    'Ps' 			   => __DIR__.'/../vendor/bundles',
+    'PHPPdf'		   => __DIR__.'/../vendor/PHPPdf/lib',
+    'Imagine' 		   => array(
+       __DIR__.'/../vendor/PHPPdf/lib', 
+       __DIR__.'/../vendor/PHPPdf/lib/vendor/Imagine/lib'
+    ),
+    'Zend' 			   => __DIR__.'/../vendor/PHPPdf/lib/vendor/Zend/library',//If you have used ZF2 packages already, you should skip this entry
+    'ZendPdf' 		   => __DIR__.'/../vendor/PHPPdf/lib/vendor/ZendPdf/library',
+    'Eko'              => __DIR__.'/../vendor/bundles',
+    'Sly'              => __DIR__.'/../vendor/bundles',
+    'Gregwar' 		   => __DIR__.'/../vendor/bundles',
+    'Vich'             => __DIR__.'/../vendor/bundles'
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
