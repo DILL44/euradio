@@ -13,16 +13,15 @@ fos_facebook:
   cookie: true
   permissions: [email, user_birthday, user_location]
 
+fos_twitter:
+  file: %kernel.root_dir%/../vendor/twitteroauth/twitteroauth/twitteroauth.php
+  consumer_key: LAWjBJqSf23NZj8kw488Q
+  consumer_secret: T69KoJdyyhvETgiNUqux1cQQFLi07pXvVlreSWw
+  callback_url: http://www.example.com/login_check
+
 fos_comment:
   db_driver: orm
   class:
       model:
           comment: MyProject\MyBundle\Entity\Comment
           thread: MyProject\MyBundle\Entity\Thread
-               
-#fos_twitter:
-#        file: %kernel.root_dir%/../vendor/twitteroauth/twitteroauth/twitteroauth.php
-#        consumer_key:  LAWjBJqSf23NZj8kw488Q
-#        consumer_secret:    T69KoJdyyhvETgiNUqux1cQQFLi07pXvVlreSWw
-#        callback_url: http://www.example.com/login_check
-      

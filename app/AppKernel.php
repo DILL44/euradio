@@ -21,7 +21,7 @@ class AppKernel extends Kernel
 		new COil\ToolsBundle\ToolsBundle(),
 		new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
 		new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
-		new Wowo\Bundle\NewsletterBundle\WowoNewsletterBundle(),
+		new Wowo\NewsletterBundle\WowoNewsletterBundle(),
 		new Wowo\QueueBundle\WowoQueueBundle(),
 		new Ps\PdfBundle\PsPdfBundle(),
 		new Eko\FeedBundle\EkoFeedBundle(),
@@ -37,7 +37,7 @@ class AppKernel extends Kernel
 		new FOS\UserBundle\FOSUserBundle(),
 		new FOS\CommentBundle\FOSCommentBundle(),
 		new FOS\FacebookBundle\FOSFacebookBundle(),
-		//new FOS\TwitterBundle\FOSTwitterBundle(),
+		new FOS\TwitterBundle\FOSTwitterBundle(),
 
 		new Sonata\PageBundle\SonataPageBundle(),
 		new Sonata\CacheBundle\SonataCacheBundle(),

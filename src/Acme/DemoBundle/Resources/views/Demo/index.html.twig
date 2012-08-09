@@ -5,6 +5,16 @@
 {% block content_header '' %}
 
 {% block content %}
+	<h1>twig bundle test</h1>
+	<h2> test wysiwyg</h2>
+	<div>
+	{{ tinymce_init() }}
+	<textarea class="tinymce"></textarea>
+	</div>
+	<h2> test facebook</h2>
+	<div>
+	
+	</div>
     <h1>Available demos</h1>
     <ul id="demo-list">
         <li><a href="{{ path('_demo_hello', {'name': 'World'}) }}">Hello World</a></li>

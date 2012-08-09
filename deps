@@ -73,8 +73,12 @@
     target=/imagine
 
 [FacebookSDK]
-    git=git://github.com/facebook/php-sdk.git
+    git=git://github.com/facebook/facebook-php-sdk.git
     target=/facebook
+    
+[twitteroauth]
+    git=git://github.com/kertz/twitteroauth.git 
+    target=/twitteroauth
 
 [buzz]
     git=git://github.com/kriswallsmith/Buzz.git
@@ -111,7 +115,7 @@
 
 [WowoNewsletterBundle]
     git=git://github.com/wowo/WowoNewsletterBundle.git
-    target=bundles/Wowo/Bundle/NewsletterBundle
+    target=bundles/Wowo/NewsletterBundle
 
 [VichGeographicalBundle]
     git=git://github.com/dustin10/VichGeographicalBundle.git
@@ -134,7 +138,7 @@
     target=/bundles/Sly/UrlShortenerBundle
 
 [GregwarImageBundle]
-    git=http://github.com/Gregwar/ImageBundle.git
+    git=git://github.com/Gregwar/ImageBundle.git
     target=/bundles/Gregwar/ImageBundle
 
 [SensioBuzzBundle]
@@ -166,7 +170,7 @@
 [FOSTwitterBundle]
     git=https://github.com/FriendsOfSymfony/FOSTwitterBundle.git
     target=/bundles/FOS/TwitterBundle
-    version=v1.0
+    version=origin/v1.0
 
 [FOSFacebookBundle]
     git=git://github.com/FriendsOfSymfony/FOSFacebookBundle.git
@@ -235,6 +239,7 @@
 [SonataFormatterBundle]
     git=http://github.com/sonata-project/SonataFormatterBundle.git
     target=/bundles/Sonata/FormatterBundle
+    version=origin/2.0
 
 [SonataIntlBundle]
     git=https://github.com/sonata-project/SonataIntlBundle
