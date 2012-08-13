@@ -37,11 +37,11 @@ security:
         secured:
             pattern:   /secured/.*
             fos_twitter: true
-        public:
-            pattern:   /.*
-            anonymous: true
-            fos_twitter: true
-            logout: true
+#        public:
+#            pattern:   /.*
+#            anonymous: true
+#            fos_twitter: true
+#            logout: true
         admin:
             switch_user:        true
             context:            user
