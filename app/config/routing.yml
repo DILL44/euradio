@@ -61,3 +61,7 @@ _security_check:
 
 _security_logout:
     pattern:  /logout
+    
+news:
+    resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
+    prefix: /news
