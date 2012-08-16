@@ -142,7 +142,8 @@ sonata_doctrine_orm_admin:
             show:
                 array:      SonataAdminBundle:CRUD:show_array.html.twig
                 boolean:    SonataAdminBundle:CRUD:show_boolean.html.twig
-                date:       SonataAdminBundle:CRUD:show_date.html.twig
+#                date:       SonataAdminBundle:CRUD:show_date.html.twig
+#                "format_date": SonataAdminBundle:CRUD:show_date.html.twig
                 time:       SonataAdminBundle:CRUD:show_time.html.twig
                 datetime:   SonataAdminBundle:CRUD:show_datetime.html.twig
                 text:       SonataAdminBundle:CRUD:base_show_field.html.twig
