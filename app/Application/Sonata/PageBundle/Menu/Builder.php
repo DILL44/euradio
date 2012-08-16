@@ -8,12 +8,10 @@ class Builder extends ContainerAware
 {
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-        $menu = $factory->createItem('root');
+        $menu = $factory->createItem('menu');
 
-        $menu->addChild('Home', array('uri' => '/'));
-        $menu->addChild('About Me', array(
-            'uri' => '/blog/blog'
-        ));
+        $menu->addChild('blog', array('uri' => '/euradio/app_dev.php/news'));
+        $menu->addChild('page test', array('uri' => '/euradio/app_dev.php/blog/blog'));
         // ... add more children
 
         return $menu;
