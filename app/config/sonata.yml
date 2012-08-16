@@ -172,4 +172,7 @@ sonata_news:
         comment:    Application\Sonata\NewsBundle\Entity\Comment
         category:   Application\Sonata\NewsBundle\Entity\Category
         media:      Application\Sonata\MediaBundle\Entity\Media
-        user:       Application\Sonata\UserBundle\Entity\User        
+        user:       Application\Sonata\UserBundle\Entity\User
+        
+#ApplicationSonataPageBundle: ~
+#SonataPageBundle: ~
