@@ -1,13 +1,13 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
-    - { resource: knp.yml }
-    - { resource: fos.yml }
-    - { resource: sonata.yml }
-    - { resource: other.yml }
+    - { resource: config_knp.yml }
+    - { resource: config_fos.yml }
+    - { resource: config_sonata.yml }
+    - { resource: config_other.yml }
     
 framework:
-    esi:             ~
+#    esi:             ~
     translator:      { fallback: %locale% }
     secret:          %secret%
     charset:         UTF-8
