@@ -67,6 +67,10 @@ news:
 app_news:
    resource: '@ApplicationSonataNewsBundle/Resources/config/routing/post.xml'
    prefix: /blog
+
+sonata_user_impersonating:
+    pattern: /
+    defaults: { _controller: SonataPageBundle:Page:catchAll }   
    
 catchAll:
     pattern:  /{path}
