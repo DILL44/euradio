@@ -187,7 +187,7 @@ sonata_doctrine_orm_admin:
 
 sonata_user:
     security_acl:           false
-    impersonating_route:    homepage # or any route you want to use
+    impersonating_route:    sonata_user_impersonating
     class:
         user:               Application\Sonata\UserBundle\Entity\User
         group:              Application\Sonata\UserBundle\Entity\Group
