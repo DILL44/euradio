@@ -1,3 +1,7 @@
+EuradioMenuBundle:
+    resource: "@EuradioMenuBundle/Resources/config/routing.yml"
+    prefix:   /
+
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
     prefix: /media/gallery

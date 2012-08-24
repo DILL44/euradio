@@ -47,7 +47,8 @@ $loader->registerNamespaces(array(
     'Eko'              => __DIR__.'/../vendor/bundles',
     'Sly'              => __DIR__.'/../vendor/bundles',
     'Gregwar' 		   => __DIR__.'/../vendor/bundles',
-    'Vich'             => __DIR__.'/../vendor/bundles'
+    'Vich'             => __DIR__.'/../vendor/bundles',
+	'Euradio'		   =>__DIR__.'/../src/Euradio'
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',

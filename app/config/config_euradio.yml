@@ -1,0 +1,16 @@
+services:
+  euradio.menu.admin.menu:
+    class: Euradio\MenuBundle\Admin\MenuAdmin
+    links:
+        - { name: sonata.admin, manager_type: orm, group: euradio_menu, label: menu }
+    arguments: [null, Euradio\MenuBundle\Entity\Menu, SonataAdminBundle:CRUD]
+  euradio.menu.admin.submenu:
+    class: Euradio\MenuBundle\Admin\SubmenuAdmin
+    links:
+        - { name: sonata.admin, manager_type: orm, group: euradio_menu, label: menu }
+    arguments: [null, Euradio\MenuBundle\Entity\Submenu, SonataAdminBundle:CRUD]
+  euradio.menu.admin.link:
+    class: Euradio\MenuBundle\Admin\LinkAdmin
+    links:
+        - { name: sonata.admin, manager_type: orm, group: euradio_menu, label: menu }
+    arguments: [null, Euradio\MenuBundle\Entity\Link, SonataAdminBundle:CRUD]
