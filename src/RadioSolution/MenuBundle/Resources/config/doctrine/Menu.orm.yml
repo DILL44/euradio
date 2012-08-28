@@ -1,0 +1,18 @@
+RadioSolution\MenuBundle\Entity\Menu:
+  type: entity
+  table: menu__menu
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+  oneToMany:
+    submenus:
+      targetEntity: SubMenu
+      mappedBy: menu
+    links:
+      targetEntity: Link
+      mappedBy: menu

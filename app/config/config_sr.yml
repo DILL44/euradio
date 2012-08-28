@@ -1,0 +1,16 @@
+services:
+    radioSolution.menu.menu:
+        class: RadioSolution\MenuBundle\Admin\MenuAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: radioSolution, label: menu }
+        arguments: [null, RadioSolution\MenuBundle\Entity\Menu, SonataAdminBundle:CRUD]
+    radioSolution.menu.menu.submenu:
+        class: RadioSolution\MenuBundle\Admin\SubMenuAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: radioSolution, label: submenu }
+        arguments: [null, RadioSolution\MenuBundle\Entity\SubMenu, SonataAdminBundle:CRUD]
+    dbla.testapp.admin.link:
+        class: RadioSolution\MenuBundle\Admin\LinkAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: radioSolution, label: Link }
+        arguments: [null, RadioSolution\MenuBundle\Entity\Link, SonataAdminBundle:CRUD]

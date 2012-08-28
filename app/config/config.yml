@@ -1,5 +1,6 @@
 imports:
     - { resource: parameters.ini }
+    - { resource: config_sr.yml }
     - { resource: security.yml }
     - { resource: config_knp.yml }
     - { resource: config_fos.yml }

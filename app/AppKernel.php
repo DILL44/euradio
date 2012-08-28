@@ -52,6 +52,7 @@ class AppKernel extends Kernel
 		new Sonata\FormatterBundle\SonataFormatterBundle(),
 		new Sonata\MediaBundle\SonataMediaBundle(),
 		new Sonata\NewsBundle\SonataNewsBundle(),
+		new RadioSolution\MenuBundle\MenuBundle(),
 
 		new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 		new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),

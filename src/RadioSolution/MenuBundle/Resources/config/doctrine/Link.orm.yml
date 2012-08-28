@@ -1,0 +1,14 @@
+RadioSolution\MenuBundle\Entity\Link:
+  type: entity
+  table: menu__link
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    url:
+      type: string
+      length: 100

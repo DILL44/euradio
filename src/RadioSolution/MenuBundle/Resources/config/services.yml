@@ -1,0 +1,7 @@
+parameters:
+#    radio_solution_menu.example.class: RadioSolution\MenuBundle\Example
+
+services:
+#    radio_solution_menu.example:
+#        class: %radio_solution_menu.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
