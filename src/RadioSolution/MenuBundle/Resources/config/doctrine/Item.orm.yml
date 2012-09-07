@@ -1,0 +1,28 @@
+RadioSolution\MenuBundle\Entity\Item:
+  type: entity
+  table: menu__item
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    url:
+      type: string
+      length: 100
+  manyToOne:
+      menu:
+        targetEntity: Menu
+        inversedBy: links
+        joinColumn:
+            name: id_menu
+            referencedColumnName: id
+  oneToOne:
+    parent:
+      default: 0
+      targetEntity: Item
+      joinColumn:
+        name: id_parent
+        referencedColumnName: id

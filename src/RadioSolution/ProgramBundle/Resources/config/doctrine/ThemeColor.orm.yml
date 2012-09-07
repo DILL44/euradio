@@ -1,0 +1,14 @@
+RadioSolution\ProgramBundle\Entity\ThemeColor:
+  type: entity
+  table: program__theme_color
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    html_code:
+      type: integer
+      length: 6

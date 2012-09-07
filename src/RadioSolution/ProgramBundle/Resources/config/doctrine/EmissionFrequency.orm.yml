@@ -1,0 +1,13 @@
+RadioSolution\ProgramBundle\Entity\EmissionFrequency:
+  type: entity
+  table: program__emission_frequency
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    hour:
+      type: time

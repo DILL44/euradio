@@ -1,13 +1,13 @@
 <?php
 
-namespace RadioSolution\MenuBundle\Entity;
+namespace RadioSolution\ProgramBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * RadioSolution\MenuBundle\Entity\Menu
+ * RadioSolution\ProgramBundle\Entity\ThemeColor
  */
-class Menu
+class ThemeColor
 {
     /**
      * @var integer $id
@@ -20,15 +20,10 @@ class Menu
     private $name;
 
     /**
-     * @var RadioSolution\MenuBundle\Entity\Item
+     * @var integer $html_code
      */
-    private $links;
+    private $html_code;
 
-    public function __construct()
-    {
-        $this->links = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
     /**
      * to string
      *
@@ -38,7 +33,7 @@ class Menu
     {
     	return $this->getName();
     }
-    
+
     /**
      * Get id
      *
@@ -70,22 +65,22 @@ class Menu
     }
 
     /**
-     * Add links
+     * Set html_code
      *
-     * @param RadioSolution\MenuBundle\Entity\Item $links
+     * @param integer $htmlCode
      */
-    public function addItem(\RadioSolution\MenuBundle\Entity\Item $links)
+    public function setHtmlCode($htmlCode)
     {
-        $this->links[] = $links;
+        $this->html_code = $htmlCode;
     }
 
     /**
-     * Get links
+     * Get html_code
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return integer 
      */
-    public function getLinks()
+    public function getHtmlCode()
     {
-        return $this->links;
+        return $this->html_code;
     }
 }

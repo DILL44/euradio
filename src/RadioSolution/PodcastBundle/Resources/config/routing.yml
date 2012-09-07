@@ -1,0 +1,3 @@
+PodcastBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: PodcastBundle:Default:index }

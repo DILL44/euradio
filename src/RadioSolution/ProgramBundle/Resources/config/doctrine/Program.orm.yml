@@ -1,0 +1,24 @@
+RadioSolution\ProgramBundle\Entity\Program:
+  type: entity
+  table: program__program
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    time_start:
+      type: datetime
+    time_stop:
+      type: datetime
+  oneToOne:
+    podcast:
+      targetEntity: RadioSolution\PodcastBundle\Entity\Podcast
+      joinColumn:
+        name: id_podcast
+        referencedColumnName: id
+  manyToOne:
+    emission:
+      targetEntity: Emission
+      joinColumn:
+        name: id_emmission
+        referencedColumnName: id

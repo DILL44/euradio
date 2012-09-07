@@ -7,14 +7,18 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
  
-class MenuAdmin extends Admin
+class ItemAdmin extends Admin
 {
   protected function configureFormFields(FormMapper $formMapper)
   {
     $formMapper
       ->add('name')
-      ->with('Links')
-     	 ->add('links', 'sonata_type_model')
+      ->add('url')
+      ->with('menu')
+      ->add('menu', 'sonata_type_model')
+      ->end()
+      ->with('parent')
+      ->add('parent', 'sonata_type_model')
       ->end()
     ;
   }

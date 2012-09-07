@@ -1,0 +1,31 @@
+RadioSolution\PodcastBundle\Entity\Podcast:
+  type: entity
+  table: podcast__podcast
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    real_time_start:
+      type: datetime
+  manyToMany:
+    posts:
+      targetEntity: Application\Sonata\NewsBundle\Entity\Post
+      joinTable: 
+        name: podcast__post
+        joinColumns:
+          id_podcast:
+            referencedColumnName: id
+        inverseJoinColumns:
+          id_post:
+            referencedColumnName: id
+  oneToOne:
+    filePodcast:
+      targetEntity: Application\Sonata\MediaBundle\Entity\Media
+      joinColumns:
+        id_media_podcast:
+          referencedColumnName: id
+ 

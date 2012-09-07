@@ -1,0 +1,27 @@
+RadioSolution\StaticContentBundle\Entity\StaticContent:
+  type: entity
+  table: static_content
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    title:
+      type: string
+      length: 100
+    name:
+      type: string
+      length: 100
+    introduction:
+      type: string
+      length: 255
+    body:
+      type: string
+  OneToOne:
+    filepdcast:
+      null: true
+      targetEntity: Application\Sonata\MediaBundle\Entity\Media
+      joinColumns:
+        picture:
+          name: id_media
+          referencedColumnName: id

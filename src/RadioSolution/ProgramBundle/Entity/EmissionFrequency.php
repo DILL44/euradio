@@ -1,13 +1,13 @@
 <?php
 
-namespace RadioSolution\MenuBundle\Entity;
+namespace RadioSolution\ProgramBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * RadioSolution\MenuBundle\Entity\Menu
+ * RadioSolution\ProgramBundle\Entity\EmissionFrequency
  */
-class Menu
+class EmissionFrequency
 {
     /**
      * @var integer $id
@@ -20,15 +20,11 @@ class Menu
     private $name;
 
     /**
-     * @var RadioSolution\MenuBundle\Entity\Item
+     * @var time $hour
      */
-    private $links;
+    private $hour;
 
-    public function __construct()
-    {
-        $this->links = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+
     /**
      * to string
      *
@@ -70,22 +66,22 @@ class Menu
     }
 
     /**
-     * Add links
+     * Set hour
      *
-     * @param RadioSolution\MenuBundle\Entity\Item $links
+     * @param time $hour
      */
-    public function addItem(\RadioSolution\MenuBundle\Entity\Item $links)
+    public function setHour($hour)
     {
-        $this->links[] = $links;
+        $this->hour = $hour;
     }
 
     /**
-     * Get links
+     * Get hour
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return time 
      */
-    public function getLinks()
+    public function getHour()
     {
-        return $this->links;
+        return $this->hour;
     }
 }

@@ -1,0 +1,3 @@
+StaticContentBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: StaticContentBundle:Default:index }

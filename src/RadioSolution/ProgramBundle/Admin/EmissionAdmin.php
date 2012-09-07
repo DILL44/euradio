@@ -1,5 +1,5 @@
 <?php 
-namespace RadioSolution\MenuBundle\Admin;
+namespace RadioSolution\ProgramBundle\Admin;
  
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -7,14 +7,24 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
  
-class MenuAdmin extends Admin
+class EmissionAdmin extends Admin
 {
   protected function configureFormFields(FormMapper $formMapper)
   {
     $formMapper
       ->add('name')
-      ->with('Links')
-     	 ->add('links', 'sonata_type_model')
+      ->add('description')
+      ->with('theme')
+      ->add('theme', 'sonata_type_model')
+      ->end()
+      ->with('frenquence')
+      ->add('frenquence', 'sonata_type_model')
+      ->end()
+      ->with('groupe')
+      ->add('group', 'sonata_type_model')
+      ->end()
+      ->with('image')
+      ->add('media', 'sonata_type_model')
       ->end()
     ;
   }

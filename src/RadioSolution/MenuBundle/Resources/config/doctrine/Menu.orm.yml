@@ -10,9 +10,7 @@ RadioSolution\MenuBundle\Entity\Menu:
       type: string
       length: 100
   oneToMany:
-    submenus:
-      targetEntity: SubMenu
-      mappedBy: menu
     links:
-      targetEntity: Link
-      mappedBy: menu
+      null: true
+      targetEntity: Item
+      mappedBy: id_menu

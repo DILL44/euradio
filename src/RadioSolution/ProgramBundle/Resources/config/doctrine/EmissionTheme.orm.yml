@@ -1,0 +1,19 @@
+RadioSolution\ProgramBundle\Entity\EmissionTheme:
+  type: entity
+  table: program__emission_theme
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    description:
+      type: string
+  manyToOne:
+    type:
+      targetEntity: ThemeColor
+      joinColumn:
+        name: id_color
+        referencedColumnName: id

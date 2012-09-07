@@ -2,15 +2,57 @@ services:
     radioSolution.menu.menu:
         class: RadioSolution\MenuBundle\Admin\MenuAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: radioSolution, label: menu }
+            - { name: sonata.admin, manager_type: orm, group: menu, label: menu }
         arguments: [null, RadioSolution\MenuBundle\Entity\Menu, SonataAdminBundle:CRUD]
-    radioSolution.menu.menu.submenu:
-        class: RadioSolution\MenuBundle\Admin\SubMenuAdmin
+
+    radioSolution.menu.item:
+        class: RadioSolution\MenuBundle\Admin\ItemAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: radioSolution, label: submenu }
-        arguments: [null, RadioSolution\MenuBundle\Entity\SubMenu, SonataAdminBundle:CRUD]
-    dbla.testapp.admin.link:
-        class: RadioSolution\MenuBundle\Admin\LinkAdmin
+            - { name: sonata.admin, manager_type: orm, group: menu, label: item }
+        arguments: [null, RadioSolution\MenuBundle\Entity\Item, SonataAdminBundle:CRUD]
+ 
+ 
+    radioSolution.podcast.podcast:
+        class: RadioSolution\PodcastBundle\Admin\PodcastAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: radioSolution, label: Link }
-        arguments: [null, RadioSolution\MenuBundle\Entity\Link, SonataAdminBundle:CRUD]
+            - { name: sonata.admin, manager_type: orm, group: podcast, label: podcast }
+        arguments: [null, RadioSolution\PodcastBundle\Entity\Podcast, SonataAdminBundle:CRUD]
+        
+
+
+    radioSolution.program.emission:
+        class: RadioSolution\ProgramBundle\Admin\EmissionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: programme, label: emmission }
+        arguments: [null, RadioSolution\ProgramBundle\Entity\Emission, SonataAdminBundle:CRUD]
+
+    radioSolution.program.emissionTheme:
+        class: RadioSolution\ProgramBundle\Admin\EmissionThemeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: programme, label: emission theme }
+        arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionTheme, SonataAdminBundle:CRUD]
+
+    radioSolution.program.emissionFrequency:
+        class: RadioSolution\ProgramBundle\Admin\EmissionFrequencyAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: programme, label: emission frequence }
+        arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionFrequency, SonataAdminBundle:CRUD]
+
+    radioSolution.program.themeColor:
+        class: RadioSolution\ProgramBundle\Admin\ThemeColorAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: programme, label: theme color }
+        arguments: [null, RadioSolution\ProgramBundle\Entity\ThemeColor, SonataAdminBundle:CRUD]
+
+    radioSolution.program.program:
+        class: RadioSolution\ProgramBundle\Admin\ProgramAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: programme, label: programme }
+        arguments: [null, RadioSolution\ProgramBundle\Entity\Program, SonataAdminBundle:CRUD]
+
+
+    radioSolution.staticContent.staticContent:
+        class: RadioSolution\StaticContentBundle\Admin\StaticContentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Pages, label: contenu static }
+        arguments: [null, RadioSolution\PodcastBundle\Entity\StaticContent, SonataAdminBundle:CRUD]
