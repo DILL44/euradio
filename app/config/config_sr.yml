@@ -55,4 +55,4 @@ services:
         class: RadioSolution\StaticContentBundle\Admin\StaticContentAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: Pages, label: contenu static }
-        arguments: [null, RadioSolution\PodcastBundle\Entity\StaticContent, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\StaticContentBundle\Entity\StaticContent, SonataAdminBundle:CRUD]

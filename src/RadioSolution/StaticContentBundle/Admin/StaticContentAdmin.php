@@ -14,8 +14,6 @@ class StaticContentAdmin extends Admin
     $formMapper
       ->add('name')
       ->add('title')
-      ->add('name')
-      ->add('title')
       ->add('introduction')
       ->add('body')
     ;

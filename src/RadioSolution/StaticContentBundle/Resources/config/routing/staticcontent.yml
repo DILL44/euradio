@@ -1,0 +1,6 @@
+_show:
+    pattern:  /{name}
+    defaults: { _controller: "StaticContentBundle:StaticContent:show" }
+
+
+
