@@ -9,8 +9,3 @@ RadioSolution\MenuBundle\Entity\Menu:
     name:
       type: string
       length: 100
-  oneToMany:
-    links:
-      null: true
-      targetEntity: Item
-      mappedBy: id_menu

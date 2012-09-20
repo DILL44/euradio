@@ -21,7 +21,8 @@ RadioSolution\MenuBundle\Entity\Item:
             referencedColumnName: id
   oneToOne:
     parent:
-      default: 0
+      nullable: true
+      default: NULL
       targetEntity: Item
       joinColumn:
         name: id_parent

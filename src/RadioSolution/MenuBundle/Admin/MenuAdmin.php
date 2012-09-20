@@ -13,9 +13,6 @@ class MenuAdmin extends Admin
   {
     $formMapper
       ->add('name')
-      ->with('Links')
-     	 ->add('links', 'sonata_type_model')
-      ->end()
     ;
   }
  

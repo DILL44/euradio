@@ -1,0 +1,101 @@
+<h1>User list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Usernamecanonical</th>
+            <th>Email</th>
+            <th>Emailcanonical</th>
+            <th>Enabled</th>
+            <th>Salt</th>
+            <th>Password</th>
+            <th>Lastlogin</th>
+            <th>Locked</th>
+            <th>Expired</th>
+            <th>Expiresat</th>
+            <th>Confirmationtoken</th>
+            <th>Passwordrequestedat</th>
+            <th>Roles</th>
+            <th>Credentialsexpired</th>
+            <th>Credentialsexpireat</th>
+            <th>Createdat</th>
+            <th>Updatedat</th>
+            <th>Dateofbirth</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Website</th>
+            <th>Biography</th>
+            <th>Gender</th>
+            <th>Locale</th>
+            <th>Timezone</th>
+            <th>Phone</th>
+            <th>Facebookuid</th>
+            <th>Facebookname</th>
+            <th>Facebookdata</th>
+            <th>Twitteruid</th>
+            <th>Twittername</th>
+            <th>Twitterdata</th>
+            <th>Gplusuid</th>
+            <th>Gplusname</th>
+            <th>Gplusdata</th>
+            <th>Token</th>
+            <th>Twostepverificationcode</th>
+            <th>Id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+            <td>{{ entity.usernameCanonical }}</td>
+            <td>{{ entity.email }}</td>
+            <td>{{ entity.emailCanonical }}</td>
+            <td>{{ entity.enabled }}</td>
+            <td>{{ entity.salt }}</td>
+            <td>{{ entity.password }}</td>
+            <td>{% if entity.lastLogin %}{{ entity.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.locked }}</td>
+            <td>{{ entity.expired }}</td>
+            <td>{% if entity.expiresAt %}{{ entity.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.confirmationToken }}</td>
+            <td>{% if entity.passwordRequestedAt %}{{ entity.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.roles }}</td>
+            <td>{{ entity.credentialsExpired }}</td>
+            <td>{% if entity.credentialsExpireAt %}{{ entity.credentialsExpireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.dateOfBirth %}{{ entity.dateOfBirth|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.firstname }}</td>
+            <td>{{ entity.lastname }}</td>
+            <td>{{ entity.website }}</td>
+            <td>{{ entity.biography }}</td>
+            <td>{{ entity.gender }}</td>
+            <td>{{ entity.locale }}</td>
+            <td>{{ entity.timezone }}</td>
+            <td>{{ entity.phone }}</td>
+            <td>{{ entity.facebookUid }}</td>
+            <td>{{ entity.facebookName }}</td>
+            <td>{{ entity.facebookData }}</td>
+            <td>{{ entity.twitterUid }}</td>
+            <td>{{ entity.twitterName }}</td>
+            <td>{{ entity.twitterData }}</td>
+            <td>{{ entity.gplusUid }}</td>
+            <td>{{ entity.gplusName }}</td>
+            <td>{{ entity.gplusData }}</td>
+            <td>{{ entity.token }}</td>
+            <td>{{ entity.twoStepVerificationCode }}</td>
+            <td>{{ entity.id }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

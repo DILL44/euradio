@@ -20,16 +20,6 @@ class Menu
     private $name;
 
     /**
-     * @var RadioSolution\MenuBundle\Entity\Item
-     */
-    private $links;
-
-    public function __construct()
-    {
-        $this->links = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
      * to string
      *
      * @return string
@@ -38,7 +28,7 @@ class Menu
     {
     	return $this->getName();
     }
-    
+
     /**
      * Get id
      *
@@ -67,25 +57,5 @@ class Menu
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Add links
-     *
-     * @param RadioSolution\MenuBundle\Entity\Item $links
-     */
-    public function addItem(\RadioSolution\MenuBundle\Entity\Item $links)
-    {
-        $this->links[] = $links;
-    }
-
-    /**
-     * Get links
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getLinks()
-    {
-        return $this->links;
     }
 }

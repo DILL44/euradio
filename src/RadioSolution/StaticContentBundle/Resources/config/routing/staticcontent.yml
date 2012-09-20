@@ -1,4 +1,4 @@
-_show:
+static_content:
     pattern:  /{name}
     defaults: { _controller: "StaticContentBundle:StaticContent:show" }
 

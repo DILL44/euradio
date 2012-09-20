@@ -1,0 +1,170 @@
+<h1>User</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Username</th>
+            <td>{{ entity.username }}</td>
+        </tr>
+        <tr>
+            <th>Usernamecanonical</th>
+            <td>{{ entity.usernameCanonical }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ entity.email }}</td>
+        </tr>
+        <tr>
+            <th>Emailcanonical</th>
+            <td>{{ entity.emailCanonical }}</td>
+        </tr>
+        <tr>
+            <th>Enabled</th>
+            <td>{{ entity.enabled }}</td>
+        </tr>
+        <tr>
+            <th>Salt</th>
+            <td>{{ entity.salt }}</td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td>{{ entity.password }}</td>
+        </tr>
+        <tr>
+            <th>Lastlogin</th>
+            <td>{{ entity.lastLogin|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Locked</th>
+            <td>{{ entity.locked }}</td>
+        </tr>
+        <tr>
+            <th>Expired</th>
+            <td>{{ entity.expired }}</td>
+        </tr>
+        <tr>
+            <th>Expiresat</th>
+            <td>{{ entity.expiresAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Confirmationtoken</th>
+            <td>{{ entity.confirmationToken }}</td>
+        </tr>
+        <tr>
+            <th>Passwordrequestedat</th>
+            <td>{{ entity.passwordRequestedAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Roles</th>
+            <td>{{ entity.roles }}</td>
+        </tr>
+        <tr>
+            <th>Credentialsexpired</th>
+            <td>{{ entity.credentialsExpired }}</td>
+        </tr>
+        <tr>
+            <th>Credentialsexpireat</th>
+            <td>{{ entity.credentialsExpireAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Createdat</th>
+            <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Updatedat</th>
+            <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Dateofbirth</th>
+            <td>{{ entity.dateOfBirth|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Firstname</th>
+            <td>{{ entity.firstname }}</td>
+        </tr>
+        <tr>
+            <th>Lastname</th>
+            <td>{{ entity.lastname }}</td>
+        </tr>
+        <tr>
+            <th>Website</th>
+            <td>{{ entity.website }}</td>
+        </tr>
+        <tr>
+            <th>Biography</th>
+            <td>{{ entity.biography }}</td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td>{{ entity.gender }}</td>
+        </tr>
+        <tr>
+            <th>Locale</th>
+            <td>{{ entity.locale }}</td>
+        </tr>
+        <tr>
+            <th>Timezone</th>
+            <td>{{ entity.timezone }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td>{{ entity.phone }}</td>
+        </tr>
+        <tr>
+            <th>Facebookuid</th>
+            <td>{{ entity.facebookUid }}</td>
+        </tr>
+        <tr>
+            <th>Facebookname</th>
+            <td>{{ entity.facebookName }}</td>
+        </tr>
+        <tr>
+            <th>Facebookdata</th>
+            <td>{{ entity.facebookData }}</td>
+        </tr>
+        <tr>
+            <th>Twitteruid</th>
+            <td>{{ entity.twitterUid }}</td>
+        </tr>
+        <tr>
+            <th>Twittername</th>
+            <td>{{ entity.twitterName }}</td>
+        </tr>
+        <tr>
+            <th>Twitterdata</th>
+            <td>{{ entity.twitterData }}</td>
+        </tr>
+        <tr>
+            <th>Gplusuid</th>
+            <td>{{ entity.gplusUid }}</td>
+        </tr>
+        <tr>
+            <th>Gplusname</th>
+            <td>{{ entity.gplusName }}</td>
+        </tr>
+        <tr>
+            <th>Gplusdata</th>
+            <td>{{ entity.gplusData }}</td>
+        </tr>
+        <tr>
+            <th>Token</th>
+            <td>{{ entity.token }}</td>
+        </tr>
+        <tr>
+            <th>Twostepverificationcode</th>
+            <td>{{ entity.twoStepVerificationCode }}</td>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('user') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>

@@ -1,14 +1,14 @@
-#PodcastBundle:
-#    resource: "@PodcastBundle/Resources/config/routing.yml"
-#    prefix:   /
-#
+PodcastBundle:
+    resource: "@PodcastBundle/Resources/config/routing.yml"
+    prefix:   /
+
 StaticContentBundle:
     resource: "@StaticContentBundle/Resources/config/routing/staticcontent.yml"
     prefix:   /
-#
-#ProgramBundle:
-#    resource: "@ProgramBundle/Resources/config/routing.yml"
-#    prefix:   /
+
+ProgramBundle:
+    resource: "@ProgramBundle/Resources/config/routing.yml"
+    prefix:   /
 
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
@@ -25,6 +25,10 @@ fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
     prefix: /profile
 
+fos_user_show:
+    resource: "@FOSUserBundle/Resources/config/routing/show.xml"
+    prefix: /profile
+    
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix: /register

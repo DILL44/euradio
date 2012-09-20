@@ -18,7 +18,7 @@ class ItemAdmin extends Admin
       ->add('menu', 'sonata_type_model')
       ->end()
       ->with('parent')
-      ->add('parent', 'sonata_type_model')
+      ->add('parent', 'sonata_type_model', array('required' => false))
       ->end()
     ;
   }
@@ -26,7 +26,8 @@ class ItemAdmin extends Admin
   protected function configureDatagridFilters(DatagridMapper $datagridMapper)
   {
     $datagridMapper
-      ->add('name')
+      ->add('menu')
+      ->add('parent')
     ;
   }
  
@@ -34,6 +35,14 @@ class ItemAdmin extends Admin
   {
     $listMapper
       ->addIdentifier('name')
+      ->add('menu')
+      ->add('parent')
+      ->add('_action', 'actions', array(
+      		'actions' => array(
+      				'view' => array(),
+      				'edit' => array(),
+      		)
+      ))
     ;
   }
  
