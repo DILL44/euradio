@@ -1,3 +1,7 @@
+ApplicationSonataUserBundle_user:
+    resource: "@ApplicationSonataUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+    
 PodcastBundle:
     resource: "@PodcastBundle/Resources/config/routing.yml"
     prefix:   /
@@ -23,10 +27,6 @@ fos_user_security:
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /profile
-
-fos_user_show:
-    resource: "@FOSUserBundle/Resources/config/routing/show.xml"
     prefix: /profile
     
 fos_user_register:

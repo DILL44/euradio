@@ -1,0 +1,3 @@
+user:
+    pattern:  /
+    defaults: { _controller: "ApplicationSonataUserBundle:User:index" }
