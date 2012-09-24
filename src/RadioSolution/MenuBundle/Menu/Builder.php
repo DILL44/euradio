@@ -17,7 +17,7 @@ class Builder extends Controller
     	
     	$menu = $factory->createItem($entity);
     	foreach ($entities as $key=>$values){
-    		$menu->addChild($values->getName(), array('uri' => '/euradio/app_dev.php/'.$values->getUrl()));
+    		$menu->addChild($values->getName(), array('uri' => strstr('http://'.$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'],$_SERVER['PATH_INFO'],TRUE).'/'.$values->getUrl()));
     	}
     
     	return $menu;
