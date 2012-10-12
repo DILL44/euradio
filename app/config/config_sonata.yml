@@ -110,6 +110,7 @@ sonata_media:
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
                 - sonata.media.provider.file
+                - sonata.media.provider.podcast
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}

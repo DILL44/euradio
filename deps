@@ -196,7 +196,7 @@
     target=/bundles/Sonata/NewsBundle
 
 [SonataMediaBundle]
-    git=https://github.com/sonata-project/SonataMediaBundle.git
+    git=https://github.com/DILL44/SonataMediaBundle.git
     target=/bundles/Sonata/MediaBundle
 
 [SonatajQueryBundle]

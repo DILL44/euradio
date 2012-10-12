@@ -1,3 +1,6 @@
 PodcastBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: PodcastBundle:Default:index }
+    pattern:  /podcast
+    defaults: { _controller: PodcastBundle:Podcast:index }
+PodcastBundle_homepage:
+    pattern:  /podcast_show{id}
+    defaults: { _controller: PodcastBundle:Podcast:show }
