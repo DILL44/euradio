@@ -12,15 +12,10 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('podcast_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.id }}</td>
             <td>{{ entity.name }}</td>
             <td>{% if entity.realtimestart %}{{ entity.realtimestart|date('Y-m-d H:i:s') }}{% endif %}</td>
             <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('podcast_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                </ul>
             </td>
         </tr>
     {% endfor %}

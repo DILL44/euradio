@@ -1,5 +1,6 @@
 <?php
 umask(0002);
+//@ini_set('memory_limit', -1);
 
 // if you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read http://symfony.com/doc/current/book/installation.html#configuration-and-setup for more information
@@ -12,7 +13,9 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
     || !in_array(@$_SERVER['REMOTE_ADDR'], array(
         '127.0.0.1',
         '::1',
-    	'88.140.116.45'
+    	'88.140.116.45',
+		'82.235.63.227',
+    	'2.1.103.27',
     ))
 ) {
     header('HTTP/1.0 403 Forbidden');

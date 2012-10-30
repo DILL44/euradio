@@ -70,14 +70,14 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
-#        sonata.admin_doctrine_orm.block.audit:
+#       sonata.admin_doctrine_orm.block.audit:
 #            contexts:   [admin]
         sonata.block.service.text:
         sonata.block.service.action:
         sonata.block.service.rss:
         sonata.media.block.media:
         sonata.media.block.gallery:
-        sonata.media.block.feature_media: 
+        sonata.media.block.feature_media:
 
         
 sonata_notification:
@@ -112,8 +112,10 @@ sonata_media:
                 - sonata.media.provider.file
                 - sonata.media.provider.podcast
             formats:
+                big : { width: 620, height : 380 , quality: 70}
+                medium : { width: 300, height : 150 , quality: 70}
                 small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
+                logo: { width: 189 , quality: 70}
     cdn:
         server:
             path: /uploads/media
@@ -201,3 +203,10 @@ sonata_user:
             validation_groups:  [Profile]    
 #ApplicationSonataPageBundle: ~
 #SonataPageBundle: ~
+
+services:
+    sonata.news.admin.post:
+        class: Application\Sonata\NewsBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin,manager_type: orm, group:"sonata_blog", label:"posts",  label_catalogue:"%sonata.news.admin.post.translation_domain%", label_translator_strategy:"sonata.admin.label.strategy.underscore"}
+        arguments: [null,Application\Sonata\NewsBundle\Entity\Post, SonataAdminBundle:CRUD]

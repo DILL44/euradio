@@ -6,7 +6,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Form\FormMapper;
- 
+
 class StaticContentAdmin extends Admin
 {
   protected function configureFormFields(FormMapper $formMapper)
@@ -15,7 +15,8 @@ class StaticContentAdmin extends Admin
       ->add('name')
       ->add('title')
       ->add('introduction')
-      ->add('body')
+      ->add('body', 'textarea', array('attr' => array('class' => 'tinymce', 'tinymce'=>'{"theme":"medium"}')))
+      ->add('CategoryStaticContent')
     ;
   }
  

@@ -27,7 +27,12 @@ class Post extends BasePost
      * @var integer $id
      */
     protected $id;
-
+    
+    /**
+     * @var podcast $postcast
+     */
+    protected $podcast;
+    
     /**
      * Get id
      *
@@ -37,5 +42,23 @@ class Post extends BasePost
     {
       return $this->id;
     }
+     /**
+     * Get podcast
+     *
+     * @return Podcast $podcast
+     */
+    public function getPodcast()
+    {
+    	return $this->podcast;
+    }   
+     /**
+     * Get podcast
+     *
+     * @return Podcast $podcast
+     */
+    public function setPodcast(\RadioSolution\PodcastBundle\Podcast $podcast)
+    {
+    	$this->podcast=$podcast;
+    } 
 
 }

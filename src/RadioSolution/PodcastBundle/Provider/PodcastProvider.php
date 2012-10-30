@@ -212,15 +212,6 @@ class PodcastProvider extends BaseProvider
         if ($media->getBinaryContent()) {
             $media->setContentType($media->getBinaryContent()->getMimeType());
             $media->setSize($media->getBinaryContent()->getSize());
-            $oggName= $this->mp32OggFile($this->urlFile.$media->getProviderReference());
-           	
-            $mediaconv = new Media;
-            $mediaconv->setBinaryContent($oggName);
-            $mediaconv->setContext('autocreate'); // video related to the user
-            $mediaconv->setProviderName('sonata.provider.file');
-            
-            $convert= new \Sonata\MediaBundle\Document\PHPCR\MediaManager($mediaconv, 'user', 'sonata.provider.file');
-            $convert->save($mediaconv);
         }
 
         $media->setProviderStatus(MediaInterface::STATUS_OK);

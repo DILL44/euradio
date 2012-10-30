@@ -11,16 +11,15 @@ RadioSolution\ProgramBundle\Entity\Emission:
       length: 100
     description:
       type: string
+    diffusion_start:
+      type: date
+    difusion_stop:
+      type: date
   manyToOne:
     theme:
       targetEntity: EmissionTheme
       joinColumn:
         name: id_theme
-        referencedColumnName: id
-    frenquence:
-      targetEntity: EmissionFrequency
-      joinColumn:
-        name: id_frequency
         referencedColumnName: id
     group:
       targetEntity: Application\Sonata\UserBundle\Entity\Group
@@ -32,3 +31,12 @@ RadioSolution\ProgramBundle\Entity\Emission:
       joinColumn:
         name: id_media
         referencedColumnName: id
+  oneToMany:
+    ExceptionalBroadcast:
+      targetEntity: ExceptionalBroadcast
+      cascade: [all]
+      mappedBy: Emission
+    WeeklyBroadcast:
+      targetEntity: WeeklyBroadcast
+      cascade: [all]
+      mappedBy: Emission

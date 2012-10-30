@@ -11,21 +11,15 @@ RadioSolution\PodcastBundle\Entity\Podcast:
       length: 100
     real_time_start:
       type: datetime
-  manyToMany:
-    posts:
-      targetEntity: Application\Sonata\NewsBundle\Entity\Post
-      joinTable: 
-        name: podcast__post
-        joinColumns:
-          id_podcast:
-            referencedColumnName: id
-        inverseJoinColumns:
-          id_post:
-            referencedColumnName: id
   oneToOne:
     filePodcast:
       targetEntity: Application\Sonata\MediaBundle\Entity\Media
-      joinColumns:
-        id_media_podcast:
-          referencedColumnName: id
- 
+      joinColumn:
+        name: id_media_podcast
+        referencedColumnName: id
+    post:
+      targetEntity: Application\Sonata\NewsBundle\Entity\Post
+      inversedBy: RadioSolution\PodcastBundle\Entity\Podcast
+      joinColumn:
+        name: podcast_id
+        referencedColumnName: id

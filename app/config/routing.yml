@@ -1,14 +1,10 @@
-ApplicationSonataUserBundle_user:
-    resource: "@ApplicationSonataUserBundle/Resources/config/routing/user.yml"
-    prefix:   /user
-    
 PodcastBundle:
     resource: "@PodcastBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /podcast
 
 StaticContentBundle:
     resource: "@StaticContentBundle/Resources/config/routing/staticcontent.yml"
-    prefix:   /
+    prefix:   /page
 
 ProgramBundle:
     resource: "@ProgramBundle/Resources/config/routing.yml"
@@ -45,7 +41,7 @@ fos_user_group:
     resource: "@FOSUserBundle/Resources/config/routing/group.xml"
     prefix: /group
     
-sonata_page_exceptions:
+sonata_page:
     resource: '@SonataPageBundle/Resources/config/routing/page.xml'
     prefix: /
 
@@ -84,9 +80,17 @@ app_news:
    resource: '@ApplicationSonataNewsBundle/Resources/config/routing/post.xml'
    prefix: /blog
 
-sonata_user_impersonating:
+#sonata_user_impersonating:
+#    pattern: /
+#    defaults: { _controller: SonataPageBundle:Page:catchAll }  
+
+redirect_accueil:
     pattern: /
-    defaults: { _controller: SonataPageBundle:Page:catchAll }   
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: catchAll
+        permanent: true # this is for 301
+        path: accueil # you can pass additional attributes
    
 catchAll:
     pattern:  /{path}

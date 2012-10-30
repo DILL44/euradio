@@ -16,6 +16,8 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-
+		<one-to-one field="podcast" target-entity="RadioSolution\PodcastBundle\Entity\Podcast" inversed-by="Application\Sonata\NewsBundle\Entity\Post">
+			<join-column name="podcast_id" referenced-column-name="id" />
+		</one-to-one>	
     </entity>
 </doctrine-mapping>

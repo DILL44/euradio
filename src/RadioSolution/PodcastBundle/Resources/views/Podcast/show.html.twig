@@ -1,12 +1,6 @@
 <h1>Podcast</h1>
 
 <table class="record_properties">
-		<img src="http://localhost/euradio/app_dev.php/uploads/media/default/0001/01/thumb_1_default_big.jpg"/>
-        <audio controls="controls">
- 			 <source src="http://localhost/euradio/app_dev.php/uploads/media/default/0001/01/{{ entity.filePodcast.getProviderReference() }}.ogg" type="audio/ogg" />
-			 <source src="http://localhost/euradio/app_dev.php/uploads/media/default/0001/01/{{ entity.filePodcast.getProviderReference() }}" type="audio/mp3" />
-			  Your browser does not support the audio tag.
-		</audio> 
     <tbody>
         <tr>
             <th>Id</th>
@@ -22,3 +16,9 @@
         </tr>
     </tbody>
 </table>
+
+<ul class="record_actions">
+    <li>
+            Back to the list
+    </li>
+</ul>

@@ -32,23 +32,9 @@ class Podcast
     /**
      * @var Application\Sonata\NewsBundle\Entity\Post
      */
-    private $posts;
+    private $post;
 
-    public function __construct()
-    {
-        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * to string
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-    	return $this->getName();
-    }
-    
+
     /**
      * Get id
      *
@@ -120,22 +106,26 @@ class Podcast
     }
 
     /**
-     * Add posts
+     * Set post
      *
-     * @param Application\Sonata\NewsBundle\Entity\Post $posts
+     * @param Application\Sonata\NewsBundle\Entity\Post $post
      */
-    public function addPost(\Application\Sonata\NewsBundle\Entity\Post $posts)
+    public function setPost(\Application\Sonata\NewsBundle\Entity\Post $post)
     {
-        $this->posts[] = $posts;
+        $this->post = $post;
     }
 
     /**
-     * Get posts
+     * Get post
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Application\Sonata\NewsBundle\Entity\Post 
      */
-    public function getPosts()
+    public function getPost()
     {
-        return $this->posts;
+        return $this->post;
+    }
+    
+    public  function __toString(){
+    	return $this->getName();
     }
 }

@@ -1,0 +1,17 @@
+RadioSolution\StaticContentBundle\Entity\CategoryStaticContent:
+  type: entity
+  table: static_content__category
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    body:
+      type: string
+  OneToMany:
+    StaticContent:
+      targetEntity: StaticContent
+      mappedBy: CategoryStaticContent

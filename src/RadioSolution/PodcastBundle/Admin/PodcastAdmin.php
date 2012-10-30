@@ -17,9 +17,6 @@ class PodcastAdmin extends Admin
     $formMapper
       ->add('name')
       ->add('real_time_start')
-      ->with('posts')
-      ->add('posts', 'sonata_type_model', array(), array('edit' => 'inline','inline' => 'table'))
-      ->end()
       ->with('file')
       ->add('filePodcast', 'sonata_type_model', array(), array('edit' => 'list'))
       ->end()
@@ -30,7 +27,6 @@ class PodcastAdmin extends Admin
   {
     $datagridMapper
       ->add('name')
-      ->add('posts', null, array('field_options' => array('expanded' => true, 'multiple' => true)))
     ;
   }
  
@@ -39,7 +35,6 @@ class PodcastAdmin extends Admin
     $listMapper
       ->addIdentifier('name')
       ->add('real_time_start')
-      ->add('posts')
       ->add('filePodcast')
     ;
   }
@@ -47,31 +42,12 @@ class PodcastAdmin extends Admin
   public function validate(ErrorElement $errorElement, $object)
   {
 
-  	$content=$this->mp32OggFile($object->getFilePodcast()->getProviderReference());
-  	$media = new Media();
-  	$media->setBinaryContent($content);
-  	$media->setContext('user'); // video related to the user
-  	$media->setProviderName('RadioSolution.provider.podcast');
-  	
-  	//$mediaManager= $this->get("sonata.media.manager.media");
-  	//$mediaManager->save($media);
-  	
+  	$content=$this->mp32OggFile($object->getFilePodcast()->getProviderReference()); 	
   	$errorElement
   	->with('name')
   	->assertMaxLength(array('limit' => 32))
   	->end()
   	;
-  }
-  
-  public function get()
-  {
-  	if (!$this->getRequest()) {
-  		return array();
-  	} 
-  	return array(
-  			'provider' => $this->getRequest()->get('provider'),
-  			'context'  => $this->getRequest()->get('context'),
-  	);
   }
   
   public function mp32OggFile($file, $delete = FALSE)

@@ -1,0 +1,10 @@
+RadioSolution\ProgramBundle\Entity\Day:
+  type: entity
+  table: program__Day
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    time_start:
+      type: string

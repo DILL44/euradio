@@ -1,0 +1,72 @@
+<h1>Post</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Title</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+        <tr>
+            <th>Abstract</th>
+            <td>{{ entity.abstract }}</td>
+        </tr>
+        <tr>
+            <th>Content</th>
+            <td>{{ entity.content }}</td>
+        </tr>
+        <tr>
+            <th>Rawcontent</th>
+            <td>{{ entity.rawContent }}</td>
+        </tr>
+        <tr>
+            <th>Contentformatter</th>
+            <td>{{ entity.contentFormatter }}</td>
+        </tr>
+        <tr>
+            <th>Enabled</th>
+            <td>{{ entity.enabled }}</td>
+        </tr>
+        <tr>
+            <th>Slug</th>
+            <td>{{ entity.slug }}</td>
+        </tr>
+        <tr>
+            <th>Publicationdatestart</th>
+            <td>{{ entity.publicationDateStart|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Commentsenabled</th>
+            <td>{{ entity.commentsEnabled }}</td>
+        </tr>
+        <tr>
+            <th>Commentscloseat</th>
+            <td>{{ entity.commentsCloseAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Commentsdefaultstatus</th>
+            <td>{{ entity.commentsDefaultStatus }}</td>
+        </tr>
+        <tr>
+            <th>Commentscount</th>
+            <td>{{ entity.commentsCount }}</td>
+        </tr>
+        <tr>
+            <th>Createdat</th>
+            <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Updatedat</th>
+            <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+            Back to the list
+    </li>
+</ul>

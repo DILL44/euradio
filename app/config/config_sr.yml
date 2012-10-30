@@ -32,12 +32,18 @@ services:
             - { name: sonata.admin, manager_type: orm, group: programme, label: emission theme }
         arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionTheme, SonataAdminBundle:CRUD]
 
-    radioSolution.program.emissionFrequency:
-        class: RadioSolution\ProgramBundle\Admin\EmissionFrequencyAdmin
+    radioSolution.program.ExceptionalBroadcast:
+        class: RadioSolution\ProgramBundle\Admin\ExceptionalBroadcastAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: programme, label: emission frequence }
-        arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionFrequency, SonataAdminBundle:CRUD]
-
+            - { name: sonata.admin, manager_type: orm, group: programme, label: emission exeptionnelle }
+        arguments: [null, RadioSolution\ProgramBundle\Entity\ExceptionalBroadcast, SonataAdminBundle:CRUD]
+        
+    radioSolution.program.WeeklyBroadcast:
+        class: RadioSolution\ProgramBundle\Admin\WeeklyBroadcastAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: programme, label: emission hebdo }
+        arguments: [null, RadioSolution\ProgramBundle\Entity\WeeklyBroadcast, SonataAdminBundle:CRUD]
+        
     radioSolution.program.themeColor:
         class: RadioSolution\ProgramBundle\Admin\ThemeColorAdmin
         tags:
@@ -54,5 +60,12 @@ services:
     radioSolution.staticContent.staticContent:
         class: RadioSolution\StaticContentBundle\Admin\StaticContentAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Pages, label: contenu static }
+            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue:"%sonata.page.admin.site.translation_domain%" label: "contenu static" label_translator_strategy:"sonata.admin.label.strategy.underscore"}
         arguments: [null, RadioSolution\StaticContentBundle\Entity\StaticContent, SonataAdminBundle:CRUD]
+        
+    radioSolution.staticContent.CategorystaticContent:
+        class: RadioSolution\StaticContentBundle\Admin\CategoryStaticContentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue:"%sonata.page.admin.site.translation_domain%" label: "category contenu static" label_translator_strategy:"sonata.admin.label.strategy.underscore"}
+        arguments: [null, RadioSolution\StaticContentBundle\Entity\CategoryStaticContent, SonataAdminBundle:CRUD]
+

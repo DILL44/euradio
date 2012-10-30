@@ -17,11 +17,10 @@ RadioSolution\StaticContentBundle\Entity\StaticContent:
       length: 255
     body:
       type: string
-  OneToOne:
-    filepdcast:
-      null: true
-      targetEntity: Application\Sonata\MediaBundle\Entity\Media
-      joinColumns:
-        picture:
-          name: id_media
+  manyToOne:
+    CategoryStaticContent:
+      targetEntity: CategoryStaticContent
+      inversedBy: StaticContent
+      joinColumn:
+          name: id_category
           referencedColumnName: id

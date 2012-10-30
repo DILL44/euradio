@@ -1,0 +1,26 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataBlockBundle:Block:block_base.html.twig' %}
+
+{% block block %}
+    <div class="sonata-page-menu-container {{ settings.class }}">
+        {% if settings.title %}<h3>{{ settings.title }}</h3>{% endif %}
+
+        <ul class="sonata-page-menu-chilren-list">
+            {% if page %}
+                {% for child in page.children %}
+                    <li class="sonata-page-menu-children-element"><a href="{{ sonata_page_url(child) }}" title="{{ child.name|escape }}">{{ child.name }}</a></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

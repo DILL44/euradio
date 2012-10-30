@@ -133,4 +133,29 @@ class StaticContent
     {
         return $this->body;
     }
+    /**
+     * @var RadioSolution\StaticContentBundle\Entity\CategoryStaticContent
+     */
+    private $CategoryStaticContent;
+
+
+    /**
+     * Set CategoryStaticContent
+     *
+     * @param RadioSolution\StaticContentBundle\Entity\CategoryStaticContent $categoryStaticContent
+     */
+    public function setCategoryStaticContent(\RadioSolution\StaticContentBundle\Entity\CategoryStaticContent $categoryStaticContent)
+    {
+        $this->CategoryStaticContent = $categoryStaticContent;
+    }
+
+    /**
+     * Get CategoryStaticContent
+     *
+     * @return RadioSolution\StaticContentBundle\Entity\CategoryStaticContent 
+     */
+    public function getCategoryStaticContent()
+    {
+        return $this->CategoryStaticContent;
+    }
 }

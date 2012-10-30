@@ -34,6 +34,15 @@ class StaticContent
      */
     private $body;
 
+    /**
+     * to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+    	return $this->getName();
+    }
 
     /**
      * Get id
@@ -123,5 +132,30 @@ class StaticContent
     public function getBody()
     {
         return $this->body;
+    }
+    /**
+     * @var RadioSolution\StaticContentBundle\Entity\CategoryStaticContent
+     */
+    private $CategoryStaticContent;
+
+
+    /**
+     * Set CategoryStaticContent
+     *
+     * @param RadioSolution\StaticContentBundle\Entity\CategoryStaticContent $categoryStaticContent
+     */
+    public function setCategoryStaticContent(\RadioSolution\StaticContentBundle\Entity\CategoryStaticContent $categoryStaticContent)
+    {
+        $this->CategoryStaticContent = $categoryStaticContent;
+    }
+
+    /**
+     * Get CategoryStaticContent
+     *
+     * @return RadioSolution\StaticContentBundle\Entity\CategoryStaticContent 
+     */
+    public function getCategoryStaticContent()
+    {
+        return $this->CategoryStaticContent;
     }
 }

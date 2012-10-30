@@ -55,7 +55,8 @@ security:
                 check_path:     /admin/login_check
                 failure_path:   /admin/login
                 use_referer:    true
-                default_target_path: /admin/dashboard 
+                default_target_path: /admin/dashboard        
+                always_use_default_target_path: true 
             logout:
                 path:           /admin/logout
                 target:         /admin/login

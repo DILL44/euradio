@@ -41,7 +41,6 @@ class PodcastController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $entity = $em->getRepository('PodcastBundle:Podcast')->find($id);
- //       $file = $em->getRepository('ApplicationMediaBundle:Media')->find($entity->getFilePodcast())
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Podcast entity.');

@@ -10,22 +10,146 @@ file that was distributed with this source code.
 #}
 {% extends 'ApplicationSonataPageBundle::base_layout.html.twig' %}
 
+
+
 {% block page_container %}
-    <div class="container">
-        <div class="content">
-            <div class="page-header">
-            	{{ knp_menu_render('MenuBundle:Builder:mainMenu') }}
-                <div class="pull-left">
-                    {{ sonata_page_render_container('title', 'global') }}
-                </div>
 
-                <div class="pull-right navigation">
-                    {{ sonata_page_render_container('header', 'global') }}
-                </div>
+    <div id="page">
+    
+		<header id="header">
+		
+<div class="wrap group">		
+        <div class="head-wrap group">
+			<div id="toppanel">
+				<div id="panel">
+					<div class="content clearfix">
+						<div class="left">
+							<h1>Bienvenue chez Euradionantes !</h1>		
+							<p class="grey">Texte d'introduction expliquant l'intérêt de se créer une compte membre.</p>
+						</div>
+						<div class="left">
+							<!-- Début du formulaire de connexion -->
+							<form class="clearfix" action="#" method="post">
+								<h1>Connexion membre</h1>
+								<input class="field" type="text" name="log" id="log" value="Nom d'utilisateur" size="23" />
+								<input class="field" type="password" name="pwd" id="pwd" value="Mot de passe" size="23" />
+								<label><input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever" /> &nbsp;Se souvenir de moi</label>
+								<div class="clear"></div>
+								<input type="submit" name="submit" value="Connexion" class="bt_login" />
+								<a class="lost-pwd" href="#">Mot de passe perdu ?</a>
+							</form>
+						</div>
+						<div class="left right">			
+							<!-- Début du formulaire d'inscription -->
+							<form action="#" method="post">
+								<h1>Inscription</h1>				
+								<input class="field" type="text" name="signup" id="signup" value="Nom d'utilisateur" size="23" />
+								<input class="field" type="text" name="email" id="email" value="Adresse e-mail" size="23" />
+								<label>Un mot de passe va vous être envoyé par e-mail.</label>
+								<input type="submit" name="submit" value="S'inscrire" class="bt_register" />
+							</form>
+						</div>
+					</div>
+				</div> <!-- #panel -->	
 
-                <div style="clear: both"></div>
-            </div>
+				<div class="tab">
+					<ul class="login">
+						<li id="toggle">
+							<a id="open" class="open" href="#">Connexion | Inscription</a>
+							<a id="close" style="display: none;" class="close" href="#">Fermer</a>			
+						</li>
+					</ul> 
+				</div> <!-- .tab -->
+				
+			</div> <!-- #toppanel -->
+		
+		
+		<div class="vraiheader">
+		
+			<hgroup class="logo imglogo">
+                <h1>
+	                <a href="{{ sonata_page_url('/accueil') }}">
+	                	<img src="/images/logo.png" alt="Euradionantes" />
+	                </a>
+                </h1>
+            </hgroup>
+            
 
+            
+			<div class="sld-container">
+				<div id="main-slider" class="flexslider">
+					<ul class="slides group">
+						<li class="sld-item group">
+							<a href="#"><img src="/images/pub/ban728x90.png" alt=""></a>
+						</li>
+						<!-- 
+						<li class="sld-item group">
+							<a href="#"><img src="/images/pub/ban728x90_2.png" alt=""></a>
+						</li>		
+						<li class="sld-item group">
+							<a href="#"><img src="/images/pub/ban728x90_3.png" alt=""></a>
+						</li>	
+						 -->					
+					</ul>
+				</div> <!-- .flexslider -->
+			</div> <!-- .sld-container -->
+			<!-- 
+			<div class="on-air">
+				<div class="player-bt">
+					<span class="title">Indian Summer</span>
+					<span class="subtitle">Chicha Libre</span>
+				</div>
+			</div> <!-- .on-air -->
+			
+            <nav>
+                <ul id="navigation" class="group">
+                    <li class="current_page_item current-menu-item"><a href="index.html">Accueil</a></li>
+                    <li><a href="#">Radio</a>
+                        <ul>
+                            <li><a href="#">Ecouter</a></li>
+                            <li><a href="#">Programmes</a></li>
+                            <li><a href="#">Emissions</a></li>
+                            <li><a href="#">Podcasts</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Rédaction</a></li>
+                    <li><a href="#">Presse</a></li>
+					<li><a href="#">Blogs</a></li>
+					<li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+		</div>
+        </div> <!-- .head-wrap -->
+    </div> <!-- .wrap < header -->
+    
+            
+			<div class="pull-left">
+                {% if content2 is defined %}
+                    {{ content2|raw }}
+                {% else %}                    
+                    {% set content2 = block('logo') %}
+                    {% if content2|length > 0 %}
+                        {{ content2|raw }}
+                    {% else %}
+                        {{ sonata_page_render_container('logo', page) }}
+                    {% endif %}
+                {% endif %}
+				
+				
+				
+			</div>
+
+			<div class="pull-right navigation">
+				{{ sonata_page_render_container('header', 'global') }}
+			</div>
+
+			<div style="clear: both"></div>
+			
+		</header>
+    
+    
+        <div class="main-content">
+        
             <div class="row">
                 {% if page.name != 'global'%}
                     {{ sonata_page_render_container('content_top', 'global') }}
@@ -53,12 +177,16 @@ file that was distributed with this source code.
                     {{ sonata_page_render_container('content_bottom', 'global') }}
                 {% endif %}
             </div>
+            
         </div>
 
-        <footer>
-        <h2>pied de page</h2>
+        <footer id="footer">
+        
+        	<h2>pied de page</h2>
         	{% block footer %}{% endblock %}
             {{ sonata_page_render_container('footer', 'global') }}
+            
         </footer>
     </div>
+
 {% endblock %}

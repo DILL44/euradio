@@ -10,6 +10,8 @@
 
 namespace Application\Sonata\NewsBundle\Entity;
 
+use RadioSolution\PodcastBundle\Entity\Podcast;
+
 use Sonata\NewsBundle\Entity\BasePost as BasePost;
 
 /**
@@ -22,11 +24,16 @@ use Sonata\NewsBundle\Entity\BasePost as BasePost;
  */
 class Post extends BasePost
 {
-
+	
     /**
      * @var integer $id
      */
     protected $id;
+    
+    /**
+     * @var podcast $postcast
+     */
+    protected $podcast;
 
     /**
      * Get id
@@ -37,4 +44,32 @@ class Post extends BasePost
     {
         return $this->id;
     }
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function setId($id)
+    {
+    	return $this->id=$id;
+    }
+    /**
+     * Get podcast
+     *
+     * @return Podcast $podcast
+     */
+    public function getPodcast()
+    {
+    	return $this->podcast;
+    }    /**
+     * Get podcast
+     *
+     * @return Podcast $podcast
+     */
+    public function setPodcast(\RadioSolution\PodcastBundle\Podcast $podcast)
+    {
+    	$this->podcast=$podcast;
+    }
+    
+    
 }

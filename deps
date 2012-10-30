@@ -1,250 +1,59 @@
-#Symfony base
-[symfony]
-    git=http://github.com/symfony/symfony.git
-    version=origin/2.0
-
-[twig]
-    git=http://github.com/fabpot/Twig.git
-    version=v1.8.2
-
-[monolog]
-    git=http://github.com/Seldaek/monolog.git
-    version=1.0.2
-
-[doctrine-common]
-    git=http://github.com/doctrine/common.git
-    version=2.1.4
-
-[doctrine-dbal]
-    git=http://github.com/doctrine/dbal.git
-    version=2.1.7
-
-[doctrine]
-    git=http://github.com/doctrine/doctrine2.git
-    version=2.1.7
-
-[swiftmailer]
-    git=http://github.com/swiftmailer/swiftmailer.git
-    version=v4.2.0
-
-[assetic]
-    git=http://github.com/kriswallsmith/assetic.git
-    version=v1.0.3
-
-[twig-extensions]
-    git=http://github.com/fabpot/Twig-extensions.git
-
-[metadata]
-    git=http://github.com/schmittjoh/metadata.git
-    version=1.0.0
-
-[SensioFrameworkExtraBundle]
-    git=http://github.com/sensio/SensioFrameworkExtraBundle.git
-    target=/bundles/Sensio/Bundle/FrameworkExtraBundle
-    version=origin/2.0
-
-[JMSSecurityExtraBundle]
-    git=http://github.com/schmittjoh/JMSSecurityExtraBundle.git
-    target=/bundles/JMS/SecurityExtraBundle
-    version=origin/1.0.x
-
-[SensioDistributionBundle]
-    git=http://github.com/sensio/SensioDistributionBundle.git
-    target=/bundles/Sensio/Bundle/DistributionBundle
-    version=origin/2.0
-
-[SensioGeneratorBundle]
-    git=http://github.com/sensio/SensioGeneratorBundle.git
-    target=/bundles/Sensio/Bundle/GeneratorBundle
-    version=origin/2.0
-
-[AsseticBundle]
-    git=http://github.com/symfony/AsseticBundle.git
-    target=/bundles/Symfony/Bundle/AsseticBundle
-    version=origin/2.0
-
-#other bundles
-[gaufrette]
-    git=https://github.com/sonata-project/Gaufrette.git
-    target=/gaufrette
-
-[imagine]
-    git=https://github.com/avalanche123/Imagine.git
-    target=/imagine
-
-[FacebookSDK]
-    git=git://github.com/facebook/facebook-php-sdk.git
-    target=/facebook
-    
-[twitteroauth]
-    git=git://github.com/kertz/twitteroauth.git 
-    target=/twitteroauth
-
-[buzz]
-    git=git://github.com/kriswallsmith/Buzz.git
-    target=/buzz
-
-[ToolsBundle]
-    git=https://github.com/COil/ToolsBundle.git
-    target=bundles/COil/ToolsBundle
-
-[PhpAmqplib]
-    git=git://github.com/videlalvaro/php-amqplib.git
-    target=/bundles/Sonata/php-amqplib
-
-[Exporter]
-    git=http://github.com/sonata-project/exporter.git
-    target=/exporter
-
-[EWZRecaptchaBundle]
-    git=http://github.com/excelwebzone/EWZRecaptchaBundle.git
-    target=/bundles/EWZ/Bundle/RecaptchaBundle
-
-[TinymceBundle]
-    git=git://github.com/stfalcon/TinymceBundle.git
-    target=/bundles/Stfalcon/Bundle/TinymceBundle
-
-[WowoQueueBundle]
-    git=git://github.com/wowo/WowoQueueBundle.git
-    target=bundles/Wowo/QueueBundle
-
-[pheanstalk]
-    git=https://github.com/pda/pheanstalk
-    target=/pheanstalk
-    version=v1.1.0 
-
-[WowoNewsletterBundle]
-    git=git://github.com/wowo/WowoNewsletterBundle.git
-    target=bundles/Wowo/NewsletterBundle
-
-[VichGeographicalBundle]
-    git=git://github.com/dustin10/VichGeographicalBundle.git
-    target=/bundles/Vich/GeographicalBundle
-
-[PdfBundle]
-    git=git://github.com/psliwa/PdfBundle.git
-    target=/bundles/Ps/PdfBundle
-
-[PHPPdf]
-   git=git://github.com/psliwa/PHPPdf.git
-   version=origin/1.1.x
-
-[EkoFeedBundle]
-    git=https://github.com/eko/FeedBundle.git
-    target=/bundles/Eko/FeedBundle
-
-[UrlShortenerBundle]
-    git=git://github.com/Ph3nol/UrlShortenerBundle
-    target=/bundles/Sly/UrlShortenerBundle
-
-[GregwarImageBundle]
-    git=git://github.com/Gregwar/ImageBundle.git
-    target=/bundles/Gregwar/ImageBundle
-
-[SensioBuzzBundle]
-    git=http://github.com/sensio/SensioBuzzBundle.git
-    target=bundles/Sensio/Bundle/BuzzBundle
-
-#Knp
-[KnpMarkdownBundle]
-    git=http://github.com/KnpLabs/KnpMarkdownBundle.git
-    target=/bundles/Knp/Bundle/MarkdownBundle
-    
-[KnpMenuBundle]
-    git=https://github.com/KnpLabs/KnpMenuBundle.git
-    target=/bundles/Knp/Bundle/MenuBundle
-
-[KnpMenu]
-    git=https://github.com/KnpLabs/KnpMenu.git
-    target=/knp/menu
-    
-[knp-components]
-    git=http://github.com/KnpLabs/knp-components.git
-
-[KnpPaginatorBundle]
-    git=http://github.com/KnpLabs/KnpPaginatorBundle.git
-    target=bundles/Knp/Bundle/PaginatorBundle
-
-    
-#FOS    
-[FOSTwitterBundle]
-    git=https://github.com/FriendsOfSymfony/FOSTwitterBundle.git
-    target=/bundles/FOS/TwitterBundle
-    version=origin/v1.0
-
-[FOSFacebookBundle]
-    git=git://github.com/FriendsOfSymfony/FOSFacebookBundle.git
-    target=/bundles/FOS/FacebookBundle
-    version=1.0.0
-
-[FOSUserBundle]
-    git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
-    target=bundles/FOS/UserBundle
-    version=1.2.0
-
-[FOSCommentBundle]
-    git=https://github.com/FriendsOfSymfony/FOSCommentBundle.git
-    target=bundles/FOS/CommentBundle
-    
-#Sonata
-[SonataDoctrineORMAdminBundle]
-    git=http://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
-    target=/bundles/Sonata/DoctrineORMAdminBundle
-
-[SonataNewsBundle]
-    git=https://github.com/sonata-project/SonataNewsBundle.git
-    target=/bundles/Sonata/NewsBundle
-
-[SonataMediaBundle]
-    git=https://github.com/DILL44/SonataMediaBundle.git
-    target=/bundles/Sonata/MediaBundle
-
-[SonatajQueryBundle]
-    git=http://github.com/sonata-project/SonatajQueryBundle.git
-    target=/bundles/Sonata/jQueryBundle
-
-[SonataUserBundle]
-    git=http://github.com/sonata-project/SonataUserBundle.git
-    target=/bundles/Sonata/UserBundle
-
-[SonataAdminBundle]
-    git=http://github.com/sonata-project/SonataAdminBundle.git
-    target=/bundles/Sonata/AdminBundle
-    
-[SonataCacheBundle]
-    git=http://github.com/sonata-project/SonataCacheBundle.git
-    target=/bundles/Sonata/CacheBundle
-
-[SonataBlockBundle]
-    git=http://github.com/sonata-project/SonataBlockBundle.git
-    target=/bundles/Sonata/BlockBundle
-
-[SonataPageBundle]
-    git=http://github.com/sonata-project/SonataPageBundle.git
-    target=/bundles/Sonata/PageBundle
-
-[SonataSeoBundle]
-    git=http://github.com/sonata-project/SonataSeoBundle.git
-    target=/bundles/Sonata/SeoBundle
-
-[SonataEasyExtendsBundle]
-    git=http://github.com/sonata-project/SonataEasyExtendsBundle.git
-    target=/bundles/Sonata/EasyExtendsBundle
-    
-[SonataNotificationBundle]
-    git=git://github.com/sonata-project/SonataNotificationBundle.git
-    target=/bundles/Sonata/NotificationBundle
-    version=origin/2.0
-    
-[SonataFormatterBundle]
-    git=http://github.com/sonata-project/SonataFormatterBundle.git
-    target=/bundles/Sonata/FormatterBundle
-    version=origin/2.0
-
-[SonataIntlBundle]
-    git=https://github.com/sonata-project/SonataIntlBundle
-    target=/bundles/Sonata/IntlBundle
-
-[SonataDoctrineExtensions]
-    git=http://github.com/sonata-project/sonata-doctrine-extensions.git
-    target=/bundles/Sonata/sonata-doctrine-extensions
+symfony ee572b34cf19edc8c3ed0bd1bc8a9d634cfcd197
+twig v1.8.2
+monolog 1.0.2
+doctrine-common 2.1.4
+doctrine-dbal 2.1.7
+doctrine 2.1.7
+swiftmailer v4.2.0
+assetic v1.0.3
+twig-extensions feb6d3f10c411e2631997c0a905aa581c80305c1
+metadata 1.0.0
+SensioFrameworkExtraBundle 85911039aca2ef39805640d9238c7157d8c30d2e
+JMSSecurityExtraBundle e752f888c51425f71382c056961f10f2be642102
+SensioDistributionBundle 41a6c5caed65f02bb09c95a90579f047616471fd
+SensioGeneratorBundle c0118ce370f8da20e43051f2dd1ae331a202ab9c
+AsseticBundle 6f15728c1aefa5246caa83730e3dbf70b0d46052
+gaufrette b771d9aa8dc7b02714bd3bad80277acbc8708589
+imagine 9ce870e774361115c240e8e025e4617a3ac31d54
+FacebookSDK 98f2be163c96a51166354e467b95dd38aa4b0a19
+twitteroauth 30d9fba685516cfeee12bdf0aa50d803f112214b
+buzz 2ba5da13b1b03590f0164b3fb61578078d671fcc
+ToolsBundle b66934e2f50c7d54de83049d97e01e19ddd5d23a
+PhpAmqplib 6df4b32a43fa41233d050d3df76f93f66f94191a
+Exporter bcdfd50bc3118173d914e790921701ab26fb6b14
+EWZRecaptchaBundle 946dafffba58e959a21069f85c2fd3e25861d322
+TinymceBundle 39e2d52b6e345e2309e173b76a09f19dbee0c12e
+WowoQueueBundle 042b56c89de0e6bde09c41994e4ed1d6883b3e42
+pheanstalk v1.1.0
+WowoNewsletterBundle ad6dd6f8d066a51fa0b77a7155cfefd6b5fa2279
+VichGeographicalBundle fc68b2c52e3b925fb31e51ee87fefe325491d266
+PdfBundle 4e9b3e7f41c55a1cb08b770cf98f89cd8cbe2658
+PHPPdf 0ba37a382041032b57be8bd599eccc9ce06083f3
+EkoFeedBundle 24933ca429a36b99919db0ee8a3948ddd540c161
+UrlShortenerBundle db055411ea99d41ce7e6b9d35b4b22484c220ea7
+GregwarImageBundle 0b99db93b7eb94452967880ea444b3b9732eb4c6
+SensioBuzzBundle 0754d7dd155efc4f85de60993571b0b6a5aaccb9
+KnpMarkdownBundle d0fac3f6d2ac502386ee73def9cf900029e1d353
+KnpMenuBundle 4389efdd5c30d974544afbfe5ada3a4ce30d7aa1
+KnpMenu 5b7d34e58c2d51b30005b69eeded9fb658fe8abf
+knp-components 99ea408dc2a7c3616e688ffe67e3248ece69ff0e
+KnpPaginatorBundle de439d2816fe984dbe0c438fd4d0d7c67748c5ff
+FOSTwitterBundle f5e368d6304a52a4287e93a26ca865e4c128567e
+FOSFacebookBundle 1.0.0
+FOSUserBundle 1.2.0
+FOSCommentBundle 53ce8e6066401c3ac3d72f7b14ff2ae0f894a1a9
+SonataDoctrineORMAdminBundle c3c3df63e6947b83e6f8e450fb9aa5cafddf5405
+SonataNewsBundle f78bbe6a7614143e7b8e39713a5a176e90276ef9
+SonataMediaBundle 196cf93b863b7bc7cebe18ccaa6711896e41be83
+SonatajQueryBundle 785870afce016cc387fadb361ad52c3d4a2e7fe6
+SonataUserBundle e0982043fdef48d6245a193c84f7cbc65f93dfdb
+SonataAdminBundle dffc76975e4d6aa5a5acf5cc33e5a3daac1cbc38
+SonataCacheBundle a555a92e369d85279a2f1dcdcfd3a97fd513abd3
+SonataBlockBundle 0d18510ac346343ee5a19c50b012da91bd812eef
+SonataPageBundle 0c607250bff03eb950850ea9438cd31056f08675
+SonataSeoBundle 201dcaad98204911f039dbb211ac53217b707ac7
+SonataEasyExtendsBundle 4590e4ee970c031deae56c7cd18f71f77aeceb3c
+SonataNotificationBundle 6cab9c2c29d3ff0a0430a2a6964f6ba6a8915168
+SonataFormatterBundle b0818699d65d4bcb8279261a97871e9fc5403c3a
+SonataIntlBundle dd54fd10efbc6a9d411927df2f8f7b36b92b5fa2
+SonataDoctrineExtensions 0a316790871e1ea7f019e2313667570eabd270b9

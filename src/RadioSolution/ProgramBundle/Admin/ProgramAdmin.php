@@ -17,32 +17,25 @@ class ProgramAdmin extends Admin
       ->with('podcast')
       ->add('podcast', 'sonata_type_model')
       ->end()
-      ->with('emission')
-      ->add('emission', 'sonata_type_model')
-      ->end()
     ;
   }
  
   protected function configureDatagridFilters(DatagridMapper $datagridMapper)
   {
     $datagridMapper
-      ->add('name')
+      ->add('id')
     ;
   }
  
   protected function configureListFields(ListMapper $listMapper)
   {
     $listMapper
-      ->addIdentifier('name')
+      ->addIdentifier('id')
     ;
   }
  
   public function validate(ErrorElement $errorElement, $object)
   {
-    $errorElement
-      ->with('name')
-      ->assertMaxLength(array('limit' => 32))
-      ->end()
-    ;
+    
   }
 }

@@ -1,0 +1,34 @@
+RadioSolution\ProgramBundle\Entity\WeeklyBroadcast:
+  type: entity
+  table: program__WeeklyBroadcast
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    duration:
+      type: time
+    hour:
+      type: time
+    day:
+      type: integer
+#  manyToMany:
+#    day:
+#      targetEntity: Day
+#      cascade: [all]
+#      joinTable:
+#        name: program__WeeklyBroadcast_day
+#        joinColumns:
+#          WeeklyBroadcast_id:
+#            referencedColumnName: id
+#        inverseJoinColumns:
+#          day_id:
+#            referencedColumnName: id
+  manyToOne:
+    Emission:
+      targetEntity: Emission
+      cascade: [all]
+      inversedBy: WeeklyBroadcast
+      joinColumn:
+        name: emission_id
+        referencedColumnName: id
