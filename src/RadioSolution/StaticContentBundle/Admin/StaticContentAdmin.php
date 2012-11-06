@@ -14,9 +14,10 @@ class StaticContentAdmin extends Admin
     $formMapper
       ->add('name')
       ->add('title')
+      ->add('image','sonata_type_model',array(),array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.image')))
       ->add('introduction')
       ->add('body', 'textarea', array('attr' => array('class' => 'tinymce', 'tinymce'=>'{"theme":"medium"}')))
-      ->add('CategoryStaticContent')
+      ->add('CategoryStaticContent', 'sonata_type_model',array('required' => false))
     ;
   }
  

@@ -32,6 +32,12 @@ services:
             - { name: sonata.admin, manager_type: orm, group: programme, label: emission theme }
         arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionTheme, SonataAdminBundle:CRUD]
 
+    radioSolution.program.emissionFrequency:
+        class: RadioSolution\ProgramBundle\Admin\EmissionFrequencyAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: programme, label: emission frequence }
+        arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionFrequency, SonataAdminBundle:CRUD]
+        
     radioSolution.program.ExceptionalBroadcast:
         class: RadioSolution\ProgramBundle\Admin\ExceptionalBroadcastAdmin
         tags:
@@ -68,4 +74,10 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue:"%sonata.page.admin.site.translation_domain%" label: "category contenu static" label_translator_strategy:"sonata.admin.label.strategy.underscore"}
         arguments: [null, RadioSolution\StaticContentBundle\Entity\CategoryStaticContent, SonataAdminBundle:CRUD]
+
+    radioSolution.staticContent.DailymediastaticContent:
+        class: RadioSolution\StaticContentBundle\Admin\DailymediaStaticContentAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue:"%sonata.page.admin.site.translation_domain%" label: "dailymedia contenu static" label_translator_strategy:"sonata.admin.label.strategy.underscore"}
+        arguments: [null, RadioSolution\StaticContentBundle\Entity\DailymediaStaticContent, SonataAdminBundle:CRUD]
 

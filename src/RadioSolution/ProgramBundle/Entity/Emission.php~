@@ -234,4 +234,79 @@ class Emission
     {
         return $this->WeeklyBroadcast;
     }
+    /**
+     * @var date $diffusion_start
+     */
+    private $diffusion_start;
+
+    /**
+     * @var date $difusion_stop
+     */
+    private $difusion_stop;
+
+
+    /**
+     * Set diffusion_start
+     *
+     * @param date $diffusionStart
+     */
+    public function setDiffusionStart($diffusionStart)
+    {
+        $this->diffusion_start = $diffusionStart;
+    }
+
+    /**
+     * Get diffusion_start
+     *
+     * @return date 
+     */
+    public function getDiffusionStart()
+    {
+        return $this->diffusion_start;
+    }
+
+    /**
+     * Set difusion_stop
+     *
+     * @param date $difusionStop
+     */
+    public function setDifusionStop($difusionStop)
+    {
+        $this->difusion_stop = $difusionStop;
+    }
+
+    /**
+     * Get difusion_stop
+     *
+     * @return date 
+     */
+    public function getDifusionStop()
+    {
+        return $this->difusion_stop;
+    }
+    /**
+     * @var boolean $archive
+     */
+    private $archive;
+
+
+    /**
+     * Set archive
+     *
+     * @param boolean $archive
+     */
+    public function setArchive($archive)
+    {
+        $this->archive = $archive;
+    }
+
+    /**
+     * Get archive
+     *
+     * @return boolean 
+     */
+    public function getArchive()
+    {
+        return $this->archive;
+    }
 }

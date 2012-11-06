@@ -24,7 +24,10 @@ class CategoryStaticContent
      */
     private $body;
 
-
+    public function __toString()
+    {
+    	return $this->getName();
+    }
     /**
      * Get id
      *

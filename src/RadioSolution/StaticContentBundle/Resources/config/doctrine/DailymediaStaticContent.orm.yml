@@ -1,20 +1,20 @@
-RadioSolution\StaticContentBundle\Entity\CategoryStaticContent:
+RadioSolution\StaticContentBundle\Entity\DailymediaStaticContent:
   type: entity
-  table: static_content__category
+  table: static_content__Dailymedia
   id:
     id:
       type: integer
       generator: { strategy: AUTO }
   fields:
-    name:
+    title:
       type: string
       length: 100
-    body:
+    link:
       type: string
-  OneToMany:
-    StaticContent:
-      targetEntity: StaticContent
-      mappedBy: CategoryStaticContent
+    author:
+      type: string
+    date:
+      type: date
   oneToOne:
     image:
       targetEntity: Application\Sonata\MediaBundle\Entity\Media

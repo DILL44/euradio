@@ -17,6 +17,14 @@ RadioSolution\StaticContentBundle\Entity\StaticContent:
       length: 255
     body:
       type: string
+    date_add:
+      type: date 
+  oneToOne:
+    image:
+      targetEntity: Application\Sonata\MediaBundle\Entity\Media
+      joinColumn:
+        name: id_image
+        referencedColumnName: id
   manyToOne:
     CategoryStaticContent:
       targetEntity: CategoryStaticContent

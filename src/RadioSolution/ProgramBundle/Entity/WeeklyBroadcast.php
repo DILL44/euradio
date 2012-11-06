@@ -124,4 +124,8 @@ class WeeklyBroadcast
     {
         return $this->Emission;
     }
+    
+    public function __toString(){
+    	return (String)$this->getId();
+    }
 }

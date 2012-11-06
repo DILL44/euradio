@@ -158,4 +158,54 @@ class StaticContent
     {
         return $this->CategoryStaticContent;
     }
+    /**
+     * @var date $date_add
+     */
+    private $date_add;
+
+
+    /**
+     * Set date_add
+     *
+     * @param date $dateAdd
+     */
+    public function setDateAdd($dateAdd)
+    {
+        $this->date_add = $dateAdd;
+    }
+
+    /**
+     * Get date_add
+     *
+     * @return date 
+     */
+    public function getDateAdd()
+    {
+        return $this->date_add;
+    }
+    /**
+     * @var Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param Application\Sonata\MediaBundle\Entity\Media $image
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Application\Sonata\MediaBundle\Entity\Media 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

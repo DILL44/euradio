@@ -77,4 +77,29 @@ class CategoryStaticContent
     {
         return $this->body;
     }
+    /**
+     * @var Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param Application\Sonata\MediaBundle\Entity\Media $image
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Application\Sonata\MediaBundle\Entity\Media 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

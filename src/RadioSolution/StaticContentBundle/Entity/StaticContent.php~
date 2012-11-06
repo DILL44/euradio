@@ -158,4 +158,29 @@ class StaticContent
     {
         return $this->CategoryStaticContent;
     }
+    /**
+     * @var date $date_add
+     */
+    private $date_add;
+
+
+    /**
+     * Set date_add
+     *
+     * @param date $dateAdd
+     */
+    public function setDateAdd($dateAdd)
+    {
+        $this->date_add = $dateAdd;
+    }
+
+    /**
+     * Get date_add
+     *
+     * @return date 
+     */
+    public function getDateAdd()
+    {
+        return $this->date_add;
+    }
 }

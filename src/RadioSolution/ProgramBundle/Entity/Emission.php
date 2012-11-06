@@ -284,4 +284,54 @@ class Emission
     {
         return $this->difusion_stop;
     }
+    /**
+     * @var boolean $archive
+     */
+    private $archive;
+
+
+    /**
+     * Set archive
+     *
+     * @param boolean $archive
+     */
+    public function setArchive($archive)
+    {
+        $this->archive = $archive;
+    }
+
+    /**
+     * Get archive
+     *
+     * @return boolean 
+     */
+    public function getArchive()
+    {
+        return $this->archive;
+    }
+    /**
+     * @var RadioSolution\ProgramBundle\Entity\EmissionFrequency
+     */
+    private $frequency;
+
+
+    /**
+     * Set frequency
+     *
+     * @param RadioSolution\ProgramBundle\Entity\EmissionFrequency $frequency
+     */
+    public function setFrequency(\RadioSolution\ProgramBundle\Entity\EmissionFrequency $frequency)
+    {
+        $this->frequency = $frequency;
+    }
+
+    /**
+     * Get frequency
+     *
+     * @return RadioSolution\ProgramBundle\Entity\EmissionFrequency 
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
 }

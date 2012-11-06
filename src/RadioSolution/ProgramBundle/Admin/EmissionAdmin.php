@@ -21,15 +21,17 @@ class EmissionAdmin extends Admin
       ->add('description')
       ->add('theme', 'sonata_type_model',array('required' => false))
       ->add('group', 'sonata_type_model',array('required' => false))
-      ->add('media', 'sonata_type_model',array('required' => false))
+      ->add('media', 'sonata_type_model',array('required' => false),array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.image')))
+      ->add('archive',null,array('required' => false))
+      ->add('frequency', 'sonata_type_model',array('required' => false))
     ->with('Diffusions')
-    ->add('diffusion_start')
-    ->add('difusion_stop')
-    ->add('ExceptionalBroadcast', 'sonata_type_collection', array('required' => false, 'by_reference' =>true), array(
+    ->add('diffusion_start', 'date')
+    ->add('difusion_stop','date')
+    ->add('ExceptionalBroadcast', 'sonata_type_collection', array('required' => false), array(
                 'edit' => 'inline',
     			'inline' => 'table',
             ))
-    ->add('WeeklyBroadcast', 'sonata_type_collection', array('required' => false, 'by_reference' =>true), array(
+    ->add('WeeklyBroadcast', 'sonata_type_collection', array('required' => false), array(
                 'edit' => 'inline',
                 'inline' => 'table',
             ))
@@ -53,21 +55,28 @@ class EmissionAdmin extends Admin
  
   public function validate(ErrorElement $errorElement, $object)
   {
-  	$exceptional=$object->getExceptionalBroadcast();
+  	$newDate=new \DateTime();
+  	$newDate2=new \DateTime();
+  	//$file=fopen('/var/www/git/euradio/src/RadioSolution/ProgramBundle/Admin/log.txt','w');
+  	 
   	$q=$this->createQuery()->delete('ProgramBundle:Program','p')  	
   	->where('p.emission = :id_emmission')
   	->setParameter('id_emmission',(String)$object->getId());
   	$q->getQuery()->execute();
   	
-  
+  	$exceptional=$object->getExceptionalBroadcast();
+  	
   	foreach ($exceptional as $value){
+  		$timezone = $value->getTimeStart()->getTimezone();
   		$value->setEmission($object);
-  		$convert=new DateTimeToTimestampTransformer();  		
+  		
   		$program=new Program();
   		$program->setTimeStart($value->getTimeStart());
-  		(int)$timeValue=$convert->transform($value->getTimeStart())+$convert->transform($value->getDuration());
-  		$program->setTimeStop(new \DateTime(date('c',$timeValue)));
+  		$timeValue=$value->getTimeStart()->getTimestamp()+$value->getDuration()->getTimestamp();
+  		$program->setTimeStop($newDate->setTimestamp($timeValue));
   		$program->setEmission($object);
+  		
+  		
   		$this->prePersist($program);
   		$this->getModelManager()->create($program);
   		$this->postPersist($program);
@@ -75,9 +84,33 @@ class EmissionAdmin extends Admin
   	}
   	
   	$weekly=$object->getWeeklyBroadcast();
+  	$timeStampDay=3600*24;
+  	$timeStampWeek=$timeStampDay*7; 
   	
+
+  	$timestamp = $object->getDiffusionStart()->getTimestamp();
+  	$dateDay=date("N",$timestamp);
   	foreach ($weekly as $value){
+  		while($dateDay!=$value->getDay()){
+  			$timestamp+=$timeStampDay;
+  			$dateDay=date("N",$timestamp);
+  		}
+  		for($timestamp;$timestamp<$object->getDifusionStop()->getTimestamp();$timestamp+=$timeStampWeek){
+  			$value->setEmission($object);
+  			$program=new Program();
+  			$program->setTimeStart($newDate->setTimestamp($timestamp+$value->getHour()->getTimestamp()));
+  			$timeValue=$program->getTimeStart()->getTimestamp()+$value->getDuration()->getTimestamp();
+  			$program->setTimeStop($newDate2->setTimestamp($timeValue));
+  			$program->setEmission($object);
+  			
+  			$this->prePersist($program);
+  			$this->getModelManager()->create($program);
+  			$this->postPersist($program);
+  			$this->createObjectSecurity($program);
+  		}
   		$value->setEmission($object);
+  		
+  		
   	}
   	
     $errorElement
