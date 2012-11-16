@@ -14,7 +14,7 @@ class ExceptionalBroadcastAdmin extends Admin
   protected function configureFormFields(FormMapper $formMapper)
   {
     $formMapper
-      	->add('time_start')
+      	->add('time_start','datetime', array('data_timezone' => "GMT",'user_timezone' => "GMT" ))
       	->add('duration')
     ;
   }

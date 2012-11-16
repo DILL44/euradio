@@ -1,0 +1,38 @@
+<h1>Emission list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Diffusion_start</th>
+            <th>Difusion_stop</th>
+            <th>Archive</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="/app_dev.php/emission/{{entity.name}}">{{ entity.name }}</a></td>
+            <td>{{ entity.name }}</td>
+            <td>{{ entity.description }}</td>
+            <td>{% if entity.diffusionstart %}{{ entity.diffusionstart|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.difusionstop %}{{ entity.difusionstop|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.archive }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="/app_dev.php/emission/{{entity.name}}">show</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    {#% for article in articles %}
+        {% include 'AcmeArticleBundle:Article:articleDetails.html.twig' with {'article': article} %}
+    {% endfor %#}
+

@@ -1,3 +1,6 @@
-ProgramBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ProgramBundle:Default:index }
+emission:
+    pattern:  emissions
+    defaults: { _controller: "ProgramBundle:Emission:index" }
+emissions:
+    pattern:  emission/{name}
+    defaults: { _controller: "ProgramBundle:Emission:show" }

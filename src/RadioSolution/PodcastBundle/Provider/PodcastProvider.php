@@ -8,7 +8,11 @@
  * file that was distributed with this source code.
  */
 
+
+
 namespace RadioSolution\PodcastBundle\Provider;
+
+use Symfony\Component\Finder\Finder;
 
 use Sonata\MediaBundle\Entity\MediaManager;
 
@@ -36,7 +40,8 @@ use Sonata\MediaBundle\Provider\BaseProvider as BaseProvider;
 
 class PodcastProvider extends BaseProvider
 {
-	
+	protected $fileName;
+	protected $ContentFile;
     protected $allowedExtensions;
     protected $allowedMimeTypes;
 
@@ -83,13 +88,24 @@ class PodcastProvider extends BaseProvider
      */
     public function buildEditForm(FormMapper $formMapper)
     {
+    	$finder = new Finder();
+    	$finder->files()->name('/\.mp3$/')->in('ftp/');
+    	foreach ($finder as $mp3)
+    	
+    	{
+    		$filename='ftp/'.$mp3->getFilename();
+    		$handle = fopen($filename, "rb");
+    		$list[$mp3->getFilename()]=$mp3->getFilename();
+    		$this->ContentFile[$mp3->getFilename()]=$mp3;
+    	}
+    	$list[]=' ';
         $formMapper->add('name');
         $formMapper->add('enabled', null, array('required' => false));
         $formMapper->add('authorName');
         $formMapper->add('cdnIsFlushable');
         $formMapper->add('description');
         $formMapper->add('copyright');
-        $formMapper->add('binaryContent', 'file', array('required' => false));
+    	$formMapper->add('binaryContent', 'choice', array('choices' => $list));
     }
 
     /**
@@ -97,7 +113,17 @@ class PodcastProvider extends BaseProvider
      */
     public function buildCreateForm(FormMapper $formMapper)
     {
-        $formMapper->add('binaryContent', 'file');
+    	$finder = new Finder();
+    	$finder->files()->name('/\.mp3$/')->in('ftp/');
+    	foreach ($finder as $mp3)
+    	{
+    		$filename='ftp/'.$mp3->getFilename();
+    		$handle = fopen($filename, "rb");
+    		$list[$mp3->getFilename()]=$mp3->getFilename();
+    		$this->ContentFile[$mp3->getFilename()]=$mp3;
+    	}
+    	$list[]=' ';
+    	$formMapper->add('binaryContent', 'choice', array('choices' => $list));
     }
 
     /**
@@ -105,7 +131,17 @@ class PodcastProvider extends BaseProvider
      */
     public function buildMediaType(FormBuilder $formBuilder)
     {
-        $formBuilder->add('binaryContent', 'file');
+    	$finder = new Finder();
+    	$finder->files()->name('/\.mp3$/')->in('ftp/');
+    	foreach ($finder as $mp3)
+    	{
+    		$filename='ftp/'.$mp3->getFilename();
+    		$handle = fopen($filename, "rb");
+    		$list[$mp3->getFilename()]=$mp3->getFilename();
+    		$this->ContentFile[$mp3->getFilename()]=$mp3;
+    	}
+    	$list[]=' ';
+    	$formMapper->add('binaryContent', 'choice', array('choices' => $list));
     }
 
     /**
@@ -120,6 +156,8 @@ class PodcastProvider extends BaseProvider
         $this->setFileContents($media);
 
         $this->generateThumbnails($media);
+        $this->mp32OggFile($media->getProviderReference());
+        unlink('ftp/'.$this->fileName);
     }
 
     /**
@@ -146,6 +184,7 @@ class PodcastProvider extends BaseProvider
         $this->setFileContents($media);
 
         $this->generateThumbnails($media);
+        
     }
 
     /**
@@ -163,13 +202,15 @@ class PodcastProvider extends BaseProvider
 
         // if the binary content is a filename => convert to a valid File
         if (!$media->getBinaryContent() instanceof File) {
+        	
+			$this->fileName=$media->getBinaryContent();
+        	$media->setBinaryContent($this->ContentFile[$media->getBinaryContent()]);        	
             if (!is_file($media->getBinaryContent())) {
                 throw new \RuntimeException('The file does not exist : ' . $media->getBinaryContent());
             }
 
             $binaryContent = new File($media->getBinaryContent());
-
-            $media->setBinaryContent($binaryContent);
+            $media->setBinaryContent($binaryContent); 
         }
     }
 
@@ -240,7 +281,6 @@ class PodcastProvider extends BaseProvider
         } else {
             $path = sprintf('media_bundle/images/files/%s/file.png', $format);
         }
-
         return $this->getCdn()->getPath($path, $media->getCdnIsFlushable());
     }
 
@@ -251,8 +291,6 @@ class PodcastProvider extends BaseProvider
     {
         return array_merge(array(
             'title'       => $media->getName(),
-            'thumbnail'   => $this->getReferenceImage($media),
-            'file'        => $this->getReferenceImage($media),
         ), $options);
     }
 
@@ -366,6 +404,23 @@ class PodcastProvider extends BaseProvider
                     ->addViolation('Invalid mime type : ' . $media->getBinaryContent()->getMimeType())
                 ->end();
         }
+    }
+    
+    protected function mp32OggFile($file, $delete = FALSE)
+    {
+    
+    	if(file_exists("uploads/media/default/0001/01/$file"))
+    	{
+    		$res = @system(" ffmpeg -i uploads/media/default/0001/01/$file -vcodec libtheora -acodec libvorbis uploads/media/default/0001/01/$file.ogg");
+    		if($delete == TRUE)
+    		{
+    			unlink($file);
+    		}
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 }
 

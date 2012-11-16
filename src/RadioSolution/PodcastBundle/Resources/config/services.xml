@@ -9,7 +9,7 @@
 		<service id="sonata.media.provider.podcast"
 			class="%sonata.media.provider.podcast.class%">
 			<tag name="sonata.media.provider" />
-			<argument>sonata.media.provider.file</argument>
+			<argument>sonata.media.provider.podcast</argument>
 			<argument type="service" id="sonata.media.filesystem.local"/>
             <argument type="service" id="sonata.media.cdn.server"/>
             <argument type="service" id="sonata.media.generator.default"/>
@@ -18,10 +18,8 @@
 			<argument />
 			<call method="setTemplates">
 				<argument type="collection">
-					<argument key='helper_thumbnail'>PodcastBundle:Podcast:show.html.twig
-					</argument>
-					<argument key='helper_view'>PodcastBundle:Podcast:show.html.twig
-					</argument>
+                    <argument key='helper_thumbnail'>SonataMediaBundle:Provider:thumbnail.html.twig</argument>
+                    <argument key='helper_view'>SonataMediaBundle:Provider:view_file.html.twig</argument>
 				</argument>
 			</call>
 		</service>

@@ -13,8 +13,8 @@ class WeeklyBroadcastAdmin extends Admin
   {
     $formMapper
     	->add('day','choice',array('choices'=>array('1'=>'lundi','2'=>'mardi','3'=>'mercredi','4'=>'jeudi','5'=>'vendredi','6'=>'samedi','7'=>'dimanche')))
-		->add('hour')
-		->add('duration')
+		->add('hour','time', array('data_timezone' => "GMT",'user_timezone' => "GMT" ))
+		->add('duration','time', array('data_timezone' => "GMT",'user_timezone' => "GMT" ))
     ;
   }
  

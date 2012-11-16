@@ -1,14 +1,14 @@
 PodcastBundle:
     resource: "@PodcastBundle/Resources/config/routing.yml"
     prefix:   /podcast
+    
+PodcastBundle:
+    resource: "@ProgramBundle/Resources/config/routing.yml"
+    prefix:   /
 
 StaticContentBundle:
     resource: "@StaticContentBundle/Resources/config/routing/staticcontent.yml"
     prefix:   /page
-
-ProgramBundle:
-    resource: "@ProgramBundle/Resources/config/routing.yml"
-    prefix:   /
 
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'

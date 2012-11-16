@@ -40,30 +40,11 @@ class PodcastAdmin extends Admin
   }
   
   public function validate(ErrorElement $errorElement, $object)
-  {
-
-  	$content=$this->mp32OggFile($object->getFilePodcast()->getProviderReference()); 	
+  {	
   	$errorElement
   	->with('name')
   	->assertMaxLength(array('limit' => 32))
   	->end()
   	;
-  }
-  
-  public function mp32OggFile($file, $delete = FALSE)
-  {
-
-  	if(file_exists("uploads/media/default/0001/01/$file"))
-  	{
-  		$res = @system(" ffmpeg -i uploads/media/default/0001/01/$file -vcodec libtheora -acodec libvorbis uploads/media/default/0001/01/$file.ogg");
-  		if($delete == TRUE)
-  		{
-  			unlink($file);
-  		}
-  		return true;
-  	}
-  	else {
-  		return false;
-  	}
   }
 }

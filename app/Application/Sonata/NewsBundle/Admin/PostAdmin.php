@@ -61,4 +61,6 @@ class PostAdmin extends BaseAdmin
             ->end()
         ;
     }
+    protected function configureSideMenu(MenuItemInterface $menu, $action, Admin $childAdmin = null)
+    {}  
 }
