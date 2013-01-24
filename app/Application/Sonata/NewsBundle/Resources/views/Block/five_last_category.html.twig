@@ -1,0 +1,19 @@
+	<aside class="widget group">
+		<h3>Autres blogs</h3>		
+		<div class="blogs-container">
+            <ul id="blogs">
+{% for category in posts %}
+<li><a href="http://{{ domain }}/blog/category/{{ category.slug }}">
+<div class="image">					
+{% render "ApplicationSonataNewsBundle:Blog:LastPost"with {'idCategory': category.id } %} 
+<h2><span>{{ category.name }}</span></h2>
+</div>
+</a></li>		
+{% endfor %}
+            </ul>
+            <ul class="programs-nav">
+                <li><a href="#" class="up">Haut</a></li>
+                <li><a href="#" class="down">Bas</a></li>
+            </ul>
+        </div>
+	</aside>

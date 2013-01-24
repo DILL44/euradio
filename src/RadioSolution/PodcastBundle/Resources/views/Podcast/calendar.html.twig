@@ -1,0 +1,18 @@
+<aside class="widget widget_calendar group">
+		<h3>Naviguer par date</h3>
+		<p id="date2"></p>
+</aside>
+		<script type="text/javascript" src="/js/datepicker/datepicker.js"></script>
+		<script type="text/javascript" src="/js/datepicker/eye.js"></script>
+		<script type="text/javascript" src="/js/datepicker/utils.js"></script>
+<script type='text/javascript'>
+$('#date2').DatePicker({
+	flat: true,
+	date: ['{{ now|date('d-m-Y') }}'],
+	current: '{{ now|date('d-m-Y') }}',
+	format: 'd-m-Y',
+	onChange: function(dateText, inst) { 
+		window.location = "http://{{ domain }}/podcasts-date/"+dateText;
+	}
+});
+</script>

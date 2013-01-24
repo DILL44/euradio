@@ -1,14 +1,27 @@
-PodcastBundle:
-    resource: "@PodcastBundle/Resources/config/routing.yml"
-    prefix:   /podcast
+SearchBundle:
+    resource: "@SearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ContactBundle:
+    resource: "@ContactBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+app_news:
+   resource: '@ApplicationSonataNewsBundle/Resources/config/routing/post.xml'
+   prefix: /blogs
+   
+ProgramBundle:
+    resource: "@ProgramBundle/Resources/config/routing.yml"
+    prefix:   /
     
 PodcastBundle:
-    resource: "@ProgramBundle/Resources/config/routing.yml"
+    resource: "@PodcastBundle/Resources/config/routing.yml"
     prefix:   /
 
 StaticContentBundle:
     resource: "@StaticContentBundle/Resources/config/routing/staticcontent.yml"
-    prefix:   /page
+    prefix:   /
+
 
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
@@ -74,11 +87,7 @@ _security_logout:
     
 news:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
-    prefix: /news
-
-app_news:
-   resource: '@ApplicationSonataNewsBundle/Resources/config/routing/post.xml'
-   prefix: /blog
+    prefix: /blog
 
 #sonata_user_impersonating:
 #    pattern: /
@@ -94,6 +103,10 @@ redirect_accueil:
    
 catchAll:
     pattern:  /{path}
-    defaults: { _controller: SonataPageBundle:Page:catchAll }
+    defaults: { _controller: "SonataPageBundle:Page:catchAll" }
     requirements:
         path: .*
+        
+sonata_user_impersonating:
+    pattern: /admin/dashboard
+    defaults: { _controller: "SonataAdminBundle:Core:dashboard" }

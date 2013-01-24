@@ -34,6 +34,7 @@ class Item
      */
     private $menu;
 
+    private $order_item;
     /**
      * to string
      *
@@ -132,5 +133,13 @@ class Item
     public function getMenu()
     {
         return $this->menu;
+    }
+    
+    public function getOrderItem(){
+    	return $this->order_item;
+    }
+    
+    public function setOrderItem($order){
+    	$this->order_item=$order;
     }
 }

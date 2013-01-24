@@ -1,0 +1,7 @@
+{{ enquiry.name }} a envoyé un message, sur le formulaire de contact de euradionantes.eu
+ à {{ "now" | date("Y-m-d H:i") }}.
+
+mail de {{ enquiry.name }}: {{ enquiry.email }}
+sujet: {{ enquiry.subject }}
+Message:
+{{ enquiry.body }}

@@ -1,0 +1,124 @@
+<div class="top-right">
+<h3>Derniers podcasts</h3>
+
+<marquee id="playing">{{ entities[0].getName() }}</marquee>
+<audio tabindex="0" id="player" controls="controls">
+balise audio HTML5 inconnue
+</audio>
+
+<ul id="playlist">
+
+{% for entity in entities %}
+	
+	<li>
+		<a class="play" href="{% path entity.filePodcast, 'reference' %}.ogg" onclick="loadSong()">
+			{{ entity.getRealTimeStart()|date("d/m - h:i ") }} - {#{ entity.getRealTimeStart() | localizeddate('full', 'none') }#}
+			{{ entity.getName()|truncate(27) }}
+		</a> 
+		{% if entity.getPost() %}
+			<a class="link" href="./blog/{{ entity.getSlug() }}">Voir</a>
+		{% endif %}
+	</li>
+
+{% endfor %}
+	<br clear="all" />
+</ul>
+<div style="display:block; height:20px; clear:both; float:right;"></div>
+
+
+<script>
+function loadSong(elt, e) {
+	if(!e) var e = window.event;
+		document.getElementById("player").src=elt.href;
+		document.getElementById("player").load();
+		document.getElementById("player").play();
+		document.getElementById("playing").innerHTML=elt.innerHTML;
+		return false;
+	}
+	window.onload = function() {
+		
+	//links = document.getElementById("playlist").getElementsByTagName("a");
+	links = document.getElementById("playlist").getElementsByClassName("play");
+	
+	for(var i = 0; i<links.length; i++) {
+		links[i].onclick=function(e) { return loadSong(this, e); };
+	}
+
+}
+
+</script>
+</div>
+
+{#
+		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+		<div id="jp_container_1" class="jp-audio">
+			<div class="jp-type-playlist">
+				<div class="jp-gui jp-interface">
+					<ul class="jp-controls">
+						<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
+						<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+						<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+						<li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+						<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+						<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+						<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+						<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+					</ul>
+					<div class="jp-progress">
+						<div class="jp-seek-bar">
+							<div class="jp-play-bar"></div>
+
+						</div>
+					</div>
+					<div class="jp-volume-bar">
+						<div class="jp-volume-bar-value"></div>
+					</div>
+					<div class="jp-current-time"></div>
+					<div class="jp-duration"></div>
+					<!-- <ul class="jp-toggles">
+						<li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+						<li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
+						<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+						<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+					</ul> -->
+				</div>
+				<div class="jp-playlist">
+					<ul>
+						<li></li>
+					</ul>
+				</div>
+				<div class="jp-no-solution">
+					<span>Update Required</span>
+					To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+				</div>
+			</div>
+		</div>	
+		<div class="view-podcasts">
+			<a href="#">Consulter les podcasts</a>
+		</div>
+</div>
+-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<script src="/bundles/podcast/jquery.jplayer.min.js"type="text/javascript"></script>
+<script src="/bundles/podcast/jplayer.playlist.min.js"type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	new jPlayerPlaylist({
+		jPlayer: "#jquery_jplayer_1",
+		cssSelectorAncestor: "#jp_container_1"
+	}, [
+{% for entity in entities %}
+{
+			title:"{{ entity.name|raw }}",
+			mp3:'http://{{ domain }}/uploads/media/default/0001/01/{{ entity.filePodcast.getProviderReference()}}',
+			oga:'http://{{ domain }}/uploads/media/default/0001/01/{{ entity.filePodcast.getProviderReference()}}.ogg',
+},
+{% endfor %}
+	], {
+		swfPath: "js",
+		supplied: "mp3",
+		wmode: "window"
+	});
+});
+</script>
+#}

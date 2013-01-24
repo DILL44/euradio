@@ -11,13 +11,25 @@ RadioSolution\StaticContentBundle\Entity\CategoryStaticContent:
       length: 100
     body:
       type: string
+      nullable: true
+    slug:
+      type: string
   OneToMany:
-    StaticContent:
+    staticContent:
       targetEntity: StaticContent
-      mappedBy: CategoryStaticContent
+      mappedBy: categoryStaticContent
   oneToOne:
     image:
+      nullable: true
       targetEntity: Application\Sonata\MediaBundle\Entity\Media
       joinColumn:
         name: id_image
+        referencedColumnName: id
+  manyToOne:
+    parent:
+      nullable: true
+      default: NULL
+      targetEntity: CategoryStaticContent
+      joinColumn:
+        name: id_parent
         referencedColumnName: id

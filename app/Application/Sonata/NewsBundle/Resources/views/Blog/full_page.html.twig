@@ -1,7 +1,21 @@
-<h1>{{ test }}</h1>
-	<h2> test wysiwyg</h2>
-	<div>
-	{{ tinymce_init() }}
-	<textarea class="tinymce"></textarea>
-	</div>
-<p> text avec la valeur du parametre 'test2'= {{ test2 }}</p>
+	<section class="entry group">
+		<div class="entry-content blogs">
+			<h3>Blogs</h3>
+							<div class="blogs-list">
+{% for category in categories %}
+					<div class="blog group">
+					<a href="http://{{ domain }}/blog/category/{{ category.slug }}">
+{% render "ApplicationSonataNewsBundle:Blog:LastPost"with {'idCategory': category.id } %}
+</a>
+<div class="blog-infos">
+<span class="titre-blog"><a href="http://{{ domain }}/blog/category/{{ category.slug }}">{{ category.name }}</a></span>
+<ul class="blog-posts">
+{% render "ApplicationSonataNewsBundle:Blog:FivePost"with {'idCategory': category.id } %}
+</ul>
+</div>
+				</div>
+{% endfor %}
+				</div><!-- blog container -->
+			</div>
+	</section>
+

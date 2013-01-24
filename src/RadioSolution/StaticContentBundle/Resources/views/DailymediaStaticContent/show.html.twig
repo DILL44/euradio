@@ -1,0 +1,14 @@
+		<div class="block photodujour group">
+		<h3>Un jour, une photo d'Europe</h3>
+			<figure>
+			{% for image in entity %}
+				{%thumbnail image.image ,'big'%}
+                <figcaption>
+                	<span class="link"><a href="{{ image.link }}" target="_blank">{{ image.title }}</a></span><br/>
+					<span class="author"><a href="{{ image.link }}" target="_blank">{{ image.author }}</a></span><br/>
+					<span class="date">{{ image.date|date('d.m.Y') }}</span><br/>
+				</figcaption>
+                <span class="trans"></span>
+              {% endfor %}
+            </figure>	
+		</div>

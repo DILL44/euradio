@@ -1,0 +1,3 @@
+RSSAgregatorBundle_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: RSSAgregatorBundle:Default:index }

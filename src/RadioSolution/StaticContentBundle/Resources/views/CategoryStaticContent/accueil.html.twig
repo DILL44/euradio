@@ -1,5 +1,15 @@
-<h2>categories</h2>    
-{% for entity in entities %}        
-{{ entity.id }}
-{{ entity.name }}
-{% endfor %}
+<div class="block group category-accueil">
+	<h3>{{ title }}</h3>
+	<ul style="width:100%; margin:0;">					
+		{% for entity in entities %} 
+		{% if entity.image %}
+			<li style="list-style:none; float:left; display:inline; margin:0 5px;">
+				<a href="./categorie/{{ entity.slug }}"><h2>{{ entity.name }}</h2></a>
+				<a href="./categorie/{{ entity.slug }}">{%media entity.image ,'medium' with {'class': 'thumb'}  %}</a>
+				<a href="./categorie/{{ entity.slug }}"><div style="margin-top:16px"></div></a>
+				<a href="./categorie/{{ entity.slug }}"><p>{#{ entity.body }#}</p></a>
+			</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
+</div>

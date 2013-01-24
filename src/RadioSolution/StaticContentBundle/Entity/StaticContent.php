@@ -3,6 +3,7 @@
 namespace RadioSolution\StaticContentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\NewsBundle\Model\Tag as Tag;
 
 /**
  * RadioSolution\StaticContentBundle\Entity\StaticContent
@@ -13,11 +14,6 @@ class StaticContent
      * @var integer $id
      */
     private $id;
-
-    /**
-     * @var string $title
-     */
-    private $title;
 
     /**
      * @var string $name
@@ -33,7 +29,18 @@ class StaticContent
      * @var string $body
      */
     private $body;
-
+    
+    private $categoryStaticContent;
+    
+    private $order_content;
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct()
+    {
+    	$this->setDateAdd(new \DateTime);
+    }
     /**
      * to string
      *
@@ -54,25 +61,6 @@ class StaticContent
         return $this->id;
     }
 
-    /**
-     * Set title
-     *
-     * @param string $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
 
     /**
      * Set name
@@ -82,6 +70,7 @@ class StaticContent
     public function setName($name)
     {
         $this->name = $name;
+        $this->setSlug(Tag::slugify($name));
     }
 
     /**
@@ -136,7 +125,7 @@ class StaticContent
     /**
      * @var RadioSolution\StaticContentBundle\Entity\CategoryStaticContent
      */
-    private $CategoryStaticContent;
+
 
 
     /**
@@ -146,7 +135,7 @@ class StaticContent
      */
     public function setCategoryStaticContent(\RadioSolution\StaticContentBundle\Entity\CategoryStaticContent $categoryStaticContent)
     {
-        $this->CategoryStaticContent = $categoryStaticContent;
+        $this->categoryStaticContent = $categoryStaticContent;
     }
 
     /**
@@ -156,7 +145,7 @@ class StaticContent
      */
     public function getCategoryStaticContent()
     {
-        return $this->CategoryStaticContent;
+        return $this->categoryStaticContent;
     }
     /**
      * @var date $date_add
@@ -207,5 +196,38 @@ class StaticContent
     public function getImage()
     {
         return $this->image;
+    }
+    /**
+     * @var string $slug
+     */
+    private $slug;
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+    
+    public function getOrderContent(){
+    	return $this->order_content;
+    }
+    
+    public function setOrderContent($order_content){
+    	$this->order_content=$order_content;
     }
 }

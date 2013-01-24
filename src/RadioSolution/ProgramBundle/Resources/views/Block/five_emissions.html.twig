@@ -1,0 +1,26 @@
+<aside class="widget group">
+		<h3>Autres émissions</h3>		
+		<div class="programs-container">
+            <ul id="programs">   
+{% for post in posts %}
+<li><a href="http://{{ domain }}/emission/{{ post.getSlug() }}">
+<div class="image">
+	        	{% if post.getMedia() %}
+	        		{%media post.getMedia() ,'medium'%}
+	        	{% else %}
+	        		<img src="/uploads/default.jpg" alt=""/>
+	        	{% endif %} 
+<h2><span>{{ post.name }}</span></h2>
+</div>
+</a></li>		
+{% endfor %}
+            </ul>
+			<div class="view-programs">
+				<a href="http://{{ domain }}/emissions">Voir toutes les émissions</a>
+			</div>
+            <ul class="programs-nav">
+                <li><a href="#" class="up">Haut</a></li>
+                <li><a href="#" class="down">Bas</a></li>
+            </ul>
+        </div>
+	</aside>

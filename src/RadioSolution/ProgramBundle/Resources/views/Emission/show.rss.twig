@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>{{ emission.name|striptags|raw }}</title>
+        <link>http://{{ domain }}/emission/{{ emission.slug }}</link>
+        <description>{{ emission.description|striptags}}</description>
+        {% for post in podcast %}
+             <item>
+                  <title>{{ post.name }}</title>
+                  <link>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post.post) }, true) }}</link>
+                  <description><![CDATA[ {{ post.post.abstract|striptags|raw }} ]]></description>
+                  <pubDate>{{ post.realTimeStart | date('e, M L y H:m:s z')}}</pubDate>
+                  <gui>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post.post) }, true) }}</gui>
+             </item>
+        {% endfor %}
+    </channel>
+</rss>

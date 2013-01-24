@@ -1,0 +1,65 @@
+    {% set class = 'first'%}
+    <div class="block group">
+				<div class="navigation">
+	    	{{ pagination.render()|raw }}
+		</div>			
+	<ul class="gallery-list group">
+    {% for entity in pagination %}
+    <li class="{{ class }}">
+    					<a href="/blog/{{ entity.getSlug() }}">
+							<figure>
+								<div class="image">
+									{% if entity.getPostImage() %}
+										{%media entity.getPostImage() ,'medium'%}
+
+									{% else %}
+											<img src="/uploads/default.jpg" alt=""/>
+									{% endif %}
+									<h2>
+										<span>
+										{% if entity.getPost() %}
+											{{ entity.getPost() }}
+										{% elseif entity.getProgram() %}
+											{{ entity.getProgram() }}
+										{% else %}
+											{{ entity.name() }}
+										{% endif %}
+										</span>
+									</h2>
+								</div>
+							</figure>
+						</a>
+								<audio controls="controls">
+							        <source src="{% path entity.filePodcast, 'reference' %}.ogg" type="audio/ogg" />
+							      	<source src="{% path entity.filePodcast, 'reference' %}" type="audio/mp3" />
+							       	Your browser does not support the audio tag.
+							  	</audio>
+						
+						{% if entity.realtimestart %}<div class="heure-podcast">
+							<span>{{ entity.realtimestart|date('d/m/') }}<br/>{{ entity.realtimestart|date('Y') }}<br/>{{ entity.realtimestart|date('H') }}h{{ entity.realtimestart|date('i') }}</span>
+						</div>
+						{% endif %}						
+						<span class="titre-post">
+							<a href="/blog/{{ entity.getSlug() }}">
+								{{ entity.getPostTitle() }}
+							</a>
+						</span>
+							<p>{{ entity.getPostAbstract()|raw }}</p>
+							
+						<div class="plus">
+							<a href="podcast.html">lire la suite</a>
+						</div>
+						</li>
+				{% if  class == 'first'%}
+					{% set class = ''%}
+				{% else %}
+					{% set class = 'first'%}
+				{% endif %}
+    {% endfor %}
+    </ul>
+    		<div class="navigation">
+	    	{{ pagination.render()|raw }}
+		</div>	
+    <a href=""></a>
+</div>
+

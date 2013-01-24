@@ -61,15 +61,40 @@ class Post extends BasePost
     public function getPodcast()
     {
     	return $this->podcast;
-    }    /**
+    }
+
+    
+    public function getFilePodcast()
+    {
+    	return $this->podcast->getFilePodcast()->getProviderReference();
+    }
+    
+    public function getMediaPodcast()
+    {
+    	if ($this->podcast!=NULL)
+    	return $this->podcast->getFilePodcast();
+    }
+    
+    /**
      * Get podcast
      *
      * @return Podcast $podcast
      */
-    public function setPodcast(\RadioSolution\PodcastBundle\Podcast $podcast)
+    public function setPodcast(\RadioSolution\PodcastBundle\Entity\Podcast $podcast)
     {
     	$this->podcast=$podcast;
     }
     
+    protected $image;
+    
+    public function getImage()
+    {
+    	return $this->image;
+    }   
+    
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image)
+    {
+    	$this->image=$image;
+    }
     
 }

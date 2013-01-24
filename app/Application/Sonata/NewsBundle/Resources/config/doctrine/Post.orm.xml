@@ -16,8 +16,9 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
-		<one-to-one field="podcast" target-entity="RadioSolution\PodcastBundle\Entity\Podcast" inversed-by="Application\Sonata\NewsBundle\Entity\Post">
-			<join-column name="podcast_id" referenced-column-name="id" />
-		</one-to-one>	
+		<one-to-one field="podcast" target-entity="RadioSolution\PodcastBundle\Entity\Podcast" mapped-by='post' />
+		<many-to-one field="image" target-entity="Application\Sonata\MediaBundle\Entity\Media" >
+			<join-column name="image_id" referenced-column-name="id" nullable="true"/>
+		</many-to-one>
     </entity>
 </doctrine-mapping>

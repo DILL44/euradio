@@ -1,3 +1,11 @@
 static_content:
-    pattern:  /{name}
+    pattern:  /article/{slug}
     defaults: { _controller: "StaticContentBundle:StaticContent:show" }
+
+static_content_categories:
+    pattern:  /list-categorie/{slug}
+    defaults: { _controller: "StaticContentBundle:StaticContent:showList" }
+    
+static_content_categorie:
+    pattern:  /categorie/{slug}
+    defaults: { _controller: "StaticContentBundle:StaticContent:showCategorie" }

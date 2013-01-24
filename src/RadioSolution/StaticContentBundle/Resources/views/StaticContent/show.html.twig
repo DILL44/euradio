@@ -1,3 +1,31 @@
-<h1>{{ entity.title }}</h1>
-<p>{{ entity.introduction }}</p>
-<p>{{ entity.body }}</p>
+<div class="article">
+<h1>{{ entity.name }}</h1>
+
+
+<div class="" style="float:left; margin-right:15px;">
+	{% if entity.getImage() %}
+			{%media entity.getImage() ,'medium' %}
+	{% endif %}
+</div><p style="font-weight:bold;">{{ entity.introduction }}</p>
+<br clear="all" />
+
+<p>{{ entity.body|raw }}</p>
+</div>
+
+
+<script type='text/javascript'>
+$(document).ready(function() {
+	$('audio').each(function(index) {
+	    //alert(index + ': ' + $(this).text());
+		$(this).append('<source src="'+$(this).attr('src')+'.ogg" type="audio/ogg"><source src="'+$(this).attr('src')+'" type="audio/mpeg">');
+		$(this).removeAttr('src');
+		$(this).removeAttr('width');
+		$(this).removeAttr('height');
+		$(this).attr('tabindex', 0);
+		$(this).attr('controls', 'controls');
+		$(this).append('Your browser does not support the audio element.');
+	});
+	  
+});
+</script>
+

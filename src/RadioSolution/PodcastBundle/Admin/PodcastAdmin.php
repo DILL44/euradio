@@ -12,13 +12,23 @@ use Sonata\AdminBundle\Form\FormMapper;
  
 class PodcastAdmin extends Admin
 {
+	
+	// setup the default sort column and order
+	protected $datagridValues = array(
+			'_sort_order' => 'DESC',
+			'_sort_by' => 'real_time_start'
+	);
+	
   protected function configureFormFields(FormMapper $formMapper)
   {
     $formMapper
       ->add('name')
+      ->add('home_page', null,array('required' => false))
       ->add('real_time_start')
       ->with('file')
-      ->add('filePodcast', 'sonata_type_model', array(), array('edit' => 'list'))
+      ->add('filePodcast', 'sonata_type_model', array('required' => true), array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.podcast')))
+      ->add('dlAuth', null,array('required' => false))
+      ->add('post', 'sonata_type_model', array('required' => true), array('edit' => 'list'))
       ->end()
     ;
   }
@@ -27,6 +37,7 @@ class PodcastAdmin extends Admin
   {
     $datagridMapper
       ->add('name')
+      ->add('real_time_start')   
     ;
   }
  
@@ -36,6 +47,8 @@ class PodcastAdmin extends Admin
       ->addIdentifier('name')
       ->add('real_time_start')
       ->add('filePodcast')
+      ->add('dlAuth')
+      ->add('home_page')
     ;
   }
   

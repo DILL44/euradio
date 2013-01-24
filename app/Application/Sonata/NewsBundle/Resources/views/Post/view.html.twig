@@ -1,55 +1,95 @@
-{#
+<article class="entry group">
+    	<h3>{% if post.category %}{{ post.category }}{% endif %}</h3>
+    	<div class="entry-content group">
+	        <figure class="entry-thumb">
+	        	{% if post.getImage() %}
+	        		{%media post.getImage() ,'medium'%}
+	        	{% else %}
+	        		<img src="/uploads/default.jpg" alt=""/>
+	        	{% endif %}        
+	        </figure>
+	        
+	        <div class="entry-meta">
+	        	 <div class="entry-cats">
+	        	         {{ 'published_under'|transchoice(post.tags|length, {}, 'SonataNewsBundle') }}
+	                     {#% for tag in post.tags%}
+	                         <a href="{{ url('sonata_news_tag', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+	                         {% if not loop.last%}, {%endif%}
+	                    {% endfor %#}
+	      	    </div>
+				{% set twitter = { 'url': null, 'locale': 'fr', 'message': post.title } %}
+				
+				{% set socialParameters = { 'twitter': twitter } %}
 
-/*
- * This file is part of the Sonata package.
- *
- * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+	      	    {{ socialButtons(socialParameters) }}
+	      	    
+		        <h1>{{ post.title }}</h1>
+		       
+		        {% if post.getPodcast() %}
+		        	<time datetime="">{{ post.getPodcast().getRealTimeStart() | date('j M Y G') }}h{{ post.getPodcast().getRealTimeStart() | date('i') }}</time>
+		        {% else %}
+		        	<time datetime="">{{ post.publicationDateStart | date('j M Y G') }}h{{ post.publicationDateStart | date('i') }}</time>
+		        {% endif %}
+		        
+		         <p style="color:#CCCCC; font-weight:bold;">{{ post.abstract|raw }}</p>
+		        
+		    	<p class="comment-no">{{ post.getCommentsCount() }}</p>
+				{% if post.getMediaPodcast() %}
+				<div id="podcast-player">
+					<audio controls="controls">
+				        <source src="{% path post.getMediaPodcast(), 'reference' %}.ogg" type="audio/ogg" />
+				      	<source src="{% path post.getMediaPodcast(), 'reference' %}" type="audio/mp3" />
+				       	Votre navigateur ne support pas le HTML5 veuillez le mettre à jour.
+				  	</audio>
+				  	{% if post.getPodcast().getDlAuth() %}
+				  	<div id="podcast_export">
+				  		<a href="{% path post.getMediaPodcast(), 'reference' %}" id="download" target="_blank" alt="Télécharger le podcast">T&eacute;l&eacute;charger le podcast</a>
+				  		<a id="show_pre" href="#export_code" alt="Exporter le lecteur">Exporter le lecteur</a>
+<pre id="export_code" style="display:none; background-color:#CCCCCC;" >
+&lt;audio controls="controls"&gt;
+	&lt;source src="{% path post.getMediaPodcast(), 'reference' %}.ogg" type="audio/ogg" /&gt;
+	&lt;source src="{% path post.getMediaPodcast(), 'reference' %}" type="audio/mp3" /&gt;
+	Votre navigateur ne support pas le HTML5 veuillez le mettre à jour.
+&lt;/audio&gt;
+</pre>
+				  		</div>
+				  		<script>
+					    $("#show_pre").click(function () {
+					    	if($("pre #export_code").is(":visible")){
+					    		$("pre #export_code").hide("slow");
+						    }else{
+						    	$("pre").show("slow");
+						    	$("pre #export_code").contents().select();
+							}
+					    });
+					    
+					    $("pre:data").focus(function() { $(this).select(); } );
+					    
+					    </script>
+				  		
+				  	{% endif %}
+  				</div>
+  				{% endif %}
 
-#}
+	    	</div>
+	    	
+	        {{ post.content|raw }}
 
-<div class="sonata-blog-post-container">
-    <div class="sonata-blog-post-date-container">
-        {{ post.publicationDateStart | date }}
-    </div>
+	           {% render 'SonataNewsBundle:Post:comments' with {'postId': post.id} %}
+	        <div id="form-wrapper">
+		         <div class="post-form">
+				    {% if post.iscommentable %}
+				        {% render 'SonataNewsBundle:Post:addCommentForm' with {
+				            'post_id': post.id,
+				            'form': form
+				        } %}
+				    {% else %}
+				        <div>
+				            {{ 'message_comments_are_closed'|trans({}, 'SonataNewsBundle') }}
+				        </div>
+		    		{% endif %}
+		    	</div>
+		    </div>   
+		</div>
+</article>
 
-    <h1 class="sonata-blog-post-title">
-        <a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a>
-        <span class="sonata-blog-post-author">{{ 'archive_author'|trans({'%author%': post.author }, 'SonataNewsBundle') }}</span>
-    </h1>
-
-    <div class="sonata-blog-post-information">
-
-        <div class="sonata-blog-post-tag-container">
-            <div class="sonata-blog-post-tag-title">
-                {{ 'published_under'|transchoice(post.tags|length, {}, 'SonataNewsBundle') }}
-            </div>
-            <div class="sonata-blog-post-tag-list">
-                {% for tag in post.tags%}
-                    <a href="{{ url('sonata_news_tag', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
-                    {% if not loop.last%}, {%endif%}
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-
-    <div class="sonata-blog-post-content">
-        {{ post.content|raw }}
-    </div>
-
-    {% render 'SonataNewsBundle:Post:comments' with {'postId': post.id} %}
-
-    {% if post.iscommentable %}
-        {% render 'SonataNewsBundle:Post:addCommentForm' with {
-            'post_id': post.id,
-            'form': form
-        } %}
-    {% else %}
-        <div>
-            {{ 'message_comments_are_closed'|trans({}, 'SonataNewsBundle') }}
-        </div>
-    {% endif %}
-</div>

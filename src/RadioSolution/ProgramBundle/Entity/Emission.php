@@ -3,6 +3,7 @@
 namespace RadioSolution\ProgramBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\NewsBundle\Model\Tag as Tag;
 
 /**
  * RadioSolution\ProgramBundle\Entity\Emission
@@ -67,6 +68,7 @@ class Emission
     public function setName($name)
     {
         $this->name = $name;
+        $this->setSlug(Tag::slugify($name));
     }
 
     /**
@@ -250,9 +252,11 @@ class Emission
      *
      * @param date $diffusionStart
      */
-    public function setDiffusionStart($diffusionStart)
+    public function setDiffusionStart()
     {
-        $this->diffusion_start = $diffusionStart;
+    	$now= new \DateTime('now',new \DateTimeZone('GMT'));
+    	$now->setTime('00','00');
+        $this->diffusion_start =  $now;
     }
 
     /**
@@ -333,5 +337,30 @@ class Emission
     public function getFrequency()
     {
         return $this->frequency;
+    }
+    /**
+     * @var string $slug
+     */
+    private $slug;
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

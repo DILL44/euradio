@@ -1,4 +1,4 @@
-<div class='menu'id='menu-{{ idmenu }}'>
-{% set menuItem = knp_menu_get('MenuBundle:Builder:mainMenu',[], {'idmenu':idmenu })%}
+<nav id="navigation">
+{% set menuItem = knp_menu_get('MenuBundle:Builder:mainMenu',{}, {'idmenu':idmenu })%}
 {{ knp_menu_render(menuItem) }}
-</div>
+</nav>

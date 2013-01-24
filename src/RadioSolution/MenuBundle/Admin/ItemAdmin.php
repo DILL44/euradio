@@ -16,6 +16,7 @@ class ItemAdmin extends Admin
       ->add('url')
       ->with('menu')
       ->add('menu', 'sonata_type_model')
+      ->add('order_item')
       ->end()
       ->with('parent')
       ->add('parent', 'sonata_type_model', array('required' => false))
@@ -37,6 +38,7 @@ class ItemAdmin extends Admin
       ->addIdentifier('name')
       ->add('menu')
       ->add('parent')
+      ->add('order_item')
       ->add('_action', 'actions', array(
       		'actions' => array(
       				'view' => array(),

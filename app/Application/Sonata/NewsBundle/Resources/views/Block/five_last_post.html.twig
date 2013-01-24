@@ -1,0 +1,23 @@
+<aside class="widget group">
+		<h3>Dernières actualités</h3>		
+		<div class="blogs-container">
+            <ul id="blogs"> 
+{% for post in posts %}
+<li><a href="http://{{ domain }}/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
+<div class="image">
+	        	{% if post.getImage() %}
+	        		{%media post.getImage() ,'medium'%}
+	        	{% else %}
+	        		<img src="/uploads/default.jpg" alt=""/>
+	        	{% endif %} 
+<h2><span>{{ post.title }}</span></h2>
+</div>
+</a></li>		
+{% endfor %}
+            </ul>
+            <ul class="programs-nav">
+                <li><a href="#" class="up">Haut</a></li>
+                <li><a href="#" class="down">Bas</a></li>
+            </ul>
+        </div>
+	</aside>

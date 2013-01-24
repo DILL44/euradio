@@ -1,0 +1,6 @@
+[submodule "src/vendor/swiftmailer"]
+	path = src/vendor/swiftmailer
+	url = https://github.com/ihqs/ContactBundle.git
+[submodule "src/IHQS/ContactBundle"]
+	path = src/IHQS/ContactBundle
+	url = git://github.com/ihqs/ContactBundle.git

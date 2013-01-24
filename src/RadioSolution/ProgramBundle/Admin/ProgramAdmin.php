@@ -12,10 +12,11 @@ class ProgramAdmin extends Admin
   protected function configureFormFields(FormMapper $formMapper)
   {
     $formMapper
-      ->add('time_start')
-      ->add('time_stop')
+      ->add('time_start','datetime', array('data_timezone' => "GMT",'user_timezone' => "GMT" ))
+      ->add('time_stop','datetime', array('data_timezone' => "GMT",'user_timezone' => "GMT" ))
       ->with('podcast')
-      ->add('podcast', 'sonata_type_model')
+      ->add('podcast', 'sonata_type_model',array('required' => false), array('edit' => 'list'))
+      ->add('emission', 'sonata_type_model',array('required' =>true), array('edit' => 'list'))
       ->end()
     ;
   }
@@ -24,6 +25,8 @@ class ProgramAdmin extends Admin
   {
     $datagridMapper
       ->add('id')
+      ->add('emission')
+      ->add('time_start')
     ;
   }
  
@@ -31,6 +34,16 @@ class ProgramAdmin extends Admin
   {
     $listMapper
       ->addIdentifier('id')
+      ->add('emission')
+      ->add('time_start')
+      ->add('time_stop')
+      ->add('collision')
+      ->add('_action', 'actions', array(
+      		'actions' => array(
+      				'view' => array(),
+      				'edit' => array(),
+      		)
+      	))
     ;
   }
  

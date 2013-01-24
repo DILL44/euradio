@@ -15,6 +15,7 @@ class CategoryStaticContentAdmin extends Admin
       ->add('name')
       ->add('body')
       ->add('image','sonata_type_model',array(),array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.image')))
+      ->add('parent', 'sonata_type_model', array('required' => false))
     ;
   }
  
@@ -29,6 +30,8 @@ class CategoryStaticContentAdmin extends Admin
   {
     $listMapper
       ->addIdentifier('name')
+      ->add('slug')
+      ->add('parent')
     ;
   }
  

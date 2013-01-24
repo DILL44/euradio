@@ -1,6 +1,22 @@
-emission:
+emissions:
     pattern:  emissions
     defaults: { _controller: "ProgramBundle:Emission:index" }
-emissions:
+emission:
     pattern:  emission/{name}
     defaults: { _controller: "ProgramBundle:Emission:show" }
+emissionrss:
+    pattern:  rss/emission/{name}.{_format}
+    defaults: { _controller: "ProgramBundle:Emission:showRss", _format: xml  }
+programs:
+    pattern:  programmes.{_format}
+    defaults: { _controller: "ProgramBundle:Program:index", _format: html }
+    requirements:
+      _format:  html|pdf
+ecoute:
+    pattern:  ecoute
+    defaults: { _controller: "ProgramBundle:Ecoute:index"}
+    requirements:
+       _method:  GET|POST
+onair:
+    pattern:  onair
+    defaults: { _controller: "ProgramBundle:Program:onair"}

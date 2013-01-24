@@ -72,7 +72,7 @@ class MenuBlockService extends BaseBlockService
     function getDefaultSettings()
     {
         return array(
-            'content' => 'Insert your ert content here',
+            'content' => 'Insert your content here',
         );
     }
 }

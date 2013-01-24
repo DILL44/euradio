@@ -1,6 +1,6 @@
 RadioSolution\StaticContentBundle\Entity\DailymediaStaticContent:
   type: entity
-  table: static_content__Dailymedia
+  table: static_content__dailymedia
   id:
     id:
       type: integer

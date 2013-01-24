@@ -37,10 +37,17 @@ class PostController extends Controller
      */
     public function renderArchive(array $criteria = array(), array $parameters = array())
     {
-        $pager = $this->getPostManager()->getPager(
-            $criteria,
-            $this->getRequest()->get('page', 1)
-        );
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$crit=(String)$criteria['category'];
+    	$query = $em->createQuery("SELECT p FROM ApplicationSonataNewsBundle:Post p JOIN p.category c WHERE c.name= :cat ORDER BY p.publicationDateStart DESC")->setParameter('cat',$crit);
+    	$entity=$query->setMaxResults(2000)->getResult();
+    	 
+    	$paginator = $this->get('knp_paginator');
+    	$pager = $paginator->paginate(
+    			$entity,
+    			$this->get('request')->query->get('page', 1),
+    			10
+    	);
 
         $parameters = array_merge(array(
             'pager' => $pager,
@@ -339,5 +346,13 @@ class PostController extends Controller
             'day'   => $comment->getPost()->getDay(),
             'slug'  => $comment->getPost()->getSlug()
         )));
+    }
+    public function rssAction() {	
+    	$domain = $this->get('request')->server->get('HTTP_HOST');
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$query = $em->createQuery("SELECT p FROM ApplicationSonataNewsBundle:Post p  ORDER BY p.publicationDateStart DESC")->setMaxResults(30);
+    	$entities=$query->getResult();
+    	
+    	return $this->render('ApplicationSonataNewsBundle:Post:index.rss.twig',array('entities'=> $entities,'domain'=>$domain));
     }
 }

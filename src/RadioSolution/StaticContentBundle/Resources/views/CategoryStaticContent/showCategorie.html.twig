@@ -1,0 +1,18 @@
+<h1>{{ entity.name }}</h1>
+<p>{{ entity.body }}</p>
+
+{% for entity in entities %}
+	<div class="static-page_list">
+	{% if entity.getImage() %}
+		<a href="/article/{{ entity.getSlug() }}">
+			{%media entity.getImage() ,'medium' %}
+		</a>
+	{% endif %}
+	
+	<a href="/article/{{ entity.getSlug() }}">
+		<h3>{{ entity.name }}</h3>
+	</a>
+	<p>{{ entity.body|striptags|truncate(720)|raw }}</p>
+	<a href="/article/{{ entity.getSlug() }}" id="plus">lire la suite</a>
+	</div>
+{% endfor %}

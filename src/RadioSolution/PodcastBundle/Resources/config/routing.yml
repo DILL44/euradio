@@ -1,6 +1,9 @@
 PodcastBundle_homepage:
-    pattern:  /podcast
-    defaults: { _controller: PodcastBundle:Podcast:index }
-PodcastBundle_homepage:
-    pattern:  /podcast_show{id}
-    defaults: { _controller: PodcastBundle:Podcast:show }
+    pattern:  /podcasts
+    defaults: { _controller: "PodcastBundle:Podcast:index" }
+PodcastBundle_show:
+    pattern:  /podcast/{id}
+    defaults: { _controller: "PodcastBundle:Podcast:show" }
+PodcastBundle_date:
+    pattern:  /podcasts-date/{date}
+    defaults: { _controller: "PodcastBundle:Podcast:indexDate" }

@@ -10,5 +10,5 @@ RadioSolution\ProgramBundle\Entity\ThemeColor:
       type: string
       length: 100
     html_code:
-      type: integer
+      type: string
       length: 6

@@ -16,6 +16,10 @@ file that was distributed with this source code.
         {{ sonata_seo_title() }}
         {{ sonata_seo_metadatas() }}
 
+		
+		<link rel="SHORTCUT ICON" href="/images/favicon.ico">
+		
+
         {% block page_stylesheets %}
             <link rel="stylesheet" href="{{ asset('bundles/sonataadmin/bootstrap/bootstrap.css') }}" type="text/css" media="all" >
             <link rel="stylesheet" href="{{ asset('bundles/sonatapage/default.css') }}" type="text/css" media="all" >
@@ -26,6 +30,7 @@ file that was distributed with this source code.
 			<link rel="stylesheet" href="/css/slide.css" type="text/css" media="screen" />
 			<link rel="stylesheet" href="/js/slider/css/settings.css" media="screen" />
 			<link rel="stylesheet" href="/css/jplayer.css" />
+			<link rel="stylesheet" href="/css/datepicker.css" />
             
         {% endblock %}
 
@@ -51,18 +56,29 @@ file that was distributed with this source code.
             <script src="/bundles/sonataadmin/bootstrap/js/bootstrap-scrollspy.js" type="text/javascript"></script>
             <script src="/bundles/sonataadmin/bootstrap/js/bootstrap-dropdown.js" type="text/javascript"></script>
         {% endif %}
+        
+        <script src="/bundles/pub/chosen.jquery.js"type="text/javascript"></script>
+		<script src="/bundles/pub/jquery.carouFredSel-5.6.1-packed.js"type="text/javascript"></script>
+		<script src="/bundles/pub/jquery.flexslider-min.js"type="text/javascript"></script>
+		<script src="/bundles/pub/superfish.js"type="text/javascript"></script>
+		<script src="/bundles/pub/hoverIntent.js"type="text/javascript"></script>
+		<script src="/bundles/pub/jquery.cycle.all.latest.min.js"type="text/javascript"></script>
+		<script src="/bundles/pub/scripts.js"type="text/javascript"></script>
+		
+		<link rel="alternate" type="application/rss+xml" title="Flux RSS Eur@dioNantes" href="./blogs/rss">
+		
     </head>
 
     <body class="sonata-bc home">
-    
-    
-    
-    
-    
-    
-    
-    
- {{tinymce_init()}}
+<script>
+  (function() {
+    var cx = '009530823814786353114:4rwpfku8hou';
+    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.fr/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
         {% block page_top_bar %}
             {% if app.security.isGranted(['ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT', 'ROLE_PREVIOUS_ADMIN']) %}
 
@@ -134,9 +150,9 @@ file that was distributed with this source code.
                                         </li>
                                     {% endif %}
 
-                                    {% if app.security.isGranted('ROLE_PREVIOUS_ADMIN') %}
-                                        <li><a href="{{ url('homepage', {'_switch_user': '_exit'}) }}">{{ "header.switch_user_exit"|trans({}, 'SonataPageBundle')}}</a></li>
-                                    {% endif %}
+                                    {#% if app.security.isGranted('ROLE_PREVIOUS_ADMIN') %}
+                                        <li><a href="{{ url('Accueil', {'_switch_user': '_exit'}) }}">{{ "header.switch_user_exit"|trans({}, 'SonataPageBundle')}}</a></li>
+                                    {% endif %#}
                                 </ul>
                             </div>
                         </div>
@@ -144,6 +160,7 @@ file that was distributed with this source code.
                 </div>
 
             {% endif %}
+            
         {% endblock %}
         
         {% block page_container %}{% endblock %}
@@ -164,5 +181,18 @@ file that was distributed with this source code.
             {{ sonata_block_include_stylesheets('screen') }}
             {{ sonata_block_include_javascripts('screen') }}
         {% endblock %}
+		<script type="text/javascript">
+		
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-37044174-1']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>        
     </body>
 </html>

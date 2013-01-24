@@ -89,11 +89,11 @@ class PodcastProvider extends BaseProvider
     public function buildEditForm(FormMapper $formMapper)
     {
     	$finder = new Finder();
-    	$finder->files()->name('/\.mp3$/')->in('ftp/');
+    	$finder->files()->name('/\.mp3$/')->in('uploads/ftp/');
     	foreach ($finder as $mp3)
     	
     	{
-    		$filename='ftp/'.$mp3->getFilename();
+    		$filename='uploads/ftp/'.$mp3->getFilename();
     		$handle = fopen($filename, "rb");
     		$list[$mp3->getFilename()]=$mp3->getFilename();
     		$this->ContentFile[$mp3->getFilename()]=$mp3;
@@ -114,10 +114,10 @@ class PodcastProvider extends BaseProvider
     public function buildCreateForm(FormMapper $formMapper)
     {
     	$finder = new Finder();
-    	$finder->files()->name('/\.mp3$/')->in('ftp/');
+    	$finder->files()->name('/\.mp3$/')->in('uploads/ftp/');
     	foreach ($finder as $mp3)
     	{
-    		$filename='ftp/'.$mp3->getFilename();
+    		$filename='uploads/ftp/'.$mp3->getFilename();
     		$handle = fopen($filename, "rb");
     		$list[$mp3->getFilename()]=$mp3->getFilename();
     		$this->ContentFile[$mp3->getFilename()]=$mp3;
@@ -132,10 +132,10 @@ class PodcastProvider extends BaseProvider
     public function buildMediaType(FormBuilder $formBuilder)
     {
     	$finder = new Finder();
-    	$finder->files()->name('/\.mp3$/')->in('ftp/');
+    	$finder->files()->name('/\.mp3$/')->in('uploads/ftp/');
     	foreach ($finder as $mp3)
     	{
-    		$filename='ftp/'.$mp3->getFilename();
+    		$filename='uploads/ftp/'.$mp3->getFilename();
     		$handle = fopen($filename, "rb");
     		$list[$mp3->getFilename()]=$mp3->getFilename();
     		$this->ContentFile[$mp3->getFilename()]=$mp3;
@@ -154,10 +154,13 @@ class PodcastProvider extends BaseProvider
         }
 
         $this->setFileContents($media);
-
         $this->generateThumbnails($media);
-        $this->mp32OggFile($media->getProviderReference());
-        unlink('ftp/'.$this->fileName);
+        $this->mp32OggFile($media);
+        if(strstr($this->fileName,'uploads/ftp')){
+        	unlink($this->fileName);
+        }else{
+        	unlink($this->fileName);
+        }
     }
 
     /**
@@ -204,10 +207,11 @@ class PodcastProvider extends BaseProvider
         if (!$media->getBinaryContent() instanceof File) {
         	
 			$this->fileName=$media->getBinaryContent();
+			if (isset($this->ContentFile[$media->getBinaryContent()]))
         	$media->setBinaryContent($this->ContentFile[$media->getBinaryContent()]);        	
-            if (!is_file($media->getBinaryContent())) {
+        /*    if (!is_file($media->getBinaryContent())) {
                 throw new \RuntimeException('The file does not exist : ' . $media->getBinaryContent());
-            }
+            }*/
 
             $binaryContent = new File($media->getBinaryContent());
             $media->setBinaryContent($binaryContent); 
@@ -281,7 +285,7 @@ class PodcastProvider extends BaseProvider
         } else {
             $path = sprintf('media_bundle/images/files/%s/file.png', $format);
         }
-        return $this->getCdn()->getPath($path, $media->getCdnIsFlushable());
+        return $this->getCdn()->getPath($path, $media->getCdnIsFlushable()); 
     }
 
     /**
@@ -408,17 +412,19 @@ class PodcastProvider extends BaseProvider
     
     protected function mp32OggFile($file, $delete = FALSE)
     {
-    
-    	if(file_exists("uploads/media/default/0001/01/$file"))
+    	$path=$this->pathGenerator->generatePath($file);
+    	$fileName=$file->getProviderReference();
+    	if(file_exists("/var/www/git/euradio/web/uploads/media/$path/$fileName"))
     	{
-    		$res = @system(" ffmpeg -i uploads/media/default/0001/01/$file -vcodec libtheora -acodec libvorbis uploads/media/default/0001/01/$file.ogg");
+    		$res = @system("ffmpeg -i /var/www/git/euradio/web/uploads/media/$path/$fileName -vcodec libtheora -acodec libvorbis /var/www/git/euradio/web/uploads/media/$path/$fileName.ogg");
     		if($delete == TRUE)
     		{
     			unlink($file);
     		}
-    		return true;
-    	}
+    			return true;
+    		}
     	else {
+    		echo "Unable to convert Podcast file in uploads/media/$path/$fileName./n";
     		return false;
     	}
     }

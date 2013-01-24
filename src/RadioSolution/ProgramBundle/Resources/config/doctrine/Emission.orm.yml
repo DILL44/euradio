@@ -10,13 +10,15 @@ RadioSolution\ProgramBundle\Entity\Emission:
       type: string
       length: 100
     description:
-      type: string
+      type: text
     diffusion_start:
       type: date
     difusion_stop:
       type: date
     archive:
       type: boolean
+    slug:
+      type: string
   manyToOne:
     theme:
       targetEntity: EmissionTheme

@@ -11,6 +11,12 @@ RadioSolution\PodcastBundle\Entity\Podcast:
       length: 100
     real_time_start:
       type: datetime
+    home_page:
+      type: boolean
+      default: false
+    dlAuth:
+      type: boolean
+      default: true      
   oneToOne:
     filePodcast:
       targetEntity: Application\Sonata\MediaBundle\Entity\Media
@@ -19,7 +25,12 @@ RadioSolution\PodcastBundle\Entity\Podcast:
         referencedColumnName: id
     post:
       targetEntity: Application\Sonata\NewsBundle\Entity\Post
-      inversedBy: RadioSolution\PodcastBundle\Entity\Podcast
+      inversedBy: podcast
       joinColumn:
-        name: podcast_id
+        name: post_id
         referencedColumnName: id
+    program:
+      targetEntity: RadioSolution\ProgramBundle\Entity\Program
+      mappedBy: podcast
+
+      

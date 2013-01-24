@@ -1,0 +1,7 @@
+parameters:
+#    survey.example.class: RadioSolution\SurveyBundle\Example
+
+services:
+#    survey.example:
+#        class: %survey.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

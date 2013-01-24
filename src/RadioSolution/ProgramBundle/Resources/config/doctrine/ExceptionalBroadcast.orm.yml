@@ -1,6 +1,6 @@
 RadioSolution\ProgramBundle\Entity\ExceptionalBroadcast:
   type: entity
-  table: program__ExceptionalBroadcast
+  table: program__exceptionalbroadcast
   id:
     id:
       type: integer
@@ -14,7 +14,7 @@ RadioSolution\ProgramBundle\Entity\ExceptionalBroadcast:
     Emission:
       targetEntity: RadioSolution\ProgramBundle\Entity\Emission
       inversedBy: ExceptionalBroadcast
-      cascade: ["persist", "remove", "merge"]
+      cascade: [all]
       joinColumn:
         name: emission_id
         referencedColumnName: id

@@ -63,7 +63,7 @@ Version: 1.0
 
 .tab .sep {color:#414141}
 
-.tab a.open, .tab a.close {
+.tab .open, .tab a.close {
 	height: 18px;
 	line-height: 20px !important;
 	padding-left: 30px !important;
@@ -73,7 +73,7 @@ Version: 1.0
 	top: 11px;
 }
 
-.tab a.open {background: url(../images/sliding-login-panel/user.png) no-repeat left 0;}
+.tab .open {background: url(../images/sliding-login-panel/user.png) no-repeat left 0;}
 .tab a.close {background: url(../images/sliding-login-panel/bt_close.png) no-repeat left 0;}
 
 /* sliding panel */

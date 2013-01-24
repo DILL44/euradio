@@ -6,9 +6,6 @@ RadioSolution\StaticContentBundle\Entity\StaticContent:
       type: integer
       generator: { strategy: AUTO }
   fields:
-    title:
-      type: string
-      length: 100
     name:
       type: string
       length: 100
@@ -16,9 +13,14 @@ RadioSolution\StaticContentBundle\Entity\StaticContent:
       type: string
       length: 255
     body:
-      type: string
+      type: text
     date_add:
-      type: date 
+      type: datetime
+    slug:
+      type: string
+    order_content:
+      type: integer
+      default: 10
   oneToOne:
     image:
       targetEntity: Application\Sonata\MediaBundle\Entity\Media
@@ -26,9 +28,9 @@ RadioSolution\StaticContentBundle\Entity\StaticContent:
         name: id_image
         referencedColumnName: id
   manyToOne:
-    CategoryStaticContent:
+    categoryStaticContent:
       targetEntity: CategoryStaticContent
-      inversedBy: StaticContent
+      inversedBy: staticContent
       joinColumn:
-          name: id_category
-          referencedColumnName: id
+        name: id_category
+        referencedColumnName: id

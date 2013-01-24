@@ -3,20 +3,20 @@ services:
         class: RadioSolution\MenuBundle\Admin\MenuAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: menu, label: menu }
-        arguments: [null, RadioSolution\MenuBundle\Entity\Menu, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\MenuBundle\Entity\Menu, "SonataAdminBundle:CRUD"]
 
     radioSolution.menu.item:
         class: RadioSolution\MenuBundle\Admin\ItemAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: menu, label: item }
-        arguments: [null, RadioSolution\MenuBundle\Entity\Item, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\MenuBundle\Entity\Item, "SonataAdminBundle:CRUD"]
  
  
     radioSolution.podcast.podcast:
         class: RadioSolution\PodcastBundle\Admin\PodcastAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: podcast, label: podcast }
-        arguments: [null, RadioSolution\PodcastBundle\Entity\Podcast, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\PodcastBundle\Entity\Podcast, "SonataAdminBundle:CRUD"]
         
 
 
@@ -24,60 +24,92 @@ services:
         class: RadioSolution\ProgramBundle\Admin\EmissionAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: programme, label: emmission }
-        arguments: [null, RadioSolution\ProgramBundle\Entity\Emission, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\ProgramBundle\Entity\Emission, "SonataAdminBundle:CRUD"]
 
     radioSolution.program.emissionTheme:
         class: RadioSolution\ProgramBundle\Admin\EmissionThemeAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: programme, label: emission theme }
-        arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionTheme, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionTheme, "SonataAdminBundle:CRUD"]
 
     radioSolution.program.emissionFrequency:
         class: RadioSolution\ProgramBundle\Admin\EmissionFrequencyAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: programme, label: emission frequence }
-        arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionFrequency, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\ProgramBundle\Entity\EmissionFrequency, "SonataAdminBundle:CRUD"]
         
     radioSolution.program.ExceptionalBroadcast:
         class: RadioSolution\ProgramBundle\Admin\ExceptionalBroadcastAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: programme, label: emission exeptionnelle }
-        arguments: [null, RadioSolution\ProgramBundle\Entity\ExceptionalBroadcast, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\ProgramBundle\Entity\ExceptionalBroadcast, "SonataAdminBundle:CRUD"]
         
     radioSolution.program.WeeklyBroadcast:
         class: RadioSolution\ProgramBundle\Admin\WeeklyBroadcastAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: programme, label: emission hebdo }
-        arguments: [null, RadioSolution\ProgramBundle\Entity\WeeklyBroadcast, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\ProgramBundle\Entity\WeeklyBroadcast, "SonataAdminBundle:CRUD"]
         
     radioSolution.program.themeColor:
         class: RadioSolution\ProgramBundle\Admin\ThemeColorAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: programme, label: theme color }
-        arguments: [null, RadioSolution\ProgramBundle\Entity\ThemeColor, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\ProgramBundle\Entity\ThemeColor, "SonataAdminBundle:CRUD"]
 
     radioSolution.program.program:
         class: RadioSolution\ProgramBundle\Admin\ProgramAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, group: programme, label: programme }
-        arguments: [null, RadioSolution\ProgramBundle\Entity\Program, SonataAdminBundle:CRUD]
+        arguments: [null, RadioSolution\ProgramBundle\Entity\Program, "SonataAdminBundle:CRUD"]
 
 
     radioSolution.staticContent.staticContent:
         class: RadioSolution\StaticContentBundle\Admin\StaticContentAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue:"%sonata.page.admin.site.translation_domain%" label: "contenu static" label_translator_strategy:"sonata.admin.label.strategy.underscore"}
-        arguments: [null, RadioSolution\StaticContentBundle\Entity\StaticContent, SonataAdminBundle:CRUD]
+            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue: "%sonata.page.admin.site.translation_domain%", label: "contenu static", label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        arguments: [null, RadioSolution\StaticContentBundle\Entity\StaticContent, "SonataAdminBundle:CRUD"]
         
     radioSolution.staticContent.CategorystaticContent:
         class: RadioSolution\StaticContentBundle\Admin\CategoryStaticContentAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue:"%sonata.page.admin.site.translation_domain%" label: "category contenu static" label_translator_strategy:"sonata.admin.label.strategy.underscore"}
-        arguments: [null, RadioSolution\StaticContentBundle\Entity\CategoryStaticContent, SonataAdminBundle:CRUD]
+            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue: "%sonata.page.admin.site.translation_domain%", label: "category contenu static", label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        arguments: [null, RadioSolution\StaticContentBundle\Entity\CategoryStaticContent, "SonataAdminBundle:CRUD"]
 
     radioSolution.staticContent.DailymediastaticContent:
         class: RadioSolution\StaticContentBundle\Admin\DailymediaStaticContentAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue:"%sonata.page.admin.site.translation_domain%" label: "dailymedia contenu static" label_translator_strategy:"sonata.admin.label.strategy.underscore"}
-        arguments: [null, RadioSolution\StaticContentBundle\Entity\DailymediaStaticContent, SonataAdminBundle:CRUD]
+            - { name: sonata.admin, manager_type: orm, group: sonata_page, label_catalogue: "%sonata.page.admin.site.translation_domain%", label: "dailymedia contenu static", label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        arguments: [null, RadioSolution\StaticContentBundle\Entity\DailymediaStaticContent, "SonataAdminBundle:CRUD"]
 
+    radioSolution.pub.pub:
+        class: RadioSolution\PubBundle\Admin\PubAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: pub, label: pub }
+        arguments: [null, RadioSolution\PubBundle\Entity\Pub, "SonataAdminBundle:CRUD"]
+        
+    radioSolution.RSSAgregator.RSSfile:
+        class: RadioSolution\RSSAgregatorBundle\Admin\RSSAgregatorAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: RSSAgregator, label: RSSAgregator }
+        arguments: [null, RadioSolution\RSSAgregatorBundle\Entity\RSSfile, "SonataAdminBundle:CRUD"]
+
+    radioSolution.Survey.Survey:
+        class: RadioSolution\SurveyBundle\Admin\SurveyAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Sondage, label: Sondage }
+        arguments: [null, RadioSolution\SurveyBundle\Entity\Survey, "SonataAdminBundle:CRUD"]
+
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+ 
+    twig.extension.intl:
+       class: Twig_Extensions_Extension_Intl
+       tags:
+           - { name: twig.extension }
+ 
+    debug.twig.extension:
+        class: Twig_Extensions_Extension_Debug
+        tags: [{ name: 'twig.extension' }]
+        

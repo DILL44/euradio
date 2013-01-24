@@ -29,10 +29,15 @@ class Podcast
      */
     private $filePodcast;
 
+    
+    private $dlAuth;
+    
     /**
      * @var Application\Sonata\NewsBundle\Entity\Post
      */
     private $post;
+    
+    private $home_page;
 
 
     /**
@@ -85,6 +90,31 @@ class Podcast
         return $this->real_time_start;
     }
 
+   
+    
+    /**
+     * Set dlauth
+     *
+     * @param Application\Sonata\MediaBundle\Entity\Media $filePodcast
+     */
+    public function setDlAuth($dlAuth)
+    {
+    	$this->dlAuth = $dlAuth;
+    }
+    
+    /**
+     * Get filePodcast
+     *
+     * @return Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getDlAuth()
+    {
+    	return $this->dlAuth;
+    }
+    
+    
+    
+    
     /**
      * Set filePodcast
      *
@@ -124,8 +154,68 @@ class Podcast
     {
         return $this->post;
     }
-    
+    public function getPostTitle()
+    {
+    	return $this->post->getTitle();
+    }
+    public function getPostAbstract()
+    {
+    	return $this->post->getAbstract();
+    }
+    public function getPostImage()
+    {
+    	return $this->post->getImage();
+    }
+    public function getSlug()
+    {
+    	return $this->post->getYear().'/'.$this->post->getMonth().'/'.$this->post->getDay().'/'.$this->post->getSlug();
+    }
     public  function __toString(){
     	return $this->getName();
+    }
+    
+
+    /**
+     * @var RadioSolution\ProgramBundle\Entity\Program
+     */
+    private $program;
+
+
+    /**
+     * Set program
+     *
+     * @param RadioSolution\ProgramBundle\Entity\Program $program
+     */
+    public function setProgram(\RadioSolution\ProgramBundle\Entity\Program $program)
+    {
+        $this->program = $program;
+    }
+
+    /**
+     * Get program
+     *
+     * @return RadioSolution\ProgramBundle\Entity\Program 
+     */
+    public function getProgram()
+    {
+        return $this->program;
+    } 
+    
+    public function getEmission()
+    {
+        return $this->program->getEmission()->getName();
+    }
+    
+    public function getImageEmission()
+    {
+    	return $this->program->getEmission()->getMedia();
+    }
+    
+    public function getHomePage(){
+    	return $this->home_page;
+    }
+    
+    public function setHomePage($homePage){
+    	$this->home_page=$homePage;
     }
 }

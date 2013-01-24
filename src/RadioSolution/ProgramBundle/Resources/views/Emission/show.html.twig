@@ -1,31 +1,32 @@
-<h1>Emission</h1>
-{% for ent in entity %}
-<table class="record_properties">
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ ent.id }}</td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <td>{{ ent.name }}</td>
-        </tr>
-        <tr>
-            <th>Description</th>
-            <td>{{ ent.description }}</td>
-        </tr>
-        <tr>
-            <th>Diffusion_start</th>
-            <td>{{ ent.diffusionstart|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th>Difusion_stop</th>
-            <td>{{ ent.difusionstop|date('Y-m-d H:i:s') }}</td>
-        </tr>
-        <tr>
-            <th>Archive</th>
-            <td>{{ ent.archive }}</td>
-        </tr>
-    </tbody>
-</table>
-{% endfor %}
+	<section class="entry group">
+		<div class="entry-content emission">
+		{% for entity in entitie %}
+		
+		<div style="float:right;">
+			<br/>
+			<a style="float:right;" title="S'abonner à notre flux RSS." class="icn-orange rss" href="/rss/emission/{{ entity.slug }}" target="_blank">S'abonner à notre flux RSS.</a><br/><br/>
+			{{ socialButtons() }}
+		</div>
+		
+		<h3>{{ entity.name }}</h3> 
+		<div class="picture-infos">			
+						{% if entity.media() %}
+								{%thumbnail entity.media ,'medium'%}
+							{% else %}
+									<img src="/upload/default.jpg" alt="podcast à la une" />
+							{% endif %}
+		Type: {{ entity.frequency }}<br/><br/>
+		Rubrique: {{ entity.theme }}<br/><br/>
+		{# Responsables: {{ entity.group }} #}
+		</div>
+				<div class="descriptif-emission">
+				{{ entity.description|raw }}
+				</div>
+						<div class="block group">
+					<h3>Derniers podcasts</h3>
+					
+					{% render 'PodcastBundle:Podcast:emission' with {'id': entity.id, 'page': app.request.get('page')} %}
+				</div>
+		{% endfor %}
+</div>
+</section>

@@ -1,0 +1,12 @@
+services:
+  acme.socialBarHelper:
+    class : Application\Sonata\NewsBundle\Templating\Helper\SocialBarHelper
+    tags : 
+      - {name : 'templating.helper', alias : 'social-buttons'} 
+    arguments : [ '@templating' ]
+
+  twig.extension.acme_social_bar:
+    class: Application\Sonata\NewsBundle\Twig\Extensions\NewsTwigSocialBar
+    tags:
+        - { name: 'twig.extension' }
+    arguments : [ '@service_container' ]

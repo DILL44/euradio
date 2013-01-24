@@ -1,0 +1,10 @@
+	<aside class="widget list">
+		<h3>Catégories</h3>
+		<ul>
+{% for post in posts %}
+<li><a href="http://{{ domain }}//blog/tag/{{ post.getSlug() }}">
+{{ post.name }}
+</a></li>		
+{% endfor %}
+            </ul>
+	</aside>

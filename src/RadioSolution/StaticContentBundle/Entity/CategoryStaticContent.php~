@@ -3,6 +3,7 @@
 namespace RadioSolution\StaticContentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\NewsBundle\Model\Tag as Tag;
 
 /**
  * RadioSolution\StaticContentBundle\Entity\CategoryStaticContent
@@ -46,6 +47,7 @@ class CategoryStaticContent
     public function setName($name)
     {
         $this->name = $name;
+        $this->setSlug(Tag::slugify($name));
     }
 
     /**
@@ -76,5 +78,80 @@ class CategoryStaticContent
     public function getBody()
     {
         return $this->body;
+    }
+    /**
+     * @var Application\Sonata\MediaBundle\Entity\Media
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param Application\Sonata\MediaBundle\Entity\Media $image
+     */
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get image
+     *
+     * @return Application\Sonata\MediaBundle\Entity\Media 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    /**
+     * @var string $slug
+     */
+    private $slug;
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+    /**
+     * @var RadioSolution\StaticContentBundle\Entity\CategoryStaticContent
+     */
+    private $parent;
+
+
+    /**
+     * Set parent
+     *
+     * @param RadioSolution\StaticContentBundle\Entity\CategoryStaticContent $parent
+     */
+    public function setParent(\RadioSolution\StaticContentBundle\Entity\CategoryStaticContent $parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return RadioSolution\StaticContentBundle\Entity\CategoryStaticContent 
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }

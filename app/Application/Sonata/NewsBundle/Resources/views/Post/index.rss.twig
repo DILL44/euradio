@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Euradio</title>
+        <link>http://{{ domain }}</link>
+        <description>les posts </description>
+        {% for post in entities %}
+             <item>
+                  <title>{{ post.title }}</title>
+                  <link>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true) }}</link>
+                  <description><![CDATA[ {{ post.abstract|striptags|raw }} ]]></description>
+                  <pubDate>{{ post.publicationDateStart | date('e, M L y H:m:s z')}}</pubDate>
+                  <gui>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true) }}</gui>
+             </item>
+        {% endfor %}
+    </channel>
+</rss>

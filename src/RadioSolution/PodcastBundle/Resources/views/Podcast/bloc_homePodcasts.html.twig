@@ -1,0 +1,72 @@
+<div id="main_content">
+
+{% for podcast in theOne %}
+<section class="block top group">
+	<div class='top-left'>
+		<h3>Podcast à la Une</h3>
+		<a href="blog/{{ podcast.getSlug() }}">
+		{% if podcast.getPostImage() %}
+			{%media podcast.getPostImage() ,'big'%}
+		{% else %}
+				{%thumbnail podcast.getImageEmission() ,'big'%}
+		{% endif %}
+		</a>
+		
+		<div class="play-bt"><a href="blog/{{ podcast.getSlug() }}">Play</a></div>
+		<h2><a href="blog/{{ podcast.getSlug() }}"><span class="title">{{ podcast.getPostTitle()|striptags|raw  }}</span></a></h2><br/>					
+		<span class="trans"></span>
+		<h2><a href="blog/{{ podcast.getSlug() }}"><span class="subtitle">{{ podcast.getPostAbstract()|striptags |raw}}</span></a><h2>
+		
+	</div>
+</section>
+{% endfor %}
+
+<section class="entry group" style="width:100%;">
+	<ul class="gallery-list group">
+	{% for entity in entities %}
+		<li class="index-{{ loop.index }}">		
+			{% if entity.getPost() %}
+			<a href="blog/{{ entity.getSlug() }}">
+				{% if entity.getPostImage() %}
+					{%media entity.getPostImage() ,'medium'%}
+					
+				{% else %}
+					{%thumbnail entity.getImageEmission() ,'medium'%}
+				{% endif %}
+				<figure class="accueil">
+				<figcaption>{{ entity.getPostTitle()|raw }}</figcaption>
+				<span class="trans"></span>
+				</figure>
+			 </a>				 			
+			{% endif %}
+
+		</li>
+		{% endfor %}	
+	</ul>
+</section>
+</div>
+
+
+<!--
+<div class="page-content group">
+	<section class="entry group">
+        <ul class="gallery-list group">
+            <li>
+                <a href="#">
+                    <figure>
+                        <figcaption>Titre de l'ancienne Une 1</figcaption>
+                        <span class="trans"></span>
+                    </figure>
+-->
+
+<!--             
+<li>
+	<a href="#">
+		<figure>
+			<img src="images/podcasts/archive_une_1.jpg" alt="">
+			<figcaption>Titre de l'ancienne Une 1</figcaption>
+			<span class="trans"></span>
+		</figure>
+		</a>
+	</li>
+             -->

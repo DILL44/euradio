@@ -10,25 +10,23 @@ file that was distributed with this source code.
 #}
 {% extends 'ApplicationSonataPageBundle::base_layout.html.twig' %}
 
-
-
 {% block page_container %}
 
     <div id="page">
     
-		<header id="header">
-		
+		<header id="header">	
 <div class="wrap group">		
+		<!--
         <div class="head-wrap group">
 			<div id="toppanel">
 				<div id="panel">
 					<div class="content clearfix">
 						<div class="left">
 							<h1>Bienvenue chez Euradionantes !</h1>		
-							<p class="grey">Texte d'introduction expliquant l'int�r�t de se cr�er une compte membre.</p>
+							<p class="grey">Texte d'introduction expliquant l'interet de se creer une compte membre.</p>
 						</div>
 						<div class="left">
-							<!-- D�but du formulaire de connexion -->
+							
 							<form class="clearfix" action="#" method="post">
 								<h1>Connexion membre</h1>
 								<input class="field" type="text" name="log" id="log" value="Nom d'utilisateur" size="23" />
@@ -40,7 +38,7 @@ file that was distributed with this source code.
 							</form>
 						</div>
 						<div class="left right">			
-							<!-- D�but du formulaire d'inscription -->
+
 							<form action="#" method="post">
 								<h1>Inscription</h1>				
 								<input class="field" type="text" name="signup" id="signup" value="Nom d'utilisateur" size="23" />
@@ -50,7 +48,7 @@ file that was distributed with this source code.
 							</form>
 						</div>
 					</div>
-				</div> <!-- #panel -->	
+				</div>
 
 				<div class="tab">
 					<ul class="login">
@@ -59,135 +57,108 @@ file that was distributed with this source code.
 							<a id="close" style="display: none;" class="close" href="#">Fermer</a>			
 						</li>
 					</ul> 
-				</div> <!-- .tab -->
-				
-			</div> <!-- #toppanel -->
-		
-		
+				</div>				
+			</div>	
+		-->
 		<div class="vraiheader">
-		
+		<!-- 
+		<div id="toppanel">
+			<div class="tab">
+					<ul class="login">
+						<li id="toggle">
+							<div id="open" class="open"><a href="/login">Connexion </a>|<a href="/register/"> Inscription</a></div>		
+						</li>
+					</ul> 
+				</div>
+		</div>
+		 -->
 			<hgroup class="logo imglogo">
                 <h1>
 	                <a href="{{ sonata_page_url('/accueil') }}">
-	                	<img src="/images/logo.png" alt="Euradionantes" />
+	                	<img src="/images/new_logo.png" alt="Euradionantes" />
 	                </a>
                 </h1>
-            </hgroup>
-            
-
-            
-			<div class="sld-container">
-				<div id="main-slider" class="flexslider">
-					<ul class="slides group">
-						<li class="sld-item group">
-							<a href="#"><img src="/images/pub/ban728x90.png" alt=""></a>
-						</li>
-						<!-- 
-						<li class="sld-item group">
-							<a href="#"><img src="/images/pub/ban728x90_2.png" alt=""></a>
-						</li>		
-						<li class="sld-item group">
-							<a href="#"><img src="/images/pub/ban728x90_3.png" alt=""></a>
-						</li>	
-						 -->					
-					</ul>
-				</div> <!-- .flexslider -->
-			</div> <!-- .sld-container -->
-			<!-- 
-			<div class="on-air">
-				<div class="player-bt">
-					<span class="title">Indian Summer</span>
-					<span class="subtitle">Chicha Libre</span>
-				</div>
-			</div> <!-- .on-air -->
+            </hgroup>          
+			{% render "PubBundle:Default:Index"%}
 			
-            <nav>
-                <ul id="navigation" class="group">
-                    <li class="current_page_item current-menu-item"><a href="index.html">Accueil</a></li>
-                    <li><a href="#">Radio</a>
-                        <ul>
-                            <li><a href="#">Ecouter</a></li>
-                            <li><a href="#">Programmes</a></li>
-                            <li><a href="#">Emissions</a></li>
-                            <li><a href="#">Podcasts</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">R�daction</a></li>
-                    <li><a href="#">Presse</a></li>
-					<li><a href="#">Blogs</a></li>
-					<li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
+			{% render "ProgramBundle:Program:onair"%}
+
+			<nav id="navigation">
+			{% set menuItem = knp_menu_get('MenuBundle:Builder:mainMenu',{}, {'idmenu':1 })%}
+			{{ knp_menu_render(menuItem) }}
+			</nav>	
 
 		</div>
         </div> <!-- .head-wrap -->
-    </div> <!-- .wrap < header -->
-    
-            
-			<div class="pull-left">
-                {% if content2 is defined %}
-                    {{ content2|raw }}
-                {% else %}                    
-                    {% set content2 = block('logo') %}
-                    {% if content2|length > 0 %}
-                        {{ content2|raw }}
-                    {% else %}
-                        {{ sonata_page_render_container('logo', page) }}
-                    {% endif %}
-                {% endif %}
-				
-				
-				
-			</div>
-
-			<div class="pull-right navigation">
-				{{ sonata_page_render_container('header', 'global') }}
-			</div>
-
-			<div style="clear: both"></div>
-			
+    </div> <!-- .wrap < header -->	
 		</header>
     
     
-        <div class="main-content">
-        
-            <div class="row">
-                {% if page.name != 'global'%}
-                    {{ sonata_page_render_container('content_top', 'global') }}
-                {% endif %}
-                {{ sonata_page_render_container('content_top', page) }}
-            </div>
+        <div id="main-content">
+	        <div class="wrap">
+	            <div class="row">
+	                {% if page.name != 'global'%}
+	                    {{ sonata_page_render_container('content_top', 'global') }}
+	                {% endif %}
+	                {{ sonata_page_render_container('content_top', page) }}
+	                {% if content is defined %}
+	                    {{ content|raw }}
+	                {% else %}                    
+	                    {% set content = block('content') %}
+	                    {% if content|length > 0 %}
+	                        {{ content|raw }}
+	                    {% else %}
+	                        {{ sonata_page_render_container('content', page) }}
+	                    {% endif %}
+	                {% endif %}
 
-            <div class="row">
-                {% if content is defined %}
-                    {{ content|raw }}
-                {% else %}                    
-                    {% set content = block('content') %}
-                    {% if content|length > 0 %}
-                        {{ content|raw }}
-                    {% else %}
-                        {{ sonata_page_render_container('content', page) }}
-                    {% endif %}
-                {% endif %}
-            </div>
-
-            <div>
-                {{ sonata_page_render_container('content_bottom', page) }}
-
-                {% if page.name != 'global'%}
-                    {{ sonata_page_render_container('content_bottom', 'global') }}
-                {% endif %}
-            </div>
-            
-        </div>
-
+	                {{ sonata_page_render_container('content_bottom', page) }}
+	
+	                {% if page.name != 'global'%}
+	                    {{ sonata_page_render_container('content_bottom', 'global') }}
+	                {% endif %}
+	            </div>	            
+	        </div>
+		</div>
         <footer id="footer">
         
-        	<h2>pied de page</h2>
-        	{% block footer %}{% endblock %}
+        	{% block footer %}
+        	<div class="wrap group">
+        	
+        	<div class="subfooter">
+        		<div class="footer-menu">
+	        		{% set menuFooter = knp_menu_get('MenuBundle:Builder:footerMenu',{}, {'idmenu':4 })%}
+					{{ knp_menu_render(menuFooter) }}
+				</div>
+				
+				<div class="social-wgt">
+					<a title="S'abonner � notre flux RSS." class="icn rss" href="./blogs/rss" target="_blank">S'abonner &agrave; notre flux RSS.</a>
+					<a title="Suivez-nous sur Twitter." class="icn twitter" href="http://twitter.com/euradionantes" target="_blank">Suivez-nous sur Twitter.</a>
+					<a title="Devenez fan d'Euradionantes sur Facebook." class="icn facebook" href="http://www.facebook.com/pages/Euradionantes/119060581473600" target="_blank">Devenez fan d'Euradionantes sur Facebook.</a>
+					<a title="Voir nos vid�os YouTube." class="icn youtube" href="http://www.youtube.com/user/EuradioNantes" target="_blank">Voir nos vid�os YouTube.</a>
+				</div> <!-- .social-wgt -->
+				
+			    <div class="footer-links">
+	        		{% set linksFooter = knp_menu_get('MenuBundle:Builder:footerLinks',{}, {'idmenu':5 })%}
+					{{ knp_menu_render(linksFooter) }}
+				</div>
+			
+        	{% endblock %}
             {{ sonata_page_render_container('footer', 'global') }}
-            
+            </div>
+            </div>
         </footer>
     </div>
+
+<script type='text/javascript'>
+jQuery(function($){ 
+  $("a#open").click(function() { 
+    $(".vraiheader").fadeOut("slow"); 
+  });
+  $("a#close").click(function() { 
+    $(".vraiheader").fadeIn("slow"); 
+  });
+});
+</script>
 
 {% endblock %}

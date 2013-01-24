@@ -1,0 +1,7 @@
+parameters:
+#    rss_agregator.example.class: RadioSolution\RSSAgregatorBundle\Example
+
+services:
+#    rss_agregator.example:
+#        class: %rss_agregator.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

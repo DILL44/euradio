@@ -1,6 +1,6 @@
 RadioSolution\ProgramBundle\Entity\WeeklyBroadcast:
   type: entity
-  table: program__WeeklyBroadcast
+  table: program__weeklybroadcast
   id:
     id:
       type: integer
@@ -12,18 +12,6 @@ RadioSolution\ProgramBundle\Entity\WeeklyBroadcast:
       type: time
     day:
       type: integer
-#  manyToMany:
-#    day:
-#      targetEntity: Day
-#      cascade: [all]
-#      joinTable:
-#        name: program__WeeklyBroadcast_day
-#        joinColumns:
-#          WeeklyBroadcast_id:
-#            referencedColumnName: id
-#        inverseJoinColumns:
-#          day_id:
-#            referencedColumnName: id
   manyToOne:
     Emission:
       targetEntity: Emission

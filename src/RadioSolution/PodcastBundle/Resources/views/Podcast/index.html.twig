@@ -1,24 +1,79 @@
-<h1>Podcast list</h1>
+	<section class="entry group">
+		<div class="entry-content emission">
+<h3>Tous les podcasts</h3>
+<div class="dropdowns">
+<h4>Emission</h4>
+<form action="{{ path(app.request.attributes.get('_route')) }}"  method="get">
+<select data-placeholder="Choisir une émission(s)" style="width:300px;" class="chzn-select" tabindex="8" name="emission">
+<option value="">Toutes les &eacute;mission</option>
+{% for emission in emissions  %}
+<option value="{{ emission.id }}">{{ emission.name }}</option>
+{% endfor %}
+</select>
+<input class="btn-selectionner" type="submit" value="Sélectionner">
+</form>
+</div>
+    {% set class = 'first'%}
+    <div class="block group">
+		<div class="navigation">
+	    	{{ pagination.render()|raw }}
+		</div>						
+		<ul class="gallery-list group">
+    {% for entity in pagination %}
+    	<li class="{{ class }}">
+    				<a href="http://{{ domain }}/blog/{{ entity.getSlug() }}">
+							<figure>
+								<div class="image">
+									{% if entity.getPostImage() %}
+										{%media entity.getPostImage() ,'medium'%}
+									{% elseif entity.getImageEmission() %}
+										{%media entity.getImageEmission() ,'medium'%}
+									{% else %}
+										<img src="/uploads/default.jpg" alt=""/>
+									{% endif %}
+									<h2>
+										<span>
+											{% if entity.getProgram() %}
+												{{ entity.getEmission()|wordwrap(34, true) }}
+											{% endif %}
+										</span>
+									</h2>
+								</div>
+							</figure>
+						</a>
+								<audio controls="controls">
+							        <source src="{% path entity.filePodcast, 'reference' %}.ogg" type="audio/ogg" />
+							      	<source src="{% path entity.filePodcast, 'reference' %}" type="audio/mp3" />
+							       	Your browser does not support the audio tag.
+							  	</audio>
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Real_time_start</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td>{{ entity.id }}</td>
-            <td>{{ entity.name }}</td>
-            <td>{% if entity.realtimestart %}{{ entity.realtimestart|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>
-            </td>
-        </tr>
+						{% if entity.realtimestart %}
+							<div class="heure-podcast">
+								<span>
+									{{ entity.realtimestart|date('d/m/') }}<br/>
+									{{ entity.realtimestart|date('Y') }}<br/>
+									{{ entity.realtimestart|date('H') }}h{{ entity.realtimestart|date('i') }}
+								</span>
+							</div>
+						{% endif %}						
+						<span class="titre-post">{{ entity.getPostTitle() }}</span>
+							<p>{{ entity.getPostAbstract()|raw }}</p>
+						<div class="plus">
+							<a href="podcast.html">lire la suite</a>
+						</div>
+						</li>
+										{% if  class == 'first'%}
+					{% set class = ''%}
+				{% else %}
+					{% set class = 'first'%}
+				{% endif %}
     {% endfor %}
-    </tbody>
-</table>
+    </ul>
+    <div class="navigation">
+    	{{ pagination.render()|raw }}
+	</div>
+</div>
+</div>
+</section>
+
 

@@ -12,6 +12,9 @@ RadioSolution\MenuBundle\Entity\Item:
     url:
       type: string
       length: 100
+    order_item:
+      type: integer
+      nullable: true
   manyToOne:
       menu:
         targetEntity: Menu
@@ -19,11 +22,10 @@ RadioSolution\MenuBundle\Entity\Item:
         joinColumn:
             name: id_menu
             referencedColumnName: id
-  oneToOne:
-    parent:
-      nullable: true
-      default: NULL
-      targetEntity: Item
-      joinColumn:
-        name: id_parent
-        referencedColumnName: id
+      parent:
+        nullable: true
+        default: NULL
+        targetEntity: Item
+        joinColumn:
+          name: id_parent
+          referencedColumnName: id

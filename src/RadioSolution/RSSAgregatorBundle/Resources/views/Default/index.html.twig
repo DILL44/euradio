@@ -1,0 +1,11 @@
+<aside class="widget list">
+<h3>Actualit&eacute; europ&eacute;enne</h3>
+		<ul>
+			{% for feed in allFeeds %}
+				<li>
+					{{ feed.date }} - {{ feed.name }}<br/>
+					<a href="{{ feed.link }}" alt="{{ feed.title }}" targer="_blank">{{ feed.title|truncate(78) }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+</aside>

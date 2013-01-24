@@ -28,7 +28,11 @@ use Application\Sonata\NewsBundle\Entity\Comment;
 
 class PostAdmin extends BaseAdmin
 {
-
+	
+    protected $datagridValues = array(
+        '_sort_order' => 'DESC', // sort direction
+        '_sort_by' => 'publication_date_start' // field name
+    );
     /**
      * {@inheritdoc}
      */
@@ -46,12 +50,10 @@ class PostAdmin extends BaseAdmin
                     'target' => 'content'
                 ))
                 ->add('rawContent','textarea', array('attr' => array('class' => 'tinymce', 'tinymce'=>'{"theme":"medium"}')))
-            ->end()
-            ->with('podcast')
-            	->add('podcast','sonata_type_model', array('required' => false))
+                ->add('image','sonata_type_model',array('required' => false),array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.image')))
             ->end()
             ->with('Tags')
-                ->add('tags', 'sonata_type_model', array('expanded' => true))
+                ->add('tags', 'sonata_type_model', array('expanded' => true,'required' => false))
             ->end()
             ->with('Options')
                 ->add('publicationDateStart')
@@ -62,5 +64,28 @@ class PostAdmin extends BaseAdmin
         ;
     }
     protected function configureSideMenu(MenuItemInterface $menu, $action, Admin $childAdmin = null)
-    {}  
+    {}
+    
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+    	$datagridMapper
+    	->add('title')
+    	->add('author')
+    	;
+    }
+    
+    protected function configureListFields(ListMapper $listMapper)
+    {
+    	$listMapper
+    	->addIdentifier('title')
+    	->add('author')
+    	->add('category')
+    	->add('enabled')
+    	->add('commentsEnabled')
+    	->add('PublicationDateStart', 'date', array('template' => 'SonataNewsBundle:PostAdmin:list_date_custom.html.twig'))
+    	;
+    }
+    
+    
+    
 }

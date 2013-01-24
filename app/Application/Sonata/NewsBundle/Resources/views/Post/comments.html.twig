@@ -10,10 +10,9 @@
  */
 
 #}
-
+<h3>{{ 'title_comments'|trans({}, 'SonataNewsBundle') }}</h3>
 <div class="sonata-blog-comment-container">
-    <h3>{{ 'title_comments'|trans({}, 'SonataNewsBundle') }}</h3>
-
+    
     <div class="sonata-blog-comment-list">
         {% for comment in pager.results %}
             <div class="sonata-blog-comment">
@@ -31,4 +30,5 @@
             {{ 'no_comments_available'|trans({}, 'SonataNewsBundle') }}
         {% endfor %}
     </div>
+    
 </div>

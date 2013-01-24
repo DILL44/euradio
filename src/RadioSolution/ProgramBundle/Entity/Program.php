@@ -33,6 +33,8 @@ class Program
      * @var RadioSolution\ProgramBundle\Entity\Emission
      */
     private $emission;
+    
+    private $collision;
 
     /**
      * to string
@@ -133,4 +135,34 @@ class Program
     {
         return $this->emission;
     }
+    
+    public function getNameEmission()
+    {
+    	return  $this->emission->getName();
+    }
+    
+    public function getDescriptionEmission()
+    {
+    	return  $this->emission->getDescription();
+    }
+    
+    public function getSlug()
+    {
+    	return $this->emission->getSlug();
+    }
+    
+    public function getImageEmission()
+    {
+    	return $this->emission->getMedia();
+    }
+    
+    public function getCollision()
+    {
+    	return $this->collision;
+    }   
+    
+    public function setCollision($collision)
+    {
+    	$this->collision=$collision;
+    }    
 }
