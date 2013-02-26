@@ -1,3 +1,4 @@
+
 <script src="{{ asset('bundles/sonatajquery/jquery-1.7.1.js') }}" type="text/javascript"></script>
 
           <script type="text/javascript">
@@ -17,36 +18,9 @@
                  */
                 myListener.onUpdate = function()
                 {
-                    /**
-                    document.getElementById("info_playing").innerHTML = this.isPlaying;
-                    document.getElementById("info_url").innerHTML = this.url;
-                    document.getElementById("info_volume").innerHTML = this.volume;
-                    document.getElementById("info_position").innerHTML = this.position;
-                    document.getElementById("info_duration").innerHTML = this.duration;
-                    document.getElementById("info_bytes").innerHTML = this.bytesLoaded + "/" + this.bytesTotal + " (" + this.bytesPercent + "%)";
-               		*/
                     
                     var isPlaying = (this.isPlaying == "true");
-
-          			/*
-                    document.getElementById("playerplay").style.display = (isPlaying)?"none":"block";
-                    document.getElementById("playerpause").style.display = (isPlaying)?"block":"none";
                     
-                    var timelineWidth = 160;
-                    var sliderWidth = 40;
-                    var sliderPositionMin = 40;
-                    var sliderPositionMax = sliderPositionMin + timelineWidth - sliderWidth;
-                    var sliderPosition = sliderPositionMin + Math.round((timelineWidth - sliderWidth) * this.position / this.duration);
-                    
-                    if (sliderPosition < sliderPositionMin) {
-                        sliderPosition = sliderPositionMin;
-                    }
-                    if (sliderPosition > sliderPositionMax) {
-                        sliderPosition = sliderPositionMax;
-                    }
-                    
-                    document.getElementById("playerslider").style.left = sliderPosition+"px";
-        			*/
                 };
                 
                 function setPosition()
@@ -98,41 +72,52 @@
                 
                 $(document).ready(function(){
 
-                	
-					
-                	$('#play_btn').mouseover(function(){
-
-                		if(myListener.position == 0){
-                			$(this).css('backgroundPosition', '0 450px');
-                		}else{
-                			$(this).css('backgroundPosition', '0 150px');
-                		}
-                	});
-
-                	$('#play_btn').mouseout(function(){
-
-
-                		if(myListener.position == 0){
-                			$(this).css('backgroundPosition', '0 300px');
-                		}else{
-                			$(this).css('backgroundPosition', '0 0px');
-                		}
-                	});
-
-                	$('#play_btn').click(function(){
-                	
-                		switchSound();
+                	var hasFlash = false;
+                	try {
+                	  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+                	  if(fo) hasFlash = true;
+                	}catch(e){
+                	  if(navigator.mimeTypes ["application/x-shockwave-flash"] != undefined) hasFlash = true;
+                	}
+                	                    
+                	if(hasFlash){
                 		
-                		if(myListener.position == 0){
-                			$(this).css('backgroundPosition', '0 300px');
-                		}else{
-                			$(this).css('backgroundPosition', '0 0px');
-                		}
-                		
-                		
-                	});
+                		$('#streamingHTML5').hide();
+               		
+	                	$('#play_btn').click(function(){
+	                	
+	                		switchSound();
+	                		
+	                		if(myListener.position == 0){
+	                    		
+	                			$(this).removeClass("paused");
+	                		}else{
+	                    		
+	                			$(this).addClass("paused");
+	                		}
+	
+	                	});
+	                	
+	                	updateOnair();
+	                	setInterval('updateOnair()', 10000	);
+	
+                	}else{
+                    	
+                		$('#play_btn').hide();
+                		$('#streamingHTML5').show();
+                		$('#streamingHTML5 audio').play();
+                    }
              	   
 				});
+
+                function updateOnair()
+                {
+                	jQuery.get('http://www.euradionantes.eu/uploads/onair/now_playing.txt', function(data) {
+             		   $("#nowplaying").html(data);
+             		});                    
+                }
+
+                
                 
 
 				
@@ -148,13 +133,26 @@
     
 
  
-            
+    
 	<div id="player-top">
+		
+		<div id="streaming">
+			<a id="play_btn" href="#"></a>
+		</div>
+		
+		<div id="streamingHTML5">
+			<audio controls="controls">
+				<source src="http://80.82.229.202:80/euradio.mp3" type="audio/mpeg" />
+			</audio>
+		</div>
+		
+		<div id="nowplaying"></div>
+
+<!--
 		{% for entity in currentProgram %}
 		{% if  entity.getId() %}
 		<div class="program-pic" style="background:url('{% if entity. emission .media() %} {% path entity.emission.media ,'medium'%}{% else %}/upload/default.jpg{% endif %}');">
 			<a id="play_btn" href="#" style="display:block; width:100%; height:100%; background:url('/images/ecoutePlayerBackground.png');">
-			
 			</a>
 		</div>
 		<div class="on-air">{% if somethingNow %}ON AIR{% else %}NEXT{% endif %}</div>
@@ -166,9 +164,9 @@
 		</div>
 		{% endif %}
 		{% endfor %}
+		-->
 	</div>        
-            
-
+   
 	</div>
 
   <div id="timeline-embed" style="width: 960px;"></div>
@@ -176,7 +174,7 @@
   <script type="text/javascript">
   var test=getEmission();
    var timeline_config = {
-    width: "100%",
+    width: "980px",
     height: "100%",
     source: test,
            embed_id:           'timeline-embed',               //OPTIONAL USE A DIFFERENT DIV ID FOR EMBED

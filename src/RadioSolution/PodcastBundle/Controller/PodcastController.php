@@ -39,9 +39,11 @@ class PodcastController extends Controller
 			$query = $em->createQuery("SELECT p FROM PodcastBundle:Podcast p $join WHERE  p.real_time_start>:date $condition ORDER BY p.real_time_start DESC")->setParameter('date', $date);
 			$entities=$query->getResult();
     	}
-		$query = $em->createQuery("SELECT e FROM ProgramBundle:Emission e ");
+		$query = $em->createQuery("SELECT e FROM ProgramBundle:Emission e ORDER BY e.name ASC");
 		$emission=$query->getResult();
         
+		
+		
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
         		$entities,
@@ -75,7 +77,7 @@ class PodcastController extends Controller
     	$query = $em->createQuery("SELECT p FROM PodcastBundle:Podcast p $join WHERE  p.real_time_start>:dateStart AND p.real_time_start<:dateStop $condition ORDER BY p.real_time_start DESC")->setParameters(array('dateStart'=> $dateStart,'dateStop'=> $dateStop));
     	$entities=$query->getResult();
     
-    	$query = $em->createQuery("SELECT e FROM ProgramBundle:Emission e ");
+    	$query = $em->createQuery("SELECT e FROM ProgramBundle:Emission e ORDER BY e.name ASC");
     	$emission=$query->getResult();
     	
     	$paginator = $this->get('knp_paginator');

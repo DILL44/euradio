@@ -45,9 +45,9 @@
 							</div>
 						</figure>
 					</a>
-							<p><span class="responsables">Responsables</span>
+							<p>
 							{{ entity.description|slice(0, 200)|striptags |raw }}</p>
-							<div class="plus"><a href="/app_dev.php/emission/{{entity.slug}}">lire la suite</a></div>
+							<div class="plus"><a href="/emission/{{entity.slug}}">lire la suite</a></div>
 				</li>
 				{% if  class == 'first'%}
 					{% set class = ''%}

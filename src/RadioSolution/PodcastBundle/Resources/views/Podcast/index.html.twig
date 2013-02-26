@@ -20,54 +20,49 @@
 		</div>						
 		<ul class="gallery-list group">
     {% for entity in pagination %}
-    	<li class="{{ class }}">
-    				<a href="http://{{ domain }}/blog/{{ entity.getSlug() }}">
-							<figure>
-								<div class="image">
-									{% if entity.getPostImage() %}
-										{%media entity.getPostImage() ,'medium'%}
-									{% elseif entity.getImageEmission() %}
-										{%media entity.getImageEmission() ,'medium'%}
-									{% else %}
-										<img src="/uploads/default.jpg" alt=""/>
-									{% endif %}
-									<h2>
-										<span>
-											{% if entity.getProgram() %}
-												{{ entity.getEmission()|wordwrap(34, true) }}
-											{% endif %}
-										</span>
-									</h2>
-								</div>
-							</figure>
-						</a>
-								<audio controls="controls">
-							        <source src="{% path entity.filePodcast, 'reference' %}.ogg" type="audio/ogg" />
-							      	<source src="{% path entity.filePodcast, 'reference' %}" type="audio/mp3" />
-							       	Your browser does not support the audio tag.
-							  	</audio>
-
-						{% if entity.realtimestart %}
-							<div class="heure-podcast">
-								<span>
-									{{ entity.realtimestart|date('d/m/') }}<br/>
-									{{ entity.realtimestart|date('Y') }}<br/>
-									{{ entity.realtimestart|date('H') }}h{{ entity.realtimestart|date('i') }}
-								</span>
-							</div>
-						{% endif %}						
-						<span class="titre-post">{{ entity.getPostTitle() }}</span>
-							<p>{{ entity.getPostAbstract()|raw }}</p>
-						<div class="plus">
-							<a href="podcast.html">lire la suite</a>
+		    <li class="{{ class }}">
+		    
+				<a href="/blog/{{ entity.getSlug() }}">
+					<figure>
+						<div class="image">
+							{%media entity.getPostImage() ,'medium' with {'title': entity.getPostTitle()}%}
+							<h2>
+								<span>{{ entity.getPostTitle() }}</span>
+							</h2>
 						</div>
-						</li>
-										{% if  class == 'first'%}
-					{% set class = ''%}
-				{% else %}
-					{% set class = 'first'%}
-				{% endif %}
-    {% endfor %}
+					</figure>
+				</a>
+				
+				<audio controls="controls" preload="none" >
+					<source src="{% path entity.filePodcast, 'reference' %}.ogg" type="audio/ogg" />
+					<source src="{% path entity.filePodcast, 'reference' %}" type="audio/mpeg" />
+					Your browser does not support the audio tag.
+				</audio>
+								
+				{% if entity.realtimestart %}
+				<div class="heure-podcast">
+					<span>
+						{{ entity.realtimestart|date('d/m/') }}<br/>
+						{{ entity.realtimestart|date('Y') }}<br/>
+						{{ entity.realtimestart|date('H') }}H{{ entity.realtimestart|date('i') }}
+					</span>
+				</div>
+				{% endif %}	
+									
+				<span class="titre-post">
+					<a href="/blog/{{ entity.getSlug() }}">{{ entity.getPostAbstract() | truncate(50, true, "...")  }}</a>
+				</span>
+				<div class="plus">
+					<a href="/blog/{{ entity.getSlug() }}">lire la suite</a>
+				</div>
+			</li>
+			
+			{% if  class == 'first'%}
+				{% set class = ''%}
+			{% else %}
+				{% set class = 'first'%}
+			{% endif %}
+        {% endfor %}
     </ul>
     <div class="navigation">
     	{{ pagination.render()|raw }}

@@ -40,6 +40,15 @@ class Podcast
     private $home_page;
 
 
+    public function __construct()
+    {
+    	$this->real_time_start = new \DateTime('now');
+    	$this->dlAuth = true;
+
+    }
+    
+    
+    
     /**
      * Get id
      *

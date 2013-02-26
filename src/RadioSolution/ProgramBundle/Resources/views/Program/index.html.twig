@@ -3,7 +3,7 @@
 <div class="page-content " >
 	<section class="entry group" >
 		<div class="entry-content programme">
-			<h3 style="text-align: center;"><a href="/programmes/?week={{ weekNumber - 1}}" id="prev_week">&lt; </a>Programmes de la semaine {{ weekNumber }}<a href="/programmes?week={{ weekNumber + 1}}" id="next_week"> &gt;</a></h3>
+			<h3 style="text-align: center;"><a href="/programmes?week={{ weekNumber - 1}}" id="prev_week">&lt; </a>Programmes de la semaine {{ weekNumber }}<a href="/programmes?week={{ weekNumber + 1}}" id="next_week"> &gt;</a></h3>
 			
 			<ul class='tabs' style="margin-left:30px;">
 				<li><a href='#tab1'>Lundi</a></li>
@@ -53,6 +53,12 @@
 											<a href="/emission/{{entity.getSlug}}">
 												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
 											</a>
+											{% if app.security.isGranted(['ROLE_SONATA_ADMIN']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+											
 										</div>		
 										<div class="details title-emission_programme">
 											<a href="/emission/{{entity.getSlug}}">
@@ -83,6 +89,12 @@
 											<a href="/emission/{{entity.getSlug}}">
 												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
 											</a>
+											{% if app.security.isGranted(['ROLE_SONATA_ADMIN']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+											
 										</div>		
 										<div class="details title-emission_programme">
 											<a href="/emission/{{entity.getSlug}}">
@@ -112,11 +124,17 @@
 											<a href="/emission/{{entity.getSlug}}">
 												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
 											</a>
+											{% if app.security.isGranted(['ROLE_SONATA_ADMIN']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+																						
 										</div>		
 										<div class="details title-emission_programme">
 											<a href="/emission/{{entity.getSlug}}">
 												{{ entity.emission.name }}
-											</a>
+											</a>											
 										</div>
 									</li>	
 					 			{% endif %}
@@ -142,6 +160,12 @@
 											<a href="/emission/{{entity.getSlug}}">
 												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
 											</a>
+											{% if app.security.isGranted(['ROLE_SONATA_ADMIN']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+											
 										</div>		
 										<div class="details title-emission_programme">
 											<a href="/emission/{{entity.getSlug}}">
@@ -173,6 +197,12 @@
 											<a href="/emission/{{entity.getSlug}}">
 												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
 											</a>
+											{% if app.security.isGranted(['ROLE_SONATA_ADMIN']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+											
 										</div>		
 										<div class="details title-emission_programme">
 											<a href="/emission/{{entity.getSlug}}">

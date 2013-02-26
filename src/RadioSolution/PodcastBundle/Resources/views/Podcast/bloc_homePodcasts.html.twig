@@ -4,44 +4,112 @@
 <section class="block top group">
 	<div class='top-left'>
 		<h3>Podcast à la Une</h3>
-		<a href="blog/{{ podcast.getSlug() }}">
-		{% if podcast.getPostImage() %}
-			{%media podcast.getPostImage() ,'big'%}
-		{% else %}
-				{%thumbnail podcast.getImageEmission() ,'big'%}
-		{% endif %}
+		<a href="/blog/{{ podcast.getSlug() }}">
+			{%media podcast.getPostImage() ,'big' with {'title': podcast.getPostTitle()|striptags|raw}%}
 		</a>
+	
 		
-		<div class="play-bt"><a href="blog/{{ podcast.getSlug() }}">Play</a></div>
-		<h2><a href="blog/{{ podcast.getSlug() }}"><span class="title">{{ podcast.getPostTitle()|striptags|raw  }}</span></a></h2><br/>					
-		<span class="trans"></span>
-		<h2><a href="blog/{{ podcast.getSlug() }}"><span class="subtitle">{{ podcast.getPostAbstract()|striptags |raw}}</span></a><h2>
+		<h2>
+			<a href="/blog/{{ podcast.getSlug() }}">
+				<span class="title">{{ podcast.getPostTitle()|striptags|raw  }}</span>
+				<span class="subtitle">{{ podcast.getPostAbstract()|striptags |raw}}</span>				
+			</a>
+		<h2>
 		
 	</div>
+		<audio class="main" controls="controls" preload="none" >
+			<source src="{% path podcast.filePodcast, 'reference' %}.ogg" type="audio/ogg" />
+			<source src="{% path podcast.filePodcast, 'reference' %}" type="audio/mpeg" />
+			Your browser does not support the audio tag.
+		</audio>
+	
 </section>
 {% endfor %}
 
 <section class="entry group" style="width:100%;">
 	<ul class="gallery-list group">
+	
+	{% set class = 'first'%}
+	
 	{% for entity in entities %}
+	
+		    <li class="{{ class }}">
+		    
+				<a href="/blog/{{ entity.getSlug() }}">
+					<figure>
+						<div class="image">
+							{%media entity.getPostImage() ,'medium' with {'title': entity.getPostTitle()}%}
+							<h2>
+								<span>{{ entity.getPostTitle() }}</span>
+							</h2>
+						</div>
+					</figure>
+				</a>
+				
+				<audio controls="controls" preload="none" >
+					<source src="{% path entity.filePodcast, 'reference' %}.ogg" type="audio/ogg" />
+					<source src="{% path entity.filePodcast, 'reference' %}" type="audio/mpeg" />
+					Your browser does not support the audio tag.
+				</audio>
+								
+				{% if entity.realtimestart %}
+				<div class="heure-podcast">
+					<span>
+						{{ entity.realtimestart|date('d/m/') }}<br/>
+						{{ entity.realtimestart|date('Y') }}<br/>
+						{{ entity.realtimestart|date('H') }}H{{ entity.realtimestart|date('i') }}
+					</span>
+				</div>
+				{% endif %}	
+									
+				<span class="titre-post">
+					<a href="/blog/{{ entity.getSlug() }}">{{ entity.getPostAbstract() | truncate(50, true, "...")  }}</a>
+				</span>
+				<div class="plus">
+					<a href="/blog/{{ entity.getSlug() }}">lire la suite</a>
+				</div>
+			</li>
+			
+			{% if  class == 'first'%}
+				{% set class = ''%}
+			{% else %}
+				{% set class = 'first'%}
+			{% endif %}
+	
+	
+	
+	
+	{# 
 		<li class="index-{{ loop.index }}">		
 			{% if entity.getPost() %}
 			<a href="blog/{{ entity.getSlug() }}">
 				{% if entity.getPostImage() %}
+				
 					{%media entity.getPostImage() ,'medium'%}
 					
 				{% else %}
+				
 					{%thumbnail entity.getImageEmission() ,'medium'%}
+					
 				{% endif %}
-				<figure class="accueil">
-				<figcaption>{{ entity.getPostTitle()|raw }}</figcaption>
+				
+				<h2><a href="blog/{{ entity.getSlug() }}"><span class="title">{{ entity.getPostTitle()|striptags|raw  }}</span></a></h2>					
 				<span class="trans"></span>
+				<h2><a href="blog/{{ entity.getSlug() }}"><span class="subtitle">{{ entity.getPostAbstract()|striptags |raw}}</span></a><h2>
+				
+				<!-- 
+				<figure class="accueil">
+					<figcaption>{{ entity.getPostTitle()|raw }}</figcaption>
+					<span class="trans"></span>
 				</figure>
+				 -->
 			 </a>				 			
 			{% endif %}
 
 		</li>
-		{% endfor %}	
+		#}
+		
+	{% endfor %}	
 	</ul>
 </section>
 </div>

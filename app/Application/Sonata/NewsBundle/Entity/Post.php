@@ -89,7 +89,25 @@ class Post extends BasePost
     
     public function getImage()
     {
+    	
+    	if(!$this->image){
+    		
+    		if($this->getPodcast()){
+    			
+    			$podcast = $this->getPodcast();
+    			
+    			if($podcast->getEmission()){
+    				
+    				$this->image =$podcast->getImageEmission();
+    			
+    			}
+
+    		}
+    		
+    	}
+    	
     	return $this->image;
+    	
     }   
     
     public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image)

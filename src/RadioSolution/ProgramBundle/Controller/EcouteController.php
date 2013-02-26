@@ -57,7 +57,7 @@ class EcouteController extends Controller
     		
     	}
     	
-    	$nowSlide = array_search($currentProgram[0], $entities)+1;
+    	$nowSlide = array_search($currentProgram[0], $entities);
     	
     	$json = file_get_contents('http://api.twitter.com/1/statuses/user_timeline/euradionantes.json?callback=?');
     	$status = json_decode($json);
@@ -67,7 +67,11 @@ class EcouteController extends Controller
     		$dateTweet=new \DateTime($tweet->created_at);
     		if ($dateTweet->getTimestamp()>$start->getTimestamp()) $tweets[]=$tweet;
     	}
-    	    	
+    	
+    	
+    	//disable tweets
+    	$tweets = array();
+    	
 		return $this->render('ProgramBundle:Program:show_ecoute.html.twig', array(
 		'somethingNow' => $somethingNow,
 		'currentProgram'=>$currentProgram,

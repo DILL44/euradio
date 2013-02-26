@@ -4,7 +4,7 @@
 			{% for feed in allFeeds %}
 				<li>
 					{{ feed.date }} - {{ feed.name }}<br/>
-					<a href="{{ feed.link }}" alt="{{ feed.title }}" targer="_blank">{{ feed.title|truncate(78) }}</a>
+					<a href="{{ feed.link }}" alt="{{ feed.title }}" target="_blank">{{ feed.title|truncate(78) }}</a>
 				</li>
 			{% endfor %}
 		</ul>

@@ -22,13 +22,13 @@ class PodcastAdmin extends Admin
   protected function configureFormFields(FormMapper $formMapper)
   {
     $formMapper
-      ->add('name')
-      ->add('home_page', null,array('required' => false))
-      ->add('real_time_start')
+      ->add('name', null, array('required' => true, 'label' => 'Nom du podcast'))
+      ->add('home_page', null, array('required' => false, 'label' => 'Page d\'accueil'))
+      ->add('real_time_start', null, array('required' => true, 'label' => 'Date du podcast'))
       ->with('file')
       ->add('filePodcast', 'sonata_type_model', array('required' => true), array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.podcast')))
-      ->add('dlAuth', null,array('required' => false))
-      ->add('post', 'sonata_type_model', array('required' => true), array('edit' => 'list'))
+      ->add('dlAuth', null, array('required' => false, 'data' => true, 'label' => 'Autoriser le téléchargement ?'))
+      ->add('post', 'sonata_type_model', array('required' => true, 'label' => 'Post associé'), array('edit' => 'list'))
       ->end()
     ;
   }
@@ -37,7 +37,7 @@ class PodcastAdmin extends Admin
   {
     $datagridMapper
       ->add('name')
-      ->add('real_time_start')   
+      ->add('real_time_start')
     ;
   }
  

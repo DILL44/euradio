@@ -4,9 +4,9 @@
 			{% for image in entity %}
 				{%thumbnail image.image ,'big'%}
                 <figcaption>
-                	<span class="link"><a href="{{ image.link }}" target="_blank">{{ image.title }}</a></span><br/>
-					<span class="author"><a href="{{ image.link }}" target="_blank">{{ image.author }}</a></span><br/>
-					<span class="date">{{ image.date|date('d.m.Y') }}</span><br/>
+                	<span class="location"><a href="{{ image.link }}" target="_blank">{{ image.title }}</a></span>
+					<span class="author"><a href="{{ image.link }}" target="_blank">{{ image.author }}</a></span>
+					<span class="date">{{ image.date|date('d.m.Y') }}</span>
 				</figcaption>
                 <span class="trans"></span>
               {% endfor %}

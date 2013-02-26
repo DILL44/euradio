@@ -1,33 +1,101 @@
-<div class="top-right">
-<h3>Derniers podcasts</h3>
-
-<marquee id="playing">{{ entities[0].getName() }}</marquee>
-<audio tabindex="0" id="player" controls="controls">
-balise audio HTML5 inconnue
-</audio>
-
-<ul id="playlist">
-
-{% for entity in entities %}
+<div class="top-right" id=lastPodcasts>
+	<h3>Derniers podcasts</h3>
 	
-	<li>
-		<a class="play" href="{% path entity.filePodcast, 'reference' %}.ogg" onclick="loadSong()">
-			{{ entity.getRealTimeStart()|date("d/m - h:i ") }} - {#{ entity.getRealTimeStart() | localizeddate('full', 'none') }#}
-			{{ entity.getName()|truncate(27) }}
-		</a> 
-		{% if entity.getPost() %}
-			<a class="link" href="./blog/{{ entity.getSlug() }}">Voir</a>
-		{% endif %}
-	</li>
+	<marquee id="playing">{{ entities[0].getName() }}</marquee>
+	<audio tabindex="0" id="player" controls="controls">
+		<source src="{% path entities[0].filePodcast, 'reference' %}.ogg" type="audio/ogg" >
+		<source src="{% path entities[0].filePodcast, 'reference' %}" type="audio/mpeg" >
+		<a href="{% path entities[0].filePodcast, 'reference' %}" target="_blank">Téléchargez le podcast</a>
+	</audio>
+	
+	<ul id="playlist">
+	
+	{% for entity in entities %}
+		
+		<li>
+			<a class="play" alt="{% path entity.filePodcast, 'reference' %}" href="#">
+				<span class="ddmm">{{ entity.getRealTimeStart()|date("d/m") }}</span> - 
+				<span class="hhmm">{{ entity.getRealTimeStart()|date("H:i ") }}</span> - 
+				{{ entity.getName()|truncate(27) }}
+			</a> 
+			{% if entity.getPost() %}
+				<a class="link" href="./blog/{{ entity.getSlug() }}">Voir</a>
+			{% endif %}
+		</li>
+	
+	{% endfor %}
+	
+		<br clear="all" />
+		
+	</ul>
+	<div style="display:block; height:20px; clear:both; float:right;"></div>
+</div>
 
-{% endfor %}
-	<br clear="all" />
-</ul>
-<div style="display:block; height:20px; clear:both; float:right;"></div>
+<script type="text/javascript">
 
 
-<script>
+    // we can now rely on $ within the safety of our "bodyguard" function
+    //$(document).ready( function() {
+	jQuery(function($){
+    	
+    	$('#playlist li a.play').click(function(){
+
+    		//console.log($(this).attr('href'));
+    		//console.log($('#lastPodcasts audio source').get(0));
+    		//console.log($('#lastPodcasts audio source').get(1));
+
+    		
+    		
+    		var src = $(this).attr('alt');
+
+    		console.log(src);
+    		
+    		var oggsource = '<source src="'+src+'.ogg" type="audio/ogg">';
+    		var mp3source = '<source src="'+src+'" type="audio/mpeg">';
+    		
+    		//var qtfallbackContent = '<a href="'+src+'" target="_blank"><img src="http://www.euradionantes.eu/images/timeline/play.png" /></a>';
+
+    		//var script = document.createElement('script');
+    		//script.type = 'text/javascript';
+    		//script.innerHTML = qtfallbackContent;
+    	
+    		$('audio#player').html('');
+    		$('audio#player').append(oggsource);
+    		$('audio#player').append(mp3source);
+    		
+    		//$('#lastPodcasts audio').append(qtfallbackContent);
+
+			//$('#lastPodcasts audio').load();
+			//$('#lastPodcasts audio').play();
+			
+			$("#playing").html($(this).html());
+			
+			$('audio#player').load();
+			$('audio#player').play();
+			
+    		//console.log($(this).attr('href'));
+    		//console.log($('#lastPodcasts audio source').get(0));
+    		//console.log($('#lastPodcasts audio source').get(1));
+			
+    		
+    		return false;
+    		
+    	});
+
+    	
+		
+	});
+
+	
+
+</script>
+
+
+{#
+
 function loadSong(elt, e) {
+
+	
 	if(!e) var e = window.event;
 		document.getElementById("player").src=elt.href;
 		document.getElementById("player").load();
@@ -46,10 +114,7 @@ function loadSong(elt, e) {
 
 }
 
-</script>
-</div>
 
-{#
 		<div id="jquery_jplayer_1" class="jp-jplayer"></div>
 		<div id="jp_container_1" class="jp-audio">
 			<div class="jp-type-playlist">

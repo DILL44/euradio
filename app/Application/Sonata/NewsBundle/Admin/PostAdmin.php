@@ -31,7 +31,7 @@ class PostAdmin extends BaseAdmin
 	
     protected $datagridValues = array(
         '_sort_order' => 'DESC', // sort direction
-        '_sort_by' => 'publication_date_start' // field name
+        '_sort_by' => 'publicationDateStart' // field name
     );
     /**
      * {@inheritdoc}
@@ -40,26 +40,28 @@ class PostAdmin extends BaseAdmin
     {
         $formMapper
             ->with('General')
-                ->add('enabled', null, array('required' => false))
-                ->add('author', 'sonata_type_model', array(), array('edit' => 'list'))
-                ->add('category', 'sonata_type_model', array(), array('edit' => 'list'))
-                ->add('title')
-                ->add('abstract')
+                ->add('enabled', null, array('required' => false, 'label' => 'Publier'))
+                ->add('author', 'sonata_type_model', array('label' => 'Auteur'), array('edit' => 'list'))
+                ->add('category', 'sonata_type_model', array('label' => 'Categorie'), array('edit' => 'list'))
+                ->add('title', null, array('label' => 'Titre'))
+                ->add('abstract', null, array('label' => 'Chapeau'))
                 ->add('contentFormatter', 'sonata_formatter_type_selector', array(
                     'source' => 'rawContent',
-                    'target' => 'content'
+                    'target' => 'content',
+                	'label' => 'Format'
                 ))
-                ->add('rawContent','textarea', array('attr' => array('class' => 'tinymce', 'tinymce'=>'{"theme":"medium"}')))
-                ->add('image','sonata_type_model',array('required' => false),array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.image')))
+                ->add('rawContent','textarea', array('attr' => array('class' => 'tinymce', 'tinymce'=>'{"theme":"medium"}')
+                		,'label' => 'Corps de texte'))
+                ->add('image','sonata_type_model',array('required' => false, 'label' => 'Image'),array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.image')))
             ->end()
             ->with('Tags')
-                ->add('tags', 'sonata_type_model', array('expanded' => true,'required' => false))
+                ->add('tags', 'sonata_type_model', array('expanded' => true,'required' => false,  'label' => 'Tags'))
             ->end()
             ->with('Options')
-                ->add('publicationDateStart')
-                ->add('commentsCloseAt')
-                ->add('commentsEnabled', null, array('required' => false))
-                ->add('commentsDefaultStatus', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true))
+                ->add('publicationDateStart', null, array('label' => 'Date de publication'))
+                ->add('commentsCloseAt', null, array('label' => 'Date de fin des commentaires'))
+                ->add('commentsEnabled', null, array('required' => false, 'label' => 'Commentaires'))
+                ->add('commentsDefaultStatus', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true, 'label' => 'Moderation'))
             ->end()
         ;
     }

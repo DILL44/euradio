@@ -42,7 +42,7 @@ class BlockController extends Controller
 	 * Finds and displays a StaticContent entity.
 	 *
 	 */
-	public function homePodcastsAction($limit = 4)
+	public function homePodcastsAction($limit = 6)
 	{
 		$domain = $this->get('request')->server->get('HTTP_HOST');
 		

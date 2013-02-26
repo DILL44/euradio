@@ -141,7 +141,16 @@ sonata_media:
     providers:
         image:
             resizer: sonata.media.resizer.simple #sonata.media.resizer.square
-
+            allowed_mime_types:
+              - image/gif
+              - image/jpeg
+              - image/png
+              - image/pjpeg
+            allowed_extensions:
+              - gif
+              - png
+              - jpeg
+              - jpg
 sonata_news:
   title:        "Les blogs d'Euradio"
   link:         http://sonata-project.org

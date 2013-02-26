@@ -16,29 +16,36 @@ file that was distributed with this source code.
     
 		<header id="header">	
 <div class="wrap group">		
-		<!--
+		
         <div class="head-wrap group">
 			<div id="toppanel">
 				<div id="panel">
 					<div class="content clearfix">
+						<!-- 
 						<div class="left">
 							<h1>Bienvenue chez Euradionantes !</h1>		
-							<p class="grey">Texte d'introduction expliquant l'interet de se creer une compte membre.</p>
+							<p class="grey">Texte d'introduction expliquant l'intérêt de se cr�er une compte membre.</p>
 						</div>
+						 -->
+						{% if app.security.isGranted('ROLE_SONATA_ADMIN') == false %}
 						<div class="left">
-							
-							<form class="clearfix" action="#" method="post">
+							<form class="clearfix" action="/login_check" method="post">
 								<h1>Connexion membre</h1>
-								<input class="field" type="text" name="log" id="log" value="Nom d'utilisateur" size="23" />
-								<input class="field" type="password" name="pwd" id="pwd" value="Mot de passe" size="23" />
-								<label><input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever" /> &nbsp;Se souvenir de moi</label>
+								<input class="field" type="text" name="_username" id="log" value="Nom d'utilisateur" size="23" />
+								<input class="field" type="password" name="_password" id="pwd" value="" size="23" />
+								<!-- <label>
+									<input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever" />
+									<input id="remember_me" type="checkbox" value="on" name="_remember_me">
+									 &nbsp;Se souvenir de moi</label> -->
 								<div class="clear"></div>
 								<input type="submit" name="submit" value="Connexion" class="bt_login" />
-								<a class="lost-pwd" href="#">Mot de passe perdu ?</a>
+								<!-- <a class="lost-pwd" href="#">Mot de passe perdu ?</a> -->
 							</form>
 						</div>
+						{% endif %}
+				
+						<!-- 
 						<div class="left right">			
-
 							<form action="#" method="post">
 								<h1>Inscription</h1>				
 								<input class="field" type="text" name="signup" id="signup" value="Nom d'utilisateur" size="23" />
@@ -47,20 +54,43 @@ file that was distributed with this source code.
 								<input type="submit" name="submit" value="S'inscrire" class="bt_register" />
 							</form>
 						</div>
+						 -->
 					</div>
-				</div>
+				</div> <!-- #panel -->	
 
 				<div class="tab">
 					<ul class="login">
 						<li id="toggle">
-							<a id="open" class="open" href="#">Connexion | Inscription</a>
-							<a id="close" style="display: none;" class="close" href="#">Fermer</a>			
+							{% if app.security.isGranted('ROLE_SONATA_ADMIN') == false %}
+								<a id="open" class="open" href="#">Connexion<!-- | Inscription --> </a>
+							{% else %}
+								<a id="disconnect" class="disconnect" href="/admin/dashboard" target="_blank">Administration</a> | <a id="disconnect" class="disconnect" href="/admin/logout">Déconnexion</a>
+							{% endif %}
+							<a id="close" style="display: none;" class="close" href="#">Fermer</a>	
 						</li>
 					</ul> 
-				</div>				
-			</div>	
-		-->
+				</div> <!-- .tab -->
+				<script type="text/javascript">
+				jQuery(function($){ 
+				  $("a#open").click(function() { 
+				    $(".vraiheader").fadeOut("slow");
+				    $("#panel").fadeIn("slow");
+				    $("#close").show();
+				    $("#open").hide();
+				  });
+				  $("a#close").click(function() {
+					$(".vraiheader").fadeIn("slow");
+					$("#panel").fadeOut("slow");
+					$("#close").hide();
+					$("#open").show();
+				  });
+				});
+				</script>
+				
+			</div> <!-- #toppanel -->
+        		
 		<div class="vraiheader">
+		
 		<!-- 
 		<div id="toppanel">
 			<div class="tab">
@@ -132,10 +162,11 @@ file that was distributed with this source code.
 				</div>
 				
 				<div class="social-wgt">
-					<a title="S'abonner � notre flux RSS." class="icn rss" href="./blogs/rss" target="_blank">S'abonner &agrave; notre flux RSS.</a>
+					<a title="S'abonner a notre flux RSS." class="icn rss" href="./blogs/rss" target="_blank">S'abonner &agrave; notre flux RSS.</a>
 					<a title="Suivez-nous sur Twitter." class="icn twitter" href="http://twitter.com/euradionantes" target="_blank">Suivez-nous sur Twitter.</a>
 					<a title="Devenez fan d'Euradionantes sur Facebook." class="icn facebook" href="http://www.facebook.com/pages/Euradionantes/119060581473600" target="_blank">Devenez fan d'Euradionantes sur Facebook.</a>
-					<a title="Voir nos vid�os YouTube." class="icn youtube" href="http://www.youtube.com/user/EuradioNantes" target="_blank">Voir nos vid�os YouTube.</a>
+					<a title="Voir nos vid�os YouTube." class="icn youtube" href="http://www.youtube.com/user/EuradioNantes" target="_blank">Voir nos videos YouTube.</a>
+					<a title="Voir nos vidéos Dailymotion" class="icn dailymotion" href="http://www.dailymotion.com/euradionantes" target="_blank">Voir nos videos Dailymotion.</a>
 				</div> <!-- .social-wgt -->
 				
 			    <div class="footer-links">

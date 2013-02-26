@@ -20,6 +20,7 @@ class DefaultController extends Controller
     	//$allFeeds = array('title' => 'Titre', 'desc' => 'Desc', 'link' => 'Lien','date' => 'Date',);
     	$allFeeds = array();
     	
+    
     	foreach($entities as $entity){
     		
     		if($entity->getUrl()){
@@ -91,7 +92,7 @@ class DefaultController extends Controller
     	
     	for($i=0; $i<count($date); $i++){
     		
-    		$allFeeds[]= array('date' => date('d/m h:i', $date[$i]), 'name'=> $name[$i], 'title' => $title[$i], 'desc' => $desc[$i], 'link' => $link[$i]);
+    		$allFeeds[]= array('date' => date('d/m H:i', $date[$i]), 'name'=> $name[$i], 'title' => $title[$i], 'desc' => $desc[$i], 'link' => $link[$i]);
     		
     		if($i >= $max){
     			

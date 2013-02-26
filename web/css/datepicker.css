@@ -118,6 +118,9 @@ div.datepicker tbody a {
 	height: 16px;
 	padding-right: 2px;
 }
+.datepickerDays a:hover {
+	cursor: pointer;
+}
 .datepickerYears a,
 .datepickerMonths a{
 	width: 44px;

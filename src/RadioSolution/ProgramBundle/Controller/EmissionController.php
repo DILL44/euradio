@@ -84,6 +84,8 @@ class EmissionController extends Controller
 		if (isset($_GET['archive']) && $_GET['archive']!="") {
 			$getArchive=$_GET['archive'];
 			if ($getArchive!="")$condition3="AND  e.archive= $getArchive";
+		}else{
+			$condition3="AND  e.archive=0";
 		}
 		$em = $this->getDoctrine()->getEntityManager();
 		$query = $em->createQuery("SELECT e FROM ProgramBundle:Emission e WHERE e.name!='' $condition1 $condition2 $condition3 ORDER BY e.id DESC")
@@ -145,7 +147,7 @@ class EmissionController extends Controller
 
     	return $this->render('ProgramBundle:Emission:show.rss.twig',array(
     			'emission'      => $emission[0],
-    			'podcast'      	=> $podcast,
+    			'podcasts'      	=> $podcast,
     			'domain'		=> $domain,
     	));
     }

@@ -9,11 +9,17 @@ use Sonata\AdminBundle\Form\FormMapper;
  
 class ProgramAdmin extends Admin
 {
+	
+	protected $datagridValues = array(
+			'_sort_order' => 'DESC', // sort direction
+			'_sort_by' => 'time_start' // field name
+	);	
+	
   protected function configureFormFields(FormMapper $formMapper)
   {
     $formMapper
-      ->add('time_start','datetime', array('data_timezone' => "GMT",'user_timezone' => "GMT" ))
-      ->add('time_stop','datetime', array('data_timezone' => "GMT",'user_timezone' => "GMT" ))
+      ->add('time_start','datetime', array('data_timezone' => "GMT",'user_timezone' => "GMT", 'label' => 'Debut' ))
+      ->add('time_stop','datetime', array('data_timezone' => "GMT",'user_timezone' => "GMT", 'label' => 'Fin' ))
       ->with('podcast')
       ->add('podcast', 'sonata_type_model',array('required' => false), array('edit' => 'list'))
       ->add('emission', 'sonata_type_model',array('required' =>true), array('edit' => 'list'))

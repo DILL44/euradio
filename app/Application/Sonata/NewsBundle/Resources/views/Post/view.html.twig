@@ -26,55 +26,47 @@
 		        <h1>{{ post.title }}</h1>
 		       
 		        {% if post.getPodcast() %}
-		        	<time datetime="">{{ post.getPodcast().getRealTimeStart() | date('j M Y G') }}h{{ post.getPodcast().getRealTimeStart() | date('i') }}</time>
+		        	<time datetime="">{{ post.getPodcast().getRealTimeStart() | date('j/m/Y G') }}h{{ post.getPodcast().getRealTimeStart() | date('i') }}</time>
 		        {% else %}
 		        	<time datetime="">{{ post.publicationDateStart | date('j M Y G') }}h{{ post.publicationDateStart | date('i') }}</time>
 		        {% endif %}
 		        
-		         <p style="color:#CCCCC; font-weight:bold;">{{ post.abstract|raw }}</p>
+		        
 		        
 		    	<p class="comment-no">{{ post.getCommentsCount() }}</p>
 				{% if post.getMediaPodcast() %}
 				<div id="podcast-player">
 					<audio controls="controls">
-				        <source src="{% path post.getMediaPodcast(), 'reference' %}.ogg" type="audio/ogg" />
-				      	<source src="{% path post.getMediaPodcast(), 'reference' %}" type="audio/mp3" />
-				       	Votre navigateur ne support pas le HTML5 veuillez le mettre √† jour.
+				        <source src="http://www.euradionantes.eu{% path post.getMediaPodcast(), 'reference' %}.ogg" type="audio/ogg" />
+				      	<source src="http://www.euradionantes.eu{% path post.getMediaPodcast(), 'reference' %}" type="audio/mp3" />
+				       	
+				       	<script type="text/javascript">QT_WriteOBJECT('http://www.euradionantes.eu{% path post.getMediaPodcast(), 'reference' %}' , '300', '30', '');</script>
 				  	</audio>
 				  	{% if post.getPodcast().getDlAuth() %}
 				  	<div id="podcast_export">
-				  		<a href="{% path post.getMediaPodcast(), 'reference' %}" id="download" target="_blank" alt="T√©l√©charger le podcast">T&eacute;l&eacute;charger le podcast</a>
-				  		<a id="show_pre" href="#export_code" alt="Exporter le lecteur">Exporter le lecteur</a>
-<pre id="export_code" style="display:none; background-color:#CCCCCC;" >
-&lt;audio controls="controls"&gt;
-	&lt;source src="{% path post.getMediaPodcast(), 'reference' %}.ogg" type="audio/ogg" /&gt;
-	&lt;source src="{% path post.getMediaPodcast(), 'reference' %}" type="audio/mp3" /&gt;
-	Votre navigateur ne support pas le HTML5 veuillez le mettre √† jour.
-&lt;/audio&gt;
-</pre>
-				  		</div>
-				  		<script>
-					    $("#show_pre").click(function () {
-					    	if($("pre #export_code").is(":visible")){
-					    		$("pre #export_code").hide("slow");
-						    }else{
-						    	$("pre").show("slow");
-						    	$("pre #export_code").contents().select();
-							}
-					    });
-					    
-					    $("pre:data").focus(function() { $(this).select(); } );
-					    
-					    </script>
-				  		
+				  		<a href="/download.php?file={% path post.getMediaPodcast(), 'reference' %}&amp;name={{ post.publicationDateStart|date('d-m-Y_H-i') }}-{{ post.getSlug()}}" id="download" target="_blank" alt="TÈlÈcharger le podcast" title="TÈlÈcharger le podcast">T&eacute;l&eacute;charger le podcast</a>
+				  		<a id="show_pre" href="#export_code" alt="Exporter le podcast"  title="Exporter le podcast">Exporter le podcast</a>
+				  	</div>
 				  	{% endif %}
   				</div>
   				{% endif %}
 
 	    	</div>
-	    	
-	        {{ post.content|raw }}
-
+<div id="export_code" style="display:none;">
+<p id="pre_info">Pour exporter le lecteur, copier-coller l'int√©gralit√© du code ci-dessous sur la plateforme de votre choix.</p>
+<pre style=" background-color:#CCCCCC;" >
+&lt;audio controls="controls"&gt;
+	&lt;source src="http://www.euradionantes.eu{% path post.getMediaPodcast(), 'reference' %}.ogg" type="audio/ogg" /&gt;
+	&lt;source src="http://www.euradionantes.eu{% path post.getMediaPodcast(), 'reference' %}" type="audio/mp3" /&gt;
+	Votre navigateur ne support pas le HTML5 veuillez le mettre √† jour.
+&lt;/audio&gt;
+</pre>
+</div>
+	    	<br clear="all"/>
+	    	<span class="podcast_title">{{ post.abstract|raw }}</span>
+	    	<div id="post-body">
+	        	{{ post.content|raw }}
+			</div>
 	           {% render 'SonataNewsBundle:Post:comments' with {'postId': post.id} %}
 	        <div id="form-wrapper">
 		         <div class="post-form">
@@ -92,4 +84,67 @@
 		    </div>   
 		</div>
 </article>
+
+<script type='text/javascript'>
+$(document).ready(function() {
+	$('#post-body audio').each(function(index) {
+
+		var src = $(this).attr('src');
+
+		if(src != ""){
+		
+			$(this).html('');
+			
+			
+	
+			if(src.substr((src.length-3), 3) == 'ogg'){
+	
+				var oggsource = '<source src="'+src+'" type="audio/ogg">';
+				var mp3source = '<source src="'+src.substr(0, (src.length-4))+'" type="audio/mpeg">';
+				var qtfallback = 'QT_WriteOBJECT("'+src.substr(0, (src.length-4))+'", "300", "30", "")';
+				
+			}else{
+				
+				var oggsource = '<source src="'+src+'.ogg" type="audio/ogg">';
+				var mp3source = '<source src="'+src+'" type="audio/mpeg">';
+				var qtfallbackContent = 'QT_WriteOBJECT("'+src+'", "300", "30", "");';
+		
+			}
+	
+			var qtfallbackContent = '<a href="'+src+'" target="_blank"><img src="http://www.euradionantes.eu/images/timeline/play.png" /></a>';
+			
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.innerHTML = qtfallbackContent;
+		
+			$(this).append(oggsource);
+			$(this).append(mp3source);
+			$(this).append(qtfallbackContent);
+	
+			
+			$(this).removeAttr('src');
+			$(this).removeAttr('type');
+			$(this).removeAttr('width');
+			$(this).removeAttr('height');
+			$(this).attr('tabindex', 0);
+			$(this).attr('controls', 'controls');
+
+		}
+		
+	});
+	  
+});
+
+$("#show_pre").click(function () {
+	if($("div #export_code").is(":visible")){
+		$("div #export_code").hide("slow");
+    }else{
+    	$("div #export_code").show("slow");
+    	$("div #export_code pre").contents().select();
+	}
+});
+
+$("pre:data").focus(function() { $(this).select(); } );
+
+</script>
 

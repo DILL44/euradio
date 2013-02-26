@@ -1,0 +1,286 @@
+commit 976fadee5bc1a53705c184fb9389d7162949bf05
+Author: DILL_44@webcraft_studio <npatard@gmail.com>
+Date:   Thu Jan 24 12:34:52 2013 +0100
+
+    create bundles
+
+commit e562545ae37a924a2e5ed2501f0c9543869ff34f
+Author: DILL_44@webcraft_studio <npatard@gmail.com>
+Date:   Fri Nov 16 07:59:44 2012 +0100
+
+    fixed backoffice
+
+commit 03e8557c54d819141067ea05f7cdeee7e791a3bf
+Author: DILL_44@webcraft_studio <npatard@gmail.com>
+Date:   Tue Nov 6 16:47:01 2012 +0100
+
+    test commit
+
+commit aac94d7b5a12578fa1fe00eadb0337fe48ffacd8
+Author: DILL_44@webcraft_studio <npatard@gmail.com>
+Date:   Tue Oct 30 08:24:50 2012 +0100
+
+    config program and start templating
+
+commit 6bbb5f156a02648e5d64c65fb4354fda2382bc49
+Author: koalas <npatard@gmail.com>
+Date:   Fri Oct 12 14:11:53 2012 +0200
+
+    add provider podcast
+
+commit 826bd0abecf69083a19c6f563badfdecdc7184a6
+Author: koalas <npatard@gmail.com>
+Date:   Fri Oct 12 14:10:44 2012 +0200
+
+    add provider podcast
+
+commit 783c1a1f26cc43c3b9ac46ec6003155213c5e7d4
+Author: koalas <npatard@gmail.com>
+Date:   Mon Sep 24 16:01:01 2012 +0200
+
+    rm
+
+commit 930811630f8d70361d7e15ff96fcd8db2992ad7f
+Author: koalas <npatard@gmail.com>
+Date:   Mon Sep 24 15:48:18 2012 +0200
+
+    fixed menu
+
+commit 594d638c0618ba1a47a15aa4441b2b655b83233e
+Author: koalas <npatard@gmail.com>
+Date:   Fri Sep 21 17:09:33 2012 +0200
+
+    add user list
+
+commit 8a6b734e3f8c748592c87407f1ad2bc5e0425997
+Author: koalas <npatard@gmail.com>
+Date:   Thu Sep 20 18:02:20 2012 +0200
+
+    delete file in menu
+
+commit a38addd5f2935a83ccb755f29ea9c99eaedd657a
+Author: koalas <npatard@gmail.com>
+Date:   Thu Sep 20 17:59:17 2012 +0200
+
+    config menu and staticContent
+
+commit e259ae4be11668d3bddfec329de90d85f8d34d6c
+Author: koalas <npatard@gmail.com>
+Date:   Thu Sep 13 11:42:47 2012 +0200
+
+    add controller and twig for static content
+
+commit 8640ffcd308c40ce1cd761d4cd5b29879a841c87
+Author: koalas <npatard@gmail.com>
+Date:   Fri Sep 7 19:02:18 2012 +0200
+
+    add menuBundle, podcastBundle, programBundle, SaticContentBundle
+
+commit 9b3d881477be9a5476c78a8ce9f6690597317dd3
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 28 15:29:17 2012 +0200
+
+    add menu in RadioSolution bundle
+
+commit a6002b86c41d0ab11a6ebb0559f1190859b95319
+Author: koalas <npatard@gmail.com>
+Date:   Fri Aug 24 15:58:55 2012 +0200
+
+    mv message
+
+commit b08b4a6121be241fb1592fc4a1ef331f88f13ce4
+Author: koalas <npatard@gmail.com>
+Date:   Fri Aug 24 15:56:38 2012 +0200
+
+    rm file
+
+commit 9e2f666a0641043d739a5c3c69841be7d1d5664f
+Author: koalas <npatard@gmail.com>
+Date:   Fri Aug 24 15:54:18 2012 +0200
+
+    rm file
+
+commit 2f9d8216f6427d5ff5fed92a5f099bfc0ceda352
+Author: Antonin Jourdan <antonin.jourdan@webcraft-studio.com>
+Date:   Fri Aug 17 15:36:40 2012 +0200
+
+    EOW - clean and tidy !! ready for work.
+
+commit 93e32452bdd7341b4a6351c14f075310a2657153
+Author: Antonin Jourdan <antonin.jourdan@webcraft-studio.com>
+Date:   Fri Aug 17 15:35:44 2012 +0200
+
+    EOW - clean and tidy ! ready for work.
+
+commit 9f24a7d622221e162e6d4d41ee6b5afcbb16f3c7
+Author: koalas <npatard@gmail.com>
+Date:   Fri Aug 17 08:10:01 2012 +0200
+
+    fixed admin and add menu
+
+commit 8c697e51a2225bf87df62d949d1190d5f7d750a9
+Author: koalas <npatard@gmail.com>
+Date:   Thu Aug 16 19:56:45 2012 +0200
+
+    add menu and fixed admin dashboard
+
+commit d0136d8c2e6352f14f74cce54ea9e17a7b4933f0
+Author: Antonin Jourdan <antonin.jourdan@webcraft-studio.com>
+Date:   Thu Aug 16 18:43:16 2012 +0200
+
+    nothing
+
+commit 548c3e77f1b91c327e5b08d3088ce0128e1bcb0f
+Author: koalas <npatard@gmail.com>
+Date:   Thu Aug 16 15:12:50 2012 +0200
+
+    fixed page and block edit
+
+commit cf87af1c577f512eef7668108698b8c42ea93b03
+Author: Antonin Jourdan <antonin.jourdan@webcraft-studio.com>
+Date:   Thu Aug 16 13:24:51 2012 +0200
+
+    fixed news twigs
+
+commit 34628de9c1ed348f0ca69474ecc7364e2cc4dcef
+Author: koalas <npatard@gmail.com>
+Date:   Thu Aug 16 10:24:45 2012 +0200
+
+    add db file in root
+
+commit 32512a92e75bb15e0f0626fa202913bdbd59c46f
+Author: koalas <npatard@gmail.com>
+Date:   Thu Aug 16 09:09:36 2012 +0200
+
+    controller test
+
+commit ee3e77730e49a847fa7bbff02837552695d01c67
+Author: koalas <npatard@gmail.com>
+Date:   Thu Aug 16 08:41:46 2012 +0200
+
+    controller test
+
+commit f5573559932d2d51d44fff3462a05807cc76ff0e
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 14 17:50:55 2012 +0200
+
+    test eclipse git
+
+commit ccd9134b7672974082d431c7332d418e73a4a91c
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 14 14:35:27 2012 +0200
+
+    delete user and group in Acme
+
+commit 0f101c380fda49a8ded3d41b6c61860ef1096c1d
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 14 14:21:02 2012 +0200
+
+    rm test3
+
+commit 5b2f0e8dac43828b86fb1118985cd97fb1747ddd
+Author: Antonin Jourdan <antonin.jourdan@webcraft-studio.com>
+Date:   Tue Aug 14 14:18:03 2012 +0200
+
+    Hourra ?
+
+commit d63e4b66b29981eadd4703bdcf79b23fd4120d73
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 14 14:08:16 2012 +0200
+
+    fixed gitignore
+
+commit 38d03c3dc233084843a76611f10e84d8dcb7849c
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 14 14:03:21 2012 +0200
+
+    test
+
+commit 08d053d2904cfb6a5a02111deb6cd5a4dd4a8c2b
+Author: DILL <npatard@gmail.com>
+Date:   Tue Aug 14 14:19:52 2012 +0300
+
+    Update app/config/test2
+
+commit 67f1254924ef372272657df7dca14f0ab906a2a3
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 14 12:33:21 2012 +0200
+
+    fixed uplaed/media
+
+commit bece8967929a9cdd10a13e18c47715dab54bc404
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 14 11:46:51 2012 +0200
+
+    fixed uplaedmedia and parameter.ini.orig
+
+commit 624bb5a0091805e6a3aaf16491c675f6c1cd70cc
+Author: Antonin Jourdan <antonin.jourdan@webcraft-studio.com>
+Date:   Tue Aug 14 12:54:08 2012 +0200
+
+    it work
+
+commit 6cb7e1fe1b50c624d77ee362f9b5de8bdb624b90
+Author: Antonin Jourdan <antonin.jourdan@webcraft-studio.com>
+Date:   Tue Aug 14 12:39:51 2012 +0200
+
+    nouveau fichier test2
+
+commit cb0a16da775b8ecf521b805183a0d3870fe6f2f6
+Author: koalas <npatard@gmail.com>
+Date:   Mon Aug 13 16:09:23 2012 +0200
+
+    fixed SonataNews and SonataUser
+
+commit f9bfed8df5eb1980b436d72298b55ef7740af105
+Author: koalas <npatard@gmail.com>
+Date:   Thu Aug 9 18:04:19 2012 +0200
+
+    fixed fos_twitter and fos_facebook install
+
+commit 031eceafaf942c996816e1ef83f332c713d655d0
+Author: koalas <npatard@gmail.com>
+Date:   Tue Aug 7 12:31:52 2012 +0200
+
+    add others bundles
+
+commit 667d4009343319be410d5f11865fbac38d1f1144
+Author: koalas <npatard@gmail.com>
+Date:   Mon Aug 6 11:43:54 2012 +0200
+
+    add recaptcha FOStwitter FOSFacebook knppagination tinyMCE
+
+commit 8ec9194d9127ee52e8fbc1c92317fadd0336082b
+Author: koalas <npatard@gmail.com>
+Date:   Thu Aug 2 12:45:19 2012 +0200
+
+    add sonata bundles
+
+commit 2a329d19610355d506306e0a8c25353c483a5f9f
+Author: npatard@gmail.com <koalas@koalas-laptop>
+Date:   Wed Aug 1 17:20:16 2012 +0200
+
+    add eclipse gitignore
+
+commit d42b136c169391b8d3f8e3a097077c2fb817dfc8
+Author: npatard@gmail.com <koalas@koalas-laptop>
+Date:   Wed Aug 1 16:50:13 2012 +0200
+
+    Symfony2 start
+
+commit a9055f3f426d869a9c641d92d902c0e1ed257aff
+Author: koalas <koalas@koalas-laptop>
+Date:   Wed Aug 1 16:45:20 2012 +0200
+
+    	app/
+    	bin/
+    	deps
+    	deps.lock
+    	src/
+    	web/
+
+commit e9633c91cf9e8655b96501a96fda6a2a9cb78068
+Author: DILL <npatard@gmail.com>
+Date:   Wed Aug 1 07:09:31 2012 -0700
+
+    Initial commit
