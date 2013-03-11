@@ -26,7 +26,7 @@ class PodcastAdmin extends Admin
       ->add('home_page', null, array('required' => false, 'label' => 'Page d\'accueil'))
       ->add('real_time_start', null, array('required' => true, 'label' => 'Date du podcast'))
       ->with('file')
-      ->add('filePodcast', 'sonata_type_model', array('required' => true), array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.podcast')))
+      ->add('filePodcast', 'sonata_type_model', array('required' => true, 'label' => 'Media podcast'), array('edit' => 'list','link_parameters' => array('provider'=>'sonata.media.provider.podcast')))
       ->add('dlAuth', null, array('required' => false, 'data' => true, 'label' => 'Autoriser le téléchargement ?'))
       ->add('post', 'sonata_type_model', array('required' => true, 'label' => 'Post associé'), array('edit' => 'list'))
       ->end()

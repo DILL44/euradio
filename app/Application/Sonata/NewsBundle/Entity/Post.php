@@ -110,7 +110,7 @@ class Post extends BasePost
     	
     }   
     
-    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image)
+    public function setImage(\Application\Sonata\MediaBundle\Entity\Media $image=NULL)
     {
     	$this->image=$image;
     }

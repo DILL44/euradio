@@ -202,7 +202,7 @@
 		                "startDate":"{{ entity.created_at|date("Y,m,d,G,i") }}",
 		                "headline":"{{entity.user.name}}",
 		                "text":"{% autoescape 'js' %}<br/>{{ entity.text}}{% endautoescape %}",
-		                "tag":"Tweets",
+		                "tag":"",
 		                "asset": {
 		                    "media":"/images/tweet.png",
 		                    "credit":"",
@@ -222,7 +222,7 @@
 		                "headline":"<a href=\"/emission/{{entity.slug}}\" target=\"_parent\">{{ entity.getNameEmission()|raw }}</a>",
 		                "text":"{% autoescape 'js' %}
 		                	<div class=\"slide-image\"><a href=\"/emission/{{entity.slug}}\" target=\"_parent\"><img src=\"{{ imgMedium }}\" /></a></div><div class=\"slide-text\"><span class=\"emission-title\"><a href=\"/emission/{{entity.slug}}\" target=\"_parent\"><h4>{{ entity.getNameEmission()|raw }}</h4></a></span><span class=\"custom-date\">De {{ entity.timeStart|date("G:i") }} &agrave; {{ entity.timeStop|date("G:i") }}</span><p>{{ entity.getDescriptionEmission()|striptags|truncate(250) }}</p></div>{% endautoescape %}",
-		                "tag":"{{ entity.getEmission().getTheme() }}",
+		                "tag":"",
 		                "asset": {
 		                    "media":"{{ imgMedium|e('js') }}",
 		                    "thumbnail":"{%path entity.getImageEmission(), 'small' %}",

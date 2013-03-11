@@ -3,7 +3,7 @@
 		<div class="programs-container">
             <ul id="programs">   
 {% for post in posts %}
-<li><a href="http://{{ domain }}/emission/{{ post.getSlug() }}">
+<li><a href="/emission/{{ post.getSlug() }}">
 <div class="image">
 	        	{% if post.getMedia() %}
 	        		{%media post.getMedia() ,'medium'%}
@@ -16,7 +16,7 @@
 {% endfor %}
             </ul>
 			<div class="view-programs">
-				<a href="http://{{ domain }}/emissions">Voir toutes les émissions</a>
+				<a href="/emissions">Voir toutes les émissions</a>
 			</div>
             <ul class="programs-nav">
                 <li><a href="#" class="up">Haut</a></li>

@@ -1,5 +1,5 @@
 <article class="entry group">
-    	<h3>{% if post.category %}{{ post.category }}{% endif %}</h3>
+    	<h3>{% if post.getPodcast() %}{{ post.getPodcast().getEmission() }}{% elseif post.category %}{{ post.category }}{% endif %}</h3>
     	<div class="entry-content group">
 	        <figure class="entry-thumb">
 	        	{% if post.getImage() %}
@@ -11,25 +11,27 @@
 	        
 	        <div class="entry-meta">
 	        	 <div class="entry-cats">
-	        	         {{ 'published_under'|transchoice(post.tags|length, {}, 'SonataNewsBundle') }}
+	        	         {#{ 'published_under'|transchoice(post.tags|length, {}, 'SonataNewsBundle') }#}
 	                     {#% for tag in post.tags%}
 	                         <a href="{{ url('sonata_news_tag', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
 	                         {% if not loop.last%}, {%endif%}
 	                    {% endfor %#}
 	      	    </div>
-				{% set twitter = { 'url': null, 'locale': 'fr', 'message': post.title } %}
-				
-				{% set socialParameters = { 'twitter': twitter } %}
-
-	      	    {{ socialButtons(socialParameters) }}
 	      	    
 		        <h1>{{ post.title }}</h1>
-		       
-		        {% if post.getPodcast() %}
+		        
+		       {% if post.getPodcast() %}
 		        	<time datetime="">{{ post.getPodcast().getRealTimeStart() | date('j/m/Y G') }}h{{ post.getPodcast().getRealTimeStart() | date('i') }}</time>
 		        {% else %}
 		        	<time datetime="">{{ post.publicationDateStart | date('j M Y G') }}h{{ post.publicationDateStart | date('i') }}</time>
 		        {% endif %}
+		        <br/><br/>
+				{% set twitter = { 'url': null, 'locale': 'fr', 'message': post.title } %}
+				{% set socialParameters = { 'twitter': twitter } %}
+	      	    {{ socialButtons(socialParameters) }}
+		        
+		       
+		        
 		        
 		        
 		        
@@ -44,7 +46,7 @@
 				  	</audio>
 				  	{% if post.getPodcast().getDlAuth() %}
 				  	<div id="podcast_export">
-				  		<a href="/download.php?file={% path post.getMediaPodcast(), 'reference' %}&amp;name={{ post.publicationDateStart|date('d-m-Y_H-i') }}-{{ post.getSlug()}}" id="download" target="_blank" alt="Télécharger le podcast" title="Télécharger le podcast">T&eacute;l&eacute;charger le podcast</a>
+				  		<a href="/download.php?file={% path post.getMediaPodcast(), 'reference' %}&amp;name={{ post.publicationDateStart|date('d-m-Y_H-i') }}-{{ post.getSlug()}}" id="download" target="_blank" alt="Tï¿½lï¿½charger le podcast" title="Tï¿½lï¿½charger le podcast">T&eacute;l&eacute;charger le podcast</a>
 				  		<a id="show_pre" href="#export_code" alt="Exporter le podcast"  title="Exporter le podcast">Exporter le podcast</a>
 				  	</div>
 				  	{% endif %}
@@ -73,7 +75,8 @@
 				    {% if post.iscommentable %}
 				        {% render 'SonataNewsBundle:Post:addCommentForm' with {
 				            'post_id': post.id,
-				            'form': form
+				            'form': form,
+				            'title' : post.title~' - Podcast - Eur@dionantes'
 				        } %}
 				    {% else %}
 				        <div>

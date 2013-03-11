@@ -100,7 +100,7 @@ class Item
      *
      * @param RadioSolution\MenuBundle\Entity\Item $parent
      */
-    public function setParent(\RadioSolution\MenuBundle\Entity\Item $parent)
+    public function setParent(\RadioSolution\MenuBundle\Entity\Item $parent=NULL)
     {
         $this->parent = $parent;
     }

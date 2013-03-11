@@ -60,7 +60,11 @@ class ProgramController extends Controller
     	$query = $em->createQuery("SELECT p FROM ProgramBundle:Program p WHERE p.time_stop<:stop AND p.time_start>:start AND p.time_start<p.time_stop  ORDER BY p.time_start ASC")
     	->setParameters(array('start'=>$start,'stop'=>$stop));
     	$entities=$query->getResult();
+		
+    	
 
+    	 
+    	
         return  $this->render(sprintf('ProgramBundle:Program:index.%s.twig', $format),array(
         	'entities' => $entities,
         	'weekNumber' => $weekNumber,

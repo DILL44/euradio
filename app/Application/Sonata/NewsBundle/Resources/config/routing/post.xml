@@ -6,7 +6,7 @@
 
 
     <route id="appsonata_view_blog" pattern="">
-        <default key="_controller">ApplicationSonataNewsBundle:Blog:index</default>
+        <default key="_controller">ApplicationSonataNewsBundle:Post:index</default>
     </route>
     <route id="post_rss" pattern="rss.{_format}">
         <default key="_controller">ApplicationSonataNewsBundle:Post:rss</default>

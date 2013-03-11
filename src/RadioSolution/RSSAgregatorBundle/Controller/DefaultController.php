@@ -8,13 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     
-    public function indexAction()
+    public function indexAction($limit = 7)
     {
     	
-    	$max = 6;
     	
     	$em = $this->getDoctrine()->getEntityManager();
     	$query = $em->createQuery("SELECT p FROM RSSAgregatorBundle:RSSfile p WHERE p.enable=true");
+    	$query->setMaxResults($limit);
     	$entities=$query->getResult();
 
     	//$allFeeds = array('title' => 'Titre', 'desc' => 'Desc', 'link' => 'Lien','date' => 'Date',);
@@ -31,9 +31,8 @@ class DefaultController extends Controller
 			   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			   curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; fr-FR; rv:1.7.5) Gecko/20041107 Firefox/1.0');
 			   $content = curl_exec($ch);
-			   curl_close($ch); 
+			   curl_close($ch);
 
-    			
 			   $content = mb_convert_encoding($content, 'utf-8', mb_detect_encoding($content));
 			   
     			$doc = new \DOMDocument();
@@ -58,7 +57,7 @@ class DefaultController extends Controller
 	    				
 	    				$i++;
 	    				
-	    				if($i>5){
+	    				if($i>($limit-1)){
 	    					break;
 	    				}
 	    				
@@ -94,7 +93,7 @@ class DefaultController extends Controller
     		
     		$allFeeds[]= array('date' => date('d/m H:i', $date[$i]), 'name'=> $name[$i], 'title' => $title[$i], 'desc' => $desc[$i], 'link' => $link[$i]);
     		
-    		if($i >= $max){
+    		if($i >= $limit){
     			
     			break;
     			

@@ -152,7 +152,6 @@ class PodcastProvider extends BaseProvider
         if ($media->getBinaryContent() === null) {
             return;
         }
-
         $this->setFileContents($media);
         $this->generateThumbnails($media);
         $this->mp32OggFile($media);
@@ -200,6 +199,7 @@ class PodcastProvider extends BaseProvider
     protected function fixBinaryContent(MediaInterface $media)
     {
         if ($media->getBinaryContent() === null) {
+        	
             return;
         }
 
@@ -208,10 +208,10 @@ class PodcastProvider extends BaseProvider
         	
 			$this->fileName=$media->getBinaryContent();
 			if (isset($this->ContentFile[$media->getBinaryContent()]))
-        	$media->setBinaryContent($this->ContentFile[$media->getBinaryContent()]);        	
-        /*    if (!is_file($media->getBinaryContent())) {
+        	$media->setBinaryContent($this->ContentFile[$media->getBinaryContent()]);
+            if (!is_file($media->getBinaryContent())) {
                 throw new \RuntimeException('The file does not exist : ' . $media->getBinaryContent());
-            }*/
+            }
 
             $binaryContent = new File($media->getBinaryContent());
             $media->setBinaryContent($binaryContent); 
@@ -414,17 +414,17 @@ class PodcastProvider extends BaseProvider
     {
     	$path=$this->pathGenerator->generatePath($file);
     	$fileName=$file->getProviderReference();
-    	if(file_exists("/var/www/git/euradio/web/uploads/media/$path/$fileName"))
+    	if(file_exists("/var/www/euradionantes.dev/httpdocs/web/uploads/media/$path/$fileName"))
     	{
-    		$res = @system("ffmpeg -i /var/www/git/euradio/web/uploads/media/$path/$fileName -vcodec libtheora -acodec libvorbis /var/www/git/euradio/web/uploads/media/$path/$fileName.ogg");
+    		$res = @system("ffmpeg -i /var/www/euradionantes.dev/httpdocs/web/uploads/media/$path/$fileName -vcodec libtheora -acodec libvorbis /var/www/euradionantes.dev/httpdocs/web/uploads/media/$path/$fileName.ogg");
     		if($delete == TRUE)
     		{
-    			unlink($file);
+    			//unlink($file);
     		}
     			return true;
     		}
     	else {
-    		echo "Unable to convert Podcast file in uploads/media/$path/$fileName./n";
+    		echo "Unable to convert Podcast file in uploads/media/$path/$fileName.\n";
     		return false;
     	}
     }

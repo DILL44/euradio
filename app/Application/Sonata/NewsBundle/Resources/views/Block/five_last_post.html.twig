@@ -3,7 +3,7 @@
 		<div class="blogs-container">
             <ul id="blogs"> 
 {% for post in posts %}
-<li><a href="http://{{ domain }}/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
+<li><a href="./blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
 <div class="image">
 	        	{% if post.getImage() %}
 	        		{%media post.getImage() ,'medium'%}

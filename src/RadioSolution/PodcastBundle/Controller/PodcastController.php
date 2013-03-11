@@ -106,24 +106,32 @@ class PodcastController extends Controller
             throw $this->createNotFoundException('Unable to find Podcast entity.');
         }
 
+        
+        
         return array(
             'entity'      => $entity,
         );
     }
     
-    public function EmissionAction($id,$page)
+    public function EmissionAction($id,$page, $title="Emission - Eur@dionantes")
     {
     	if ($page=='')$page=1;
     	$em = $this->getDoctrine()->getEntityManager();
     	$query = $em->createQuery("SELECT p FROM PodcastBundle:Podcast p JOIN p.program pr WHERE  pr.emission=:idEmission ORDER BY p.real_time_start DESC")->setParameter('idEmission', $id);
     	$entities=$query->getResult();
-    
+    	
+    	$seoPage = $this->container->get('sonata.seo.page');
+    	$seoPage->setTitle($title);
+    	
     	$paginator = $this->get('knp_paginator');
     	$pagination = $paginator->paginate(
     			$entities,
     			$this->get('request')->query->get('page', $page),
     			6
     	);
+
+    	 
+    	
     	return $this->render('PodcastBundle:Podcast:Emission.html.twig',array('pagination'=> $pagination));
 
     }

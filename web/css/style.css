@@ -458,7 +458,7 @@ Header (Logo etc)
 	position: relative;
 	float: left;
 	margin-top:50px;
-	width:189px;
+	width:176px;
 }
 
 .on-air .player-bt {
@@ -816,6 +816,13 @@ ul.slides li {
 	position: relative;
 	float: left;
 	/*margin-right: 2.12766%;*/
+
+}
+
+
+.home-top-left {
+
+	margin-bottom: 12px;
 }
 
 .top-left h3, .top-right h3 {
@@ -842,6 +849,7 @@ audio.main{
 	background: rgb(0, 0, 0); /* fallback color */
 	background: rgba(0, 0, 0, 0.7);
 	padding:10px;
+	margin-bottom:6px !important;
 	
 }
 
@@ -877,7 +885,7 @@ audio.main{
 
 
 .top-left a img {
-	margin-top: 25px;
+	margin-top: 1px;
 }
 
 .top-left .play-bt {
@@ -1179,14 +1187,37 @@ audio.main{
 
 .gallery-list .plus, a#plus {
 	float: right;
-	background: url(../images/plus.png) 0 0 no-repeat;
+	background: url(../images/plus_2.png) no-repeat;
+	background-position: 0 0;
 	width: 22px;
 	height: 22px;
 	margin-top: -20px;
-	
+	display: block;
+	text-indent: -9999em;
+}
+
+.gallery-list .plus:hover, a#plus:hover {
+	background-position: 0 -22px;
+}
+
+a.plus{
+	text-indent:-1999px;
+}
+
+/*
+ul#podcast-list .plus, ul#podcast-list f.plus a{
+	float: right;
+	background: url(../images/plus_2.png) no-repeat;
+	background-position: 0 0;
+	width: 22px;
+	height: 22px;
 	display: block;
 }
 
+ul#podcast-list .plus:hover, ul#podcast-list .plus a:hover {
+	background-position: 0 -22px;
+}
+*/
 .podcast_add{
 	background: url(../images/plus_green.png) 0 0 no-repeat;
 	width: 22px;
@@ -1244,7 +1275,7 @@ a#plus {
    display: inline-block;
 }
 
-.gallery-list .image h2 span:hover, #programs .image h2 span:hover, #blogs .image h2 span:hover {
+.gallery-list .image h2 span:hover, #programs .image h2 span:hover, #blogs .image h2 span:hover, .top-left h2:hover {
 	background: rgba(0, 0, 0, 1);
 	-o-transition: all .2s linear;
 	-moz-transition: all .2s linear;
@@ -1403,11 +1434,11 @@ Comments (everything related to the comments section)
 }
 
 .post-form input[type=text] {
-  width: 60%;
+  width: 76%;
 }
 
 .post-form textarea {
-  width: 96%;
+  width: 76%;
   height: 100px;
 }
 
@@ -1891,7 +1922,7 @@ Widgets
 }
 
 #sidebar .blogs-container {
-	height: 490px;
+	/*height: 490px;*/
 }
 
 #sidebar .programs-container ul li, #sidebar .blogs-container ul li {
@@ -1942,6 +1973,7 @@ Widgets
   display: block;
   font-size: 0.8em;
   font-weight: bold;
+
 }
 
 
@@ -1966,9 +1998,13 @@ Widgets
   width: 100% !important;
 }
 
+#footer .widget_ci_twitter_widget{
+	float:right;
+}
+
 #footer .widget_ci_twitter_widget li {
   width: 80%;
-  padding: 0 0 0 65px;
+  padding: 5px 0 5px 65px;
   margin-top: 15px;
   background: none;
   border: none;
@@ -2032,9 +2068,8 @@ Template Name: (E.g. Homepage - Styles that apply only here
 
 span.responsables, span.titre-post {
 	display: block;
-	font-family: 'OxygenBold';
 	line-height: 1em;
-	margin:23px 0;
+	margin:9px 0;
 	height: 15px;
 }
 
@@ -2059,6 +2094,10 @@ span.responsables, span.titre-post {
 	padding: 5px 10px;
 	text-align: center;
 	display: inline-block;
+}
+
+body.heure-podcast span {
+	background-color: #fca77c !important;
 }
 
 /* Inner Pages */
@@ -2163,7 +2202,7 @@ span.responsables, span.titre-post {
 .entry-meta h1 {
   font-size: 1.5em;
   margin-bottom: 0;
-  line-height: 2em;
+  line-height: 1em;
 }
 
 .entry-meta h1 a {
@@ -2741,13 +2780,15 @@ marquee#playing {
 
 ul#playlist{
 	padding:10px 0 0 0;
-	margin:-6px 0 15px 0;
+	margin:-6px 0 20px 0;
 }
 
 ul#playlist li{
 	width:100%;
 	list-style:none;
 	padding:0 5px;
+	height:21px;
+	
 }
 
 ul#playlist li a:hover, ul#playlist li a.hover{
@@ -2786,7 +2827,7 @@ div.page-content{
 }
 
 .post-form label{
-	width:50px;
+	width:70px;
 	margin-right:15px;
 }
 
@@ -2799,3 +2840,89 @@ div.page-content{
 	font-family: 'OxygenRegular';
 }
 
+input#soumettre{
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+div#login input{
+	
+	background: none repeat scroll 0 0 #F2F2F2;
+    color: #666666;
+    height: 16px;
+    margin-right: 5px;
+    margin-top: 4px;
+    width: 200px;
+	
+}
+
+div#login #_submit{
+	
+    border: medium none;
+    clear: left;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-weight: bold;
+    height: 24px;
+    margin: 10px 271px;
+    text-align: center;
+	background: none repeat scroll 0 0 #FA5D0F;
+	width:auto;
+    color: #FFFFFF;
+
+
+}
+ul.group li span.titre-post a{
+	font-family: 'OxygenRegular';
+	font-weight:normal;
+	font-size:90%;
+}
+
+span.titre-post{
+	width: 90%;
+}
+
+.facebookButton, .googleplus, .twitterButton{
+	display:inline-block;
+	position:absolute;
+}
+
+.facebookButton{
+	clear:both;
+	margin-top:25px;
+}
+
+.googleplus{
+	margin-left: 94px;
+	
+}
+
+.twitterButton{
+	margin-left:1px;
+}
+
+.lastspodcasts ul#blogs div.plus a{
+    background: url("../images/plus.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: right;
+    height: 22px;
+    margin-top: -20px;
+    width: 22px;
+   	text-indent:-1999px;
+}
+
+.plus {
+    position: relative;
+    
+
+}
+
+.lastspodcasts ul li{
+	
+ 	clear:both;
+}
+
+.lastspodcasts span.titre-post {
+	height:auto;
+}

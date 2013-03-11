@@ -55,6 +55,9 @@ class ProgramAdmin extends Admin
  
   public function validate(ErrorElement $errorElement, $object)
   {
-    
+    	if ($object->getPodcast()){
+    		$object->getPodcast()->setRealTimeStart($object->getTimeStart());
+    		$object->getPodcast()->getPost()->setCreatedAt($object->getTimeStart());
+    	}
   }
 }

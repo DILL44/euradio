@@ -11,11 +11,11 @@
 
 #}
 	<section class="entry group">
-	<h3>{{ category.name }}</h3>
+	<h3>Le blog d'Eur@dionantes : {{ category.name }}</h3>
 	 <div class="block group">
 		<div class="navigation">
 	    	{{ pager.render()|raw }}
-		</div>	
+		</div>
 	{% for post in pager %}
 		<article class="entry-item group">
 			<figure class="entry-thumb group">

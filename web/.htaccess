@@ -1,11 +1,15 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
+
     RewriteCond %{QUERY_STRING} page=eurocities
 	RewriteRule ^(.*)$  /article/eurocities? [R=301,L]
 	
 	RewriteCond %{REQUEST_URI} ^/recrutement/recrutement.html$
 	RewriteRule ^(.*)$  /article/recrutement [R=301,L]
+	
+	RewriteCond %{HTTP_HOST} dev.euradionantes.eu
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ app_dev.php [QSA,L]
 	
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ app.php [QSA,L]

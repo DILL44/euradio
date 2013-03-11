@@ -61,8 +61,8 @@ class PostAdmin extends BaseAdmin
                 ->add('publicationDateStart', null, array('label' => 'Date de publication'))
                 ->add('commentsCloseAt', null, array('label' => 'Date de fin des commentaires'))
                 ->add('commentsEnabled', null, array('required' => false, 'label' => 'Commentaires'))
-                ->add('commentsDefaultStatus', 'choice', array('choices' => Comment::getStatusList(), 'expanded' => true, 'label' => 'Moderation'))
-            ->end()
+                ->add('commentsDefaultStatus', 'choice', array('choices' => Comment::getStatusList(), 'label' => 'Moderation'))
+            ->end()          
         ;
     }
     protected function configureSideMenu(MenuItemInterface $menu, $action, Admin $childAdmin = null)

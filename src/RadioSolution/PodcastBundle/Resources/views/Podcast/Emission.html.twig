@@ -5,11 +5,10 @@
 		<div class="navigation">
 	    	{{ pagination.render()|raw }}
 		</div>
-				
+    				
 		<ul class="gallery-list group">
 		
 	    {% for entity in pagination %}
-	    
 		    <li class="{{ class }}">
 		    
 				<a href="/blog/{{ entity.getSlug() }}">
@@ -22,13 +21,11 @@
 						</div>
 					</figure>
 				</a>
-				
 				<audio controls="controls" preload="none" >
 					<source src="{% path entity.filePodcast, 'reference' %}.ogg" type="audio/ogg" />
 					<source src="{% path entity.filePodcast, 'reference' %}" type="audio/mpeg" />
 					Your browser does not support the audio tag.
-				</audio>
-								
+				</audio>	
 				{% if entity.realtimestart %}
 				<div class="heure-podcast">
 					<span>
@@ -40,7 +37,7 @@
 				{% endif %}	
 									
 				<span class="titre-post">
-					<a href="/blog/{{ entity.getSlug() }}">{{ entity.getPostAbstract() | truncate(50, true, "...")  }}</a>
+					<a href="/blog/{{ entity.getSlug() }}">{{ entity.getPostAbstract() | truncate(80, true, "...")  }}</a>
 				</span>
 				<div class="plus">
 					<a href="/blog/{{ entity.getSlug() }}">lire la suite</a>
@@ -52,7 +49,6 @@
 			{% else %}
 				{% set class = 'first'%}
 			{% endif %}
-	    			
 	    {% endfor %}
 	    
 	    </ul>

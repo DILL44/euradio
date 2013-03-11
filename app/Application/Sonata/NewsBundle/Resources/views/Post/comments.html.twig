@@ -11,8 +11,7 @@
 
 #}
 <h3>{{ 'title_comments'|trans({}, 'SonataNewsBundle') }}</h3>
-<div class="sonata-blog-comment-container">
-    
+<div class="sonata-blog-comment-container"> 
     <div class="sonata-blog-comment-list">
         {% for comment in pager.results %}
             <div class="sonata-blog-comment">
@@ -29,6 +28,11 @@
         {% else %}
             {{ 'no_comments_available'|trans({}, 'SonataNewsBundle') }}
         {% endfor %}
-    </div>
-    
+    </div>    
 </div>
+<br/>
+{% if app.session.hasFlash('notification') %}
+    <div class="notification">
+        {{ app.session.flash('notification') }}
+    </div>
+{% endif %}  

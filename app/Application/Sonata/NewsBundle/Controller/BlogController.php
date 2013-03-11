@@ -24,14 +24,26 @@ class BlogController extends Controller
 {
 
     public function IndexAction()
-    {        
+    {   /*
     	$domain = $this->get('request')->server->get('HTTP_HOST');
     	$em = $this->getDoctrine()->getEntityManager();
         $categories = $em->getRepository('ApplicationSonataNewsBundle:Category')->findAll();    	
     	return $this->render('ApplicationSonataNewsBundle:Blog:full_page.html.twig', array(
     			'categories'  => $categories,
     			'domain'=>$domain,
-    	));    	
+    	));
+    	*/
+    	$em = $this->getDoctrine()->getEntityManager();
+    	$query = $em->createQuery('SELECT p FROM ApplicationSonataNewsBundle:Post p 
+    								WHERE p.enabled =  1  
+    									ORDER BY p.publicationDateStart DESC')
+    				->setMaxResults(10);
+    	$post = $query->getResult();
+    	
+    	return $this->render('ApplicationSonataNewsBundle:Blog:full_page.html.twig', array(
+    			'posts'  => $post,
+    	));
+    	 
     }
     
     public function LastPostAction($idCategory)

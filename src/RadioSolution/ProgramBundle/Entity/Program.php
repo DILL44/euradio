@@ -101,7 +101,7 @@ class Program
      *
      * @param RadioSolution\PodcastBundle\Entity\Podcast $podcast
      */
-    public function setPodcast(\RadioSolution\PodcastBundle\Entity\Podcast $podcast)
+    public function setPodcast(\RadioSolution\PodcastBundle\Entity\Podcast $podcast=NULL)
     {
         $this->podcast = $podcast;
     }

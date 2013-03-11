@@ -83,10 +83,10 @@ sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
-            contexts:   [admin]
-#       sonata.admin_doctrine_orm.block.audit:
+#     sonata.admin_doctrine_orm.block.audit:
 #            contexts:   [admin]
         sonata.block.service.text:
+        sonata.block.service.wysiwyg:
         sonata.block.service.action:
         sonata.block.service.rss:
         sonata.media.block.media:
@@ -233,4 +233,4 @@ services:
         class: Application\Sonata\NewsBundle\Admin\PostAdmin
         tags:
             - { name: sonata.admin,manager_type: orm, group: "sonata_blog", label: "posts",  label_catalogue: "%sonata.news.admin.post.translation_domain%", label_translator_strategy: "sonata.admin.label.strategy.underscore"}
-        arguments: [null,Application\Sonata\NewsBundle\Entity\Post, "SonataAdminBundle:CRUD"]
+        arguments: [null,Application\Sonata\NewsBundle\Entity\Post, "SonataAdminBundle:CRUD"]  

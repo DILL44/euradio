@@ -33,7 +33,6 @@ class BlockController extends Controller
 		}		
 		return $this->render('PodcastBundle:Podcast:bloc_accueil.html.twig', array(
 				'entities'      => $entities,
-				'domain'		=> $domain,
 				'media'			=> $media
 		));
 				
@@ -42,28 +41,29 @@ class BlockController extends Controller
 	 * Finds and displays a StaticContent entity.
 	 *
 	 */
-	public function homePodcastsAction($limit = 6)
+	public function homePodcastsAction($limit = 6, $showPlayer = false)
 	{
-		$domain = $this->get('request')->server->get('HTTP_HOST');
+
 		
 		$em = $this->getDoctrine()->getEntityManager();
 		
 		//$entities = $em->createQuery('PodcastBundle:Podcast')->setMaxResults($limit);
 		
 		$query = $em->createQuery("SELECT p FROM PodcastBundle:Podcast p WHERE p.name != '' AND p.home_page=true ORDER BY p.real_time_start DESC");
-		$query->setMaxResults(1);
+		$query->setMaxResults(3);
 		$theOne = $query->getResult();
 		
 		
 		$query = $em->createQuery("SELECT p FROM PodcastBundle:Podcast p WHERE p.name != '' AND p.home_page=true ORDER BY p.real_time_start DESC");
 		$query->setMaxResults($limit);
-		$query->setFirstResult(1);
+		$query->setFirstResult(3);
 		$entities = $query->getResult();
 		
 		return $this->render('PodcastBundle:Podcast:bloc_homePodcasts.html.twig', array(
 				'theOne'	=> $theOne,
-				'entities'	=>	$entities,
-				'domain'	=>	$domain,
+				'entities'	=> $entities,
+				'showPlayer'	=> $showPlayer,
+
 		));
 	}
 }

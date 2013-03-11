@@ -40,6 +40,7 @@ class PostController extends Controller
     	$em = $this->getDoctrine()->getEntityManager();
     	$crit=(String)$criteria['category'];
     	$query = $em->createQuery("SELECT p FROM ApplicationSonataNewsBundle:Post p JOIN p.category c WHERE c.name= :cat ORDER BY p.publicationDateStart DESC")->setParameter('cat',$crit);
+    	//$query = $em->createQuery("SELECT p FROM ApplicationSonataNewsBundle:Post p JOIN p.category c WHERE p.enabled=1 ORDER BY p.publicationDateStart DESC");
     	$entity=$query->setMaxResults(2000)->getResult();
     	 
     	$paginator = $this->get('knp_paginator');
@@ -64,6 +65,37 @@ class PostController extends Controller
         return $response;
     }
 
+    public function indexAction(array $criteria = array(), array $parameters = array())
+    {
+    	$em = $this->getDoctrine()->getEntityManager();
+    	//$crit=(String)$criteria['category'];
+    	//$query = $em->createQuery("SELECT p FROM ApplicationSonataNewsBundle:Post p JOIN p.category c WHERE c.name= :cat ORDER BY p.publicationDateStart DESC")->setParameter('cat',$crit);
+    	$query = $em->createQuery("SELECT p FROM ApplicationSonataNewsBundle:Post p JOIN p.category c WHERE p.enabled=1 ORDER BY p.publicationDateStart DESC");
+    	$entity=$query->setMaxResults(2000)->getResult();
+    
+    	$paginator = $this->get('knp_paginator');
+    	$pager = $paginator->paginate(
+    			$entity,
+    			$this->get('request')->query->get('page', 1),
+    			10
+    	);
+    
+    	$parameters = array_merge(array(
+    			'pager' => $pager,
+    			'blog'  => $this->get('sonata.news.blog'),
+    			'tag'   => false
+    	), $parameters);
+    
+    	$response = $this->render(sprintf('SonataNewsBundle:Post:index.%s.twig', $this->getRequest()->getRequestFormat()), $parameters);
+    
+    	if ('rss' === $this->getRequest()->getRequestFormat()) {
+    		$response->headers->set('Content-Type', 'application/rss+xml');
+    	}
+    
+    	return $response;
+    }    
+    
+    
     /**
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
@@ -170,7 +202,8 @@ class PostController extends Controller
                 ->addMeta('property', 'og:description', $post->getAbstract())
             ;
         }
-
+       
+        
         return $this->render('SonataNewsBundle:Post:view.html.twig', array(
             'post' => $post,
             'form' => false,
@@ -214,7 +247,7 @@ class PostController extends Controller
      *
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
-    public function addCommentFormAction($post_id, $form = false)
+    public function addCommentFormAction($post_id, $form = false, $title="Podcast - Eur@dionantes")
     {
         if (!$form) {
             $post = $this->getPostManager()->findOneBy(array(
@@ -223,6 +256,10 @@ class PostController extends Controller
 
             $form = $this->getCommentForm($post);
         }
+        
+        $seoPage = $this->container->get('sonata.seo.page');
+        $seoPage->setTitle($title);
+        
 
         return $this->render('SonataNewsBundle:Post:comment_form.html.twig', array(
             'form'      => $form->createView(),
@@ -276,6 +313,8 @@ class PostController extends Controller
 
             $this->getCommentManager()->save($comment);
             $this->get('sonata.news.mailer')->sendCommentNotification($comment);
+            
+            $this->get('session')->setFlash('notification', 'Votre commentaire à bien été envoyé. Merci!');
 
             // todo : add notice
             return new RedirectResponse($this->generateUrl('sonata_news_view', array(

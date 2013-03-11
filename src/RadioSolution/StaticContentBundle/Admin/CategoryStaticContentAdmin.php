@@ -22,16 +22,17 @@ class CategoryStaticContentAdmin extends Admin
   protected function configureDatagridFilters(DatagridMapper $datagridMapper)
   {
     $datagridMapper
-      ->add('name')
+      ->add('name', null, array('label' => 'Nom'))
+      ->add('parent', null, array('label' => 'Categorie parente'))
     ;
   }
  
   protected function configureListFields(ListMapper $listMapper)
   {
     $listMapper
-      ->addIdentifier('name')
-      ->add('slug')
-      ->add('parent')
+      ->addIdentifier('name', null, array('label' => 'Nom de la categorie'))
+      ->add('parent', null, array('label' => 'Categorie parent'))
+      ->add('URL', 'string', array('label' => 'URL', 'template' => 'StaticContentBundle:CategoryStaticContentAdmin:list_URL.html.twig'))  
     ;
   }
  

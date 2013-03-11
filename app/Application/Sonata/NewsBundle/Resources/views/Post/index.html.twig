@@ -1,53 +1,44 @@
-<h1>Post list</h1>
+{#
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Abstract</th>
-            <th>Content</th>
-            <th>Rawcontent</th>
-            <th>Contentformatter</th>
-            <th>Enabled</th>
-            <th>Slug</th>
-            <th>Publicationdatestart</th>
-            <th>Commentsenabled</th>
-            <th>Commentscloseat</th>
-            <th>Commentsdefaultstatus</th>
-            <th>Commentscount</th>
-            <th>Createdat</th>
-            <th>Updatedat</th>
-            <th>Id</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('post_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
-            <td>{{ entity.abstract }}</td>
-            <td>{{ entity.content }}</td>
-            <td>{{ entity.rawContent }}</td>
-            <td>{{ entity.contentFormatter }}</td>
-            <td>{{ entity.enabled }}</td>
-            <td>{{ entity.slug }}</td>
-            <td>{% if entity.publicationDateStart %}{{ entity.publicationDateStart|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ entity.commentsEnabled }}</td>
-            <td>{% if entity.commentsCloseAt %}{{ entity.commentsCloseAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ entity.commentsDefaultStatus }}</td>
-            <td>{{ entity.commentsCount }}</td>
-            <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ entity.id }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('post_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+/*
+ * This file is part of the Sonata package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
+#}
+	<section class="entry group">
+	<h3>Le blog d'Eur@dionantes</h3>
+	<a style="position:relative; float:right; top:-38px;" title="S'abonner à  notre flux RSS." class="icn-orange rss" href="/blogs/rss" target="_blank">
+		S'abonner à  notre flux RSS.
+	</a>
+	 <div class="block group">
+		<div class="navigation">
+	    	{{ pager.render()|raw }}
+		</div>
+	{% for post in pager %}
+		<article class="entry-item group">
+			<figure class="entry-thumb group">
+				<a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">
+					{% if post.getImage() %}{% thumbnail post.getImage() ,'medium'%}{% else %}<img src="/uploads/default.jpg" alt="podcast Ã  la une" />{% endif %}
+				</a>
+			</figure>
+			<div class="entry-content">
+				<div class="entry-meta">
+					<h1><a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a></h1>
+					<time>{{ post.publicationDateStart  | date('j/m/Y') }}, {{ post.publicationDateStart | date('G') }}h{{ post.publicationDateStart | date('i') }}</time>
+					<a  class="comment-no">{{ post.commentsCount }}</a>
+				</div>
+				{{ post.abstract }}
+				<a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}" class="ci-read-more">Lire la suite</a>
+			</div>
+		</article>
+	{% endfor %}
+	<div class="navigation">
+	    {{ pager.render()|raw }}
+	</div>	
+	</div>
+	</section>

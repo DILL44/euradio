@@ -1,6 +1,6 @@
 	<section class="entry group">
 		<div class="entry-content emissions">
-			<h3>émissions</h3>
+			<h3>Les émissions d'Eur@dionantes</h3>
 <form action="{{ path(app.request.attributes.get('_route')) }}"  method="get">
 <div class="first-dropdown">
 <h4>Thèmes</h4>
@@ -29,6 +29,11 @@
 <input class="btn-selectionner submit-emission-filter" type="submit" value="Sélectionner">
 
 </form>
+
+     <div class="navigation">
+    	{{ pagination.render()|raw }}
+	</div>
+
 <ul class="gallery-list group">
     {% set class = 'first'%}
     {% for entity in pagination %}
@@ -45,9 +50,8 @@
 							</div>
 						</figure>
 					</a>
-							<p>
-							{{ entity.description|slice(0, 200)|striptags |raw }}</p>
-							<div class="plus"><a href="/emission/{{entity.slug}}">lire la suite</a></div>
+					<p>{{ entity.description| striptags | truncate(200, true, "...") | raw }}</p>
+					<div class="plus"><a href="/emission/{{entity.slug}}">lire la suite</a></div>
 				</li>
 				{% if  class == 'first'%}
 					{% set class = ''%}

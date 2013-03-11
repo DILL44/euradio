@@ -30,13 +30,15 @@ class GeneratePodcastCommand extends ContainerAwareCommand
 	    	while (false !== ($entry = $directory->read())) {
 	    		if($entry!='.' && $entry!='..'){
 	    			$filename="$directory->path$entry";
+	    			//$filename=strtr($filename,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
+	    			//'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 	    			$size=filesize($filename);
-	    			$output->writeln("$filename: $size");
+	    			$output->writeln("FILENAME:$filename: $size");
+	    			$output->writeln("SIZE:$size");
 	    			//$file=fopen($filename, 'w+',true);
 	    			$media = new \Application\Sonata\MediaBundle\Entity\Media;
 	    			$media->setBinaryContent($filename);
-	    	
-	    			$output->writeln("create media $filename OK");
+	    			$output->writeln("MEDIAPATH".$media->getBinaryContent());
 	    			$this->getContainer()->get('sonata.media.manager.media')->save($media,'default','sonata.media.provider.podcast');
 	    			//fclose($file);
 	    			$output->writeln("save media OK");

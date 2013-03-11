@@ -126,14 +126,21 @@ class EmissionController extends Controller
     public function showAction($name)
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository('ProgramBundle:Emission')->findBySlug($name);
+        $entities = $em->getRepository('ProgramBundle:Emission')->findBySlug($name);
 
-        if (!$entity) {
+        if (!$entities) {
             throw $this->createNotFoundException('Unable to find Emission entity.');
         }
+        
+        
+        return $this->render('ProgramBundle:Emission:show.html.twig',array(
+        	'entity'	=> $entities[0]
+        ));
+        /*
         return array(
-            'entitie'      => $entity,
+            'entities'	=> $entity,
         );
+        */
     }
     
     public function showRssAction($name)

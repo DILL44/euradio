@@ -1,6 +1,6 @@
 	<section class="entry group">
 		<div class="entry-content emission">
-		{% for entity in entitie %}
+
 		
 		<div style="position:absolute;right:0;top:0;">
 			<br/>
@@ -10,13 +10,13 @@
 		
 		<h3>{{ entity.name }}</h3> 
 		<div class="picture-infos">			
-						{% if entity.media() %}
-								{%thumbnail entity.media ,'medium'%}
-							{% else %}
-									<img src="/upload/default.jpg" alt="podcast à la une" />
-							{% endif %}
-		Type: {{ entity.frequency }}<br/><br/>
-		Rubrique: {{ entity.theme }}<br/><br/>
+				{% if entity.media() %}
+					{%thumbnail entity.media ,'medium'%}
+				{% else %}
+					<img src="/upload/default.jpg" alt="podcast à la une" />
+				{% endif %}
+				Type: {{ entity.frequency }}<br/><br/>
+				Rubrique: {{ entity.theme }}<br/><br/>
 		{# Responsables: {{ entity.group }} #}
 		</div>
 				<div class="descriptif-emission">
@@ -25,9 +25,8 @@
 						<div class="block group">
 					<h3>Derniers podcasts</h3>
 					
-					{% render 'PodcastBundle:Podcast:emission' with {'id': entity.id, 'page': app.request.get('page')} %}
+					{% render 'PodcastBundle:Podcast:emission' with {'id': entity.id, 'page': app.request.get('page'), 'title': entity.name~'- Emission - Eur@dionantes'} %}
 					
 				</div>
-		{% endfor %}
 </div>
 </section>

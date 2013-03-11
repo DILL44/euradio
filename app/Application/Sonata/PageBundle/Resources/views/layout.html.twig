@@ -27,7 +27,8 @@ file that was distributed with this source code.
 							<p class="grey">Texte d'introduction expliquant l'intérêt de se cr�er une compte membre.</p>
 						</div>
 						 -->
-						{% if app.security.isGranted('ROLE_SONATA_ADMIN') == false %}
+						{#% if app.security.isGranted('ROLE_SONATA_ADMIN') == false %#}
+						{% if app.user == false %}
 						<div class="left">
 							<form class="clearfix" action="/login_check" method="post">
 								<h1>Connexion membre</h1>
@@ -61,10 +62,19 @@ file that was distributed with this source code.
 				<div class="tab">
 					<ul class="login">
 						<li id="toggle">
-							{% if app.security.isGranted('ROLE_SONATA_ADMIN') == false %}
+							
+							{% if app.user == false %}
 								<a id="open" class="open" href="#">Connexion<!-- | Inscription --> </a>
 							{% else %}
-								<a id="disconnect" class="disconnect" href="/admin/dashboard" target="_blank">Administration</a> | <a id="disconnect" class="disconnect" href="/admin/logout">Déconnexion</a>
+							
+								{% if app.security.isGranted('ROLE_SONATA_ADMIN') == true %}
+									<a id="disconnect" class="disconnect" href="/admin/dashboard" target="_blank">Administration</a>
+								{% else %}
+									{{ app.user }} 
+								{% endif %}
+								 | 
+								<a id="disconnect" class="disconnect" href="/logout">Déconnexion</a>
+							
 							{% endif %}
 							<a id="close" style="display: none;" class="close" href="#">Fermer</a>	
 						</li>
@@ -154,8 +164,19 @@ file that was distributed with this source code.
         
         	{% block footer %}
         	<div class="wrap group">
+        <div class="widget-block group">
+
+            <aside class="widget prices">
+				{% set menuItem6 = knp_menu_get('MenuBundle:Builder:surfooterMenu',{}, {'idmenu':6 })%}
+				{{ knp_menu_render(menuItem6) }}            	
+           </aside>
+
+            <aside class="widget widget_ci_twitter_widget group">                
+                    <div class="tweet"></div>
+			</aside> <!-- twitter-widget -->
+        </div> <!-- widget-block -->
         	
-        	<div class="subfooter">
+       	<div class="subfooter">
         		<div class="footer-menu">
 	        		{% set menuFooter = knp_menu_get('MenuBundle:Builder:footerMenu',{}, {'idmenu':4 })%}
 					{{ knp_menu_render(menuFooter) }}
@@ -164,8 +185,8 @@ file that was distributed with this source code.
 				<div class="social-wgt">
 					<a title="S'abonner a notre flux RSS." class="icn rss" href="./blogs/rss" target="_blank">S'abonner &agrave; notre flux RSS.</a>
 					<a title="Suivez-nous sur Twitter." class="icn twitter" href="http://twitter.com/euradionantes" target="_blank">Suivez-nous sur Twitter.</a>
-					<a title="Devenez fan d'Euradionantes sur Facebook." class="icn facebook" href="http://www.facebook.com/pages/Euradionantes/119060581473600" target="_blank">Devenez fan d'Euradionantes sur Facebook.</a>
-					<a title="Voir nos vid�os YouTube." class="icn youtube" href="http://www.youtube.com/user/EuradioNantes" target="_blank">Voir nos videos YouTube.</a>
+					<a title="Devenez fan d'Euradionantes sur Facebook." class="icn facebook" href="http://www.facebook.com/pages/Euradionantes/119060581473600" target="_blank">Devenez fan d'Eur@dionantes sur Facebook.</a>
+					<a title="Voir nos vidéos YouTube." class="icn youtube" href="http://www.youtube.com/user/EuradioNantes" target="_blank">Voir nos vidéos YouTube.</a>
 					<a title="Voir nos vidéos Dailymotion" class="icn dailymotion" href="http://www.dailymotion.com/euradionantes" target="_blank">Voir nos videos Dailymotion.</a>
 				</div> <!-- .social-wgt -->
 				
@@ -190,6 +211,24 @@ jQuery(function($){
     $(".vraiheader").fadeIn("slow"); 
   });
 });
+</script>
+<!-- Twitter -->
+<script src="js/jquery.tweet.js""></script>
+<script type='text/javascript'>
+    jQuery(function($){
+        $(".tweet").tweet({
+            username: "euradionantes",
+            join_text: "auto",
+            avatar_size: null,
+            count: 1,
+            auto_join_text_default: "", 
+            auto_join_text_ed: "",
+            auto_join_text_ing: "",
+            auto_join_text_reply: "",
+            auto_join_text_url: "",
+            loading_text: "chargement des tweets..."
+        });
+    });
 </script>
 
 {% endblock %}

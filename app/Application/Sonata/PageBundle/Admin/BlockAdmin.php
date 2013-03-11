@@ -53,14 +53,15 @@ class BlockAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('name')
-            ->add('type')
-            ->add('parent')
-            ->add('enabled')
-            ->add('updatedAt')
-            ->add('position')
-        ;
+            ->addIdentifier('id', null, array('label' => 'Id'))
+            ->add('block_name', null, array('label' => 'Nom')) 
+            ->add('type', null, array('label' => 'Type'))
+            ->add('parent', null, array('label' => 'Bloc parent'))
+            ->add('enabled', null, array('label' => 'Activé'))				//Application\Sonata\PageBundle\Admin 'template' => 'ApplicationSonataPageBundle:BlockAdmin:list_BlockParent.html.twig'
+            //->add('updatedAt', null, array('label' => 'Mis à jour'))
+            ->add('position', null, array('label' => 'Position'))
+
+        ; 
     }
 
     /**
@@ -69,9 +70,9 @@ class BlockAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-        	->add('name')
+        	->add('block_name')
             ->add('enabled')
-            ->add('type')
+            //->add('type')
         ;
     }
 
@@ -89,22 +90,24 @@ class BlockAdmin extends Admin
             $service = $this->blockManager->get($block);
 
             if ($block->getId() > 0) {
-            	$formMapper->add('name');
+            	$formMapper->add('block_name');
                 $service->buildEditForm($formMapper, $block);
             } else {
-            	$formMapper->add('name');
+            	$formMapper->add('block_name');
                 $service->buildCreateForm($formMapper, $block);
             }
         } else {
 
             $formMapper
             	->add('id','text', array('read_only' => true))
-            	->add('name','text', array('read_only' => true))
+            	->add('block_name','text', array('data' =>'new'))
                 ->add('type', 'sonata_block_service_choice', array(
                     'context' => 'cms'
                 ))
                 ->add('enabled')
-                ->add('position');
+                ->add('position')
+            	
+            ;
         }
     }
 
