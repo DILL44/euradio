@@ -53,12 +53,28 @@ class AppKernel extends Kernel
 		new Sonata\MediaBundle\SonataMediaBundle(),
 		new Sonata\NewsBundle\SonataNewsBundle(),
 
+
 		new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 		new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
 		new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
 		new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+<<<<<<< HEAD
 		new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
         new Euradio\MenuBundle\EuradioMenuBundle(),
+=======
+		//new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
+		
+        new RadioSolution\ProgramBundle\ProgramBundle(),
+        new RadioSolution\StaticContentBundle\StaticContentBundle(),
+        new RadioSolution\PodcastBundle\PodcastBundle(),
+		new RadioSolution\MenuBundle\MenuBundle(),
+        new RadioSolution\PubBundle\PubBundle(),
+        new RadioSolution\ContactBundle\ContactBundle(),
+        new RadioSolution\SurveyBundle\SurveyBundle(),
+        new RadioSolution\SearchBundle\SearchBundle(),
+        new RadioSolution\RSSAgregatorBundle\RSSAgregatorBundle(),
+        new RadioSolution\CarrouselBundle\CarrouselBundle(),
+>>>>>>> master
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test'))) {

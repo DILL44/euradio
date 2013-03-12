@@ -1,10 +1,17 @@
 sonata_admin:
     title:      Euradio Administration
 #    title_logo: /bundles/sonataadmin/logo_title.png
+<<<<<<< HEAD:app/config/config_sonata.yml
 #    templates:
 #        # default global templates
 #        layout:  SonataAdminBundle::standard_layout.html.twig
 #        ajax:    SonataAdminBundle::ajax_layout.html.twig
+=======
+    templates:
+        # default global templates
+        layout:  SonataAdminBundle::standard_layout.html.twig
+        ajax:    SonataAdminBundle::ajax_layout.html.twig
+>>>>>>> master:app/config/config_sonata.yml
 #
 #        # default actions templates, should extend a global templates
 #        list:    SonataAdminBundle:CRUD:list.html.twig
@@ -17,6 +24,22 @@ sonata_admin:
 
 #        groups:
 #            default: ~
+<<<<<<< HEAD:app/config/config_sonata.yml
+=======
+    security:
+        handler: sonata.admin.security.handler.acl
+        # acl security information
+        information:
+            GUEST:    [VIEW, LIST]
+            STAFF:    [EDIT, LIST, CREATE]
+            EDITOR:   [OPERATOR]
+            ADMIN:    [MASTER]
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+>>>>>>> master:app/config/config_sonata.yml
 
 sonata_page:
     multisite: host
@@ -35,6 +58,7 @@ sonata_page:
     default_template: default # template key from templates section, used as default for pages
     templates:
         default: {path: 'SonataPageBundle::layout.html.twig', name: default }
+        ecoute: {path: 'SonataPageBundle::ecoute2.html.twig', name: ecoute }
     # manage the http errors
     catch_exceptions:
         not_found: [404] 
@@ -69,15 +93,24 @@ sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
+<<<<<<< HEAD:app/config/config_sonata.yml
             contexts:   [admin]
 #        sonata.admin_doctrine_orm.block.audit:
+=======
+#     sonata.admin_doctrine_orm.block.audit:
+>>>>>>> master:app/config/config_sonata.yml
 #            contexts:   [admin]
         sonata.block.service.text:
+        sonata.block.service.wysiwyg:
         sonata.block.service.action:
         sonata.block.service.rss:
         sonata.media.block.media:
         sonata.media.block.gallery:
+<<<<<<< HEAD:app/config/config_sonata.yml
         sonata.media.block.feature_media: 
+=======
+        sonata.media.block.feature_media:
+>>>>>>> master:app/config/config_sonata.yml
 
         
 sonata_notification:
@@ -110,20 +143,33 @@ sonata_media:
                 - sonata.media.provider.youtube
                 - sonata.media.provider.image
                 - sonata.media.provider.file
+                - sonata.media.provider.podcast
             formats:
+                big: { width: 620 ,  quality: 70}
+                medium: { width: 300 , height: 150 , quality: 70}
                 small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
+                logo: { width: 189 , quality: 70}
+                pub: { width: 728 , height: 90 , quality: 70}
     cdn:
         server:
             path: /uploads/media
     filesystem:
         local:
-            directory:  %kernel.root_dir%/../web/uploads/media
+            directory:  "%kernel.root_dir%/../web/uploads/media"
             create:     false           
     providers:
         image:
-            resizer: sonata.media.resizer.square
-
+            resizer: sonata.media.resizer.simple #sonata.media.resizer.square
+            allowed_mime_types:
+              - image/gif
+              - image/jpeg
+              - image/png
+              - image/pjpeg
+            allowed_extensions:
+              - gif
+              - png
+              - jpeg
+              - jpg
 sonata_news:
   title:        "Les blogs d'Euradio"
   link:         http://sonata-project.org
@@ -200,3 +246,13 @@ sonata_user:
             validation_groups:  [Profile]    
 #ApplicationSonataPageBundle: ~
 #SonataPageBundle: ~
+<<<<<<< HEAD:app/config/config_sonata.yml
+=======
+
+services:
+    sonata.news.admin.post:
+        class: Application\Sonata\NewsBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin,manager_type: orm, group: "sonata_blog", label: "posts",  label_catalogue: "%sonata.news.admin.post.translation_domain%", label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        arguments: [null,Application\Sonata\NewsBundle\Entity\Post, "SonataAdminBundle:CRUD"]  
+>>>>>>> master:app/config/config_sonata.yml

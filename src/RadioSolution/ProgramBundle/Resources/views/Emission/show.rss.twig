@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>{{ emission.name|striptags|raw }}</title>
+        <link>http://{{ domain }}/emission/{{ emission.slug }}</link>
+        <description>{{ emission.description|striptags}}</description>
+        {% for podcast in podcasts %}
+             <item>
+                  <title>{{ podcast.realtimestart|date('d/m/Y H:i') }} - {{ podcast.name }}</title>
+                  <link>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(podcast.post) }, true) }}</link>
+                  <description><![CDATA[ {{ podcast.post.abstract|striptags  }} ]]></description>
+                  <pubDate>{{ podcast.realTimeStart | date('e, M L y H:m:s z')}}</pubDate>
+                  <gui>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(podcast.post) }, true) }}</gui>
+                  
+				{% if podcast.getFilePodcast()%}
+					<enclosure url="http://www.euradionantes.eu/download.php?file={% path podcast.getFilePodcast(), 'reference' %}&amp;name={{ podcast.post.publicationDateStart|date('d-m-Y_H-i') }}-{{ podcast.post.getSlug()}}" type="audio/mpeg"  />
+					<guid >http://www.euradionantes.eu{% path podcast.getFilePodcast(), 'reference' %}</guid>
+             	{% endif %}                  
+             </item>
+        {% endfor %}
+    </channel>
+</rss>

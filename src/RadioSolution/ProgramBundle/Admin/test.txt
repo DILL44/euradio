@@ -1,0 +1,48 @@
+exeptionnel
+id: 69
+exeptionnel
+id: 70
+exeptionnel
+id: 71
+weekly
+id: 18 5 
+weekly
+id: 18 6 
+weekly
+id: 18 7 
+weekly
+id: 18 1 
+weekly
+id: 34 5 
+weekly
+id: 34 6 
+weekly
+id: 34 7 
+weekly
+id: 34 1 
+weekly
+id: 34 2 
+weekly
+id: 35 5 
+weekly
+id: 35 6 
+weekly
+id: 35 7 
+weekly
+id: 35 1 
+weekly
+id: 35 2 
+weekly
+id: 35 3 
+weekly
+id: 37 5 
+weekly
+id: 38 5 
+weekly
+id: 38 6 
+weekly
+id: 39 5 
+weekly
+id: 39 6 
+weekly
+id: 39 7 

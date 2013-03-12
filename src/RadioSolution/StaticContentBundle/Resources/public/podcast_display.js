@@ -1,0 +1,1 @@
+$("audio").append('<source src="'+$(this).parent.attr('src')+'.ogg" type="audio/ogg"><source src="'+$(this).parent.attr('src')+'" type="audio/mpeg">');

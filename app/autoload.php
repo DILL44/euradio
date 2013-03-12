@@ -48,7 +48,11 @@ $loader->registerNamespaces(array(
     'Sly'              => __DIR__.'/../vendor/bundles',
     'Gregwar' 		   => __DIR__.'/../vendor/bundles',
     'Vich'             => __DIR__.'/../vendor/bundles',
+<<<<<<< HEAD
 	'Euradio'		   =>__DIR__.'/../src/Euradio'
+=======
+	'RadioSolution'    => __DIR__.'/../src/RadioSolution',
+>>>>>>> master
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',

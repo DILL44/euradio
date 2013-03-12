@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Euradionantes</title>
+        <link>http://{{ domain }}</link>
+        <description></description>
+        {% for post in entities %}
+             <item>
+                  <title>{{ post.publicationDateStart|date('d/m/Y H:i') }} - {{ post.title }}</title>
+                  <link>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true) }}</link>
+                  <description><![CDATA[ {{ post.abstract|striptags|raw }} ]]></description>
+                  <pubDate>{{ post.publicationDateStart | date('e, M L y H:m:s z')}}</pubDate>
+                  <gui>{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }, true) }}</gui>
+                  {% if post.getMediaPodcast()%}
+ 					<enclosure url="http://www.euradionantes.eu/download.php?file={% path post.getMediaPodcast(), 'reference' %}&amp;name={{ post.publicationDateStart|date('d-m-Y_H-i') }}-{{ post.getSlug()}}" type="audio/mpeg"  />
+             	  	<guid >http://www.euradionantes.eu{% path post.getMediaPodcast(), 'reference' %}</guid>
+             	  {% endif %}
+             </item>
+        {% endfor %}
+    </channel>
+</rss>

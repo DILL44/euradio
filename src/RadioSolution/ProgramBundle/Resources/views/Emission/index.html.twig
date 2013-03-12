@@ -1,0 +1,68 @@
+	<section class="entry group">
+		<div class="entry-content emissions">
+			<h3>Les émissions d'Eur@dionantes</h3>
+<form action="{{ path(app.request.attributes.get('_route')) }}"  method="get">
+<div class="first-dropdown">
+<h4>Thèmes</h4>
+	<select data-placeholder="Choisir un  thème" style="width:200px;"class="chzn-select" tabindex="8" name="theme">
+<option value="" {% if gt=='' %}selected{% endif %}></option>
+	{% for theme in themes  %}
+<option value="{{ theme.id }}"{% if gt==theme.id %}selected{% endif %} >{{ theme.name }}</option>
+{% endfor %}
+</select>
+</div>
+	<div class="second-dropdown">
+		<h4>Périodicité</h4>
+		<select data-placeholder="Choisir une  périodicité" style="width:200px;" class="chzn-select" tabindex="8"  name="frequency">
+<option value="" {% if gf=='' %}selected{% endif %}></option>
+{% for frequency in frequencies  %}
+<option value="{{ frequency.id }}" {% if gf==frequency.id %}selected{% endif %}>{{ frequency.titre }}</option>
+{% endfor %}
+</select>
+</div>
+<div class="third-dropdown">
+
+<h4>Archive</h4>
+	<input type="checkbox" name="archive" value="1" {% if ga %} checked="checked" {% endif %}/>
+</div>
+
+<input class="btn-selectionner submit-emission-filter" type="submit" value="Sélectionner">
+
+</form>
+
+     <div class="navigation">
+    	{{ pagination.render()|raw }}
+	</div>
+
+<ul class="gallery-list group">
+    {% set class = 'first'%}
+    {% for entity in pagination %}
+    <li class="{{ class }}">
+					<a href="/emission/{{entity.slug}}">
+						<figure>
+							<div class="image">
+							{% if entity.media() %}
+								{%thumbnail entity.media ,'medium'%}
+							{% else %}
+									<img src="/upload/default.jpg" alt="podcast à la une" />
+							{% endif %}
+								<h2><span>{{ entity.name }}</span></h2>
+							</div>
+						</figure>
+					</a>
+					<p>{{ entity.description| striptags | truncate(200, true, "...") | raw }}</p>
+					<div class="plus"><a href="/emission/{{entity.slug}}">lire la suite</a></div>
+				</li>
+				{% if  class == 'first'%}
+					{% set class = ''%}
+				{% else %}
+					{% set class = 'first'%}
+				{% endif %}
+    {% endfor %}
+    </ul>
+     <div class="navigation">
+    	{{ pagination.render()|raw }}
+	</div>
+</div>
+</section>
+

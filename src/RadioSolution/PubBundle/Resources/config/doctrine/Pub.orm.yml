@@ -1,0 +1,24 @@
+RadioSolution\PubBundle\Entity\Pub:
+  type: entity
+  table: pub
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+    enable:
+      type: boolean
+      nullable: TRUE
+    link:
+      type: string
+    order_pub:
+      type: integer
+      nullable: true
+  oneToOne:
+    image:
+      targetEntity: Application\Sonata\MediaBundle\Entity\Media
+      joinColumn:
+        name: id_image
+        referencedColumnName: id

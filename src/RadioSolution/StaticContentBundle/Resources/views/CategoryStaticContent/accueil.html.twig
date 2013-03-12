@@ -1,0 +1,22 @@
+<div class="block group category-accueil">
+	<h3>{{ title }}</h3>
+<div class="example-wrapper"> <div id="{{ id_name }}" class="theme1">
+	<ul style="width:100%; margin:0;">					
+		{% for entity in entities %} 
+		{% if entity.image %}
+			<li style="list-style:none; float:left; display:inline; margin:0 5px;">
+				<a href="./categorie/{{ entity.slug }}"><h2>{{ entity.name }}</h2></a>
+				<a href="./categorie/{{ entity.slug }}">{%media entity.image ,'medium' with {'class': 'thumb'}  %}</a>
+				<a href="./categorie/{{ entity.slug }}"><div style="margin-top:16px"></div></a>
+				<a href="./categorie/{{ entity.slug }}"><p>{#{ entity.body }#}</p></a>
+			</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
+<div class="toolbar">
+                                                <div class="left"></div><div class="right"></div>
+                                        </div>
+                                </div>
+                        </div>
+
+</div>

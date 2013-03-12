@@ -1,0 +1,7 @@
+{% for post in posts %}
+{% if post.getImage() %}
+	{%media post.image ,'medium' with {'class': 'thumb'}  %}
+{% else %}
+	<img src="/uploads/default.jpg" alt=""/>
+{% endif %}		
+{% endfor %}

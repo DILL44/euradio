@@ -10,6 +10,7 @@
  */
 
 #}
+<<<<<<< HEAD
 
 <h1>{{ 'title_archive'|trans({}, 'SonataNewsBundle') }}</h1>
 
@@ -47,3 +48,38 @@
         {{ 'no_post_found'|trans({}, 'SonataNewsBundle') }}
     {% endfor %}
 </div>
+=======
+	<section class="entry group">
+	<h3>Le blog d'Eur@dionantes : {{ category.name }}</h3>
+	 <div class="block group">
+		<div class="navigation">
+	    	{{ pager.render()|raw }}
+		</div>
+	{% for post in pager %}
+		<article class="entry-item group">
+			<figure class="entry-thumb group">
+				{% if post.getImage() %}{% thumbnail post.getImage() ,'medium'%}{% else %}<img src="/uploads/default.jpg" alt="podcast à la une" />{% endif %}
+			</figure>
+			<div class="entry-content">
+				<div class="entry-meta">
+					<div class="entry-cats">
+					{% for tag in post.tags%}
+                            <a href="{{ url('sonata_news_tag', {'tag': tag.slug} ) }}">{{ tag.name }}</a>
+                            {% if not loop.last%}, {%endif%}
+                    {% endfor %}
+					</div>
+					<h1><a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a></h1>
+					<time>{{ post.publicationDateStart | date('d F Y') }}, {{ post.publicationDateStart | date('G') }}h{{ post.publicationDateStart | date('i') }}</time>
+					<a  class="comment-no">{{ post.commentsCount }}</a>
+				</div>
+				{{ post.abstract }}
+				<a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}" class="ci-read-more">Lire la suite</a>
+			</div>
+		</article>
+	{% endfor %}
+	<div class="navigation">
+	    {{ pager.render()|raw }}
+	</div>	
+	</div>
+	</section>
+>>>>>>> master

@@ -1,0 +1,14 @@
+RadioSolution\SurveyBundle\Entity\Survey:
+  type: entity
+  table: Survey
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+    script:
+      type: text
+    enable:
+      type: boolean

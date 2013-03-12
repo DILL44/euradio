@@ -1,0 +1,128 @@
+/* Vertical Accordion Style */
+.va-container{
+	position:relative;
+	float: left;
+	margin:40px auto;
+	clear: both;
+}
+.va-wrapper{
+	width:100%;
+	height:100%;
+	position:relative;
+	overflow:hidden;
+	background:#fff;
+}
+.va-slice{
+	cursor:pointer;
+	position:absolute;
+	width:100%;
+	left:0px;
+	overflow:hidden;
+}
+.va-slice-1{
+	background:#000 url(../images/contact/1.jpg) no-repeat center center;
+}
+.va-slice-2{
+	background:#000 url(../images/contact/2.jpg) no-repeat center center;
+}
+.va-slice-3{
+	background:#000 url(../images/contact/3.jpg) no-repeat center center;
+}
+.va-slice-4{
+	background:#000 url(../images/contact/4.jpg) no-repeat center center;
+}
+.va-slice-5{
+	background:#000 url(../images/contact/5.jpg) no-repeat center center;
+}
+.va-slice-6{
+	background:#000 url(../images/contact/6.jpg) no-repeat center center;
+}
+.va-slice-7{
+	background:#000 url(../images/contact/7.jpg) no-repeat center center;
+}
+.va-slice-color-1{
+	background-color:#97c5eb;
+}
+.va-slice-color-2{
+	background-color:#68ace5;
+}
+.va-slice-color-3{
+	background-color:#0072cf;
+}
+.va-slice-color-4{
+	background-color:#0039a6;
+}
+.va-slice-color-5{
+	background-color:#00338e;
+}
+.va-slice-color-6{
+	background-color:#002c76;
+}
+.va-slice-color-7{
+	background-color:#002144;
+}
+.va-title{
+	font-family: 'Oxygen';
+	text-transform:uppercase;
+	font-size:48px !important;
+	margin-left:20px;
+	color:#fff;
+	text-shadow: 0px 0px 1px white;
+	border-top: none !important;
+	height: 80px !important;
+	line-height: 80px !important;
+}
+.va-content{
+	display:none;
+	margin-left:25px;
+}
+.va-content span.nom{
+	font-size: 22px;
+	color: #fff;
+}
+.va-content p {
+	font-size: 16px !important;
+	color: #fff !important;
+}
+.va-slice ul{
+	margin: 0 !important;
+	list-style: none;
+}
+.va-slice ul li{
+	float:left;
+	margin:0px 2px;
+}
+.va-slice ul li {
+	color:#000;
+	background:#fff;
+	padding:3px 6px;
+	font-size:14px;
+	text-transform:uppercase;
+}
+.va-slice ul li:hover{
+	background:#fa5d0f;
+	color:#fff;
+	text-shadow:none;
+}
+.va-nav span{
+	width:40px;
+	height:25px;
+	background:transparent url(../images/contact/prev.png) no-repeat center center;
+	position:absolute;
+	top:-35px;
+	left:50%;
+	margin-left:-20px;
+	text-indent:-9000px;
+	opacity:0.7;
+	cursor:pointer;
+	display:none;
+	z-index:100;
+}
+.va-nav span.va-nav-next{
+	background-image:url(../images/contact/next.png);
+	top:auto;
+	bottom:-35px;
+}
+.va-nav span:hover{
+	opacity:1.0;
+}

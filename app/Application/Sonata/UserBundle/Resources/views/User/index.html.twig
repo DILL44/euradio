@@ -1,0 +1,23 @@
+<h1>User list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Facebookname</th>
+            <th>Twittername</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.username }}</td>
+            <td>{{ entity.email }}</td>
+            <td>{{ entity.facebookName }}</td>
+            <td>{{ entity.twitterName }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

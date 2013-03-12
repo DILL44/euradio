@@ -1,0 +1,20 @@
+RadioSolution\CarrouselBundle\Entity\CustomItem:
+  type: entity
+  table: carousel__custom_item
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    title:
+      type: string
+      length: 100
+    url:
+      type: string
+      length: 100
+  oneToOne:
+    image:
+      targetEntity: Application\Sonata\MediaBundle\Entity\Media
+      joinColumn:
+        name: id_image
+        referencedColumnName: id

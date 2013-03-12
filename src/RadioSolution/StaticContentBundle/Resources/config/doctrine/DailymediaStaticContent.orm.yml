@@ -1,0 +1,23 @@
+RadioSolution\StaticContentBundle\Entity\DailymediaStaticContent:
+  type: entity
+  table: static_content__dailymedia
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    title:
+      type: string
+      length: 100
+    link:
+      type: string
+    author:
+      type: string
+    date:
+      type: date
+  oneToOne:
+    image:
+      targetEntity: Application\Sonata\MediaBundle\Entity\Media
+      joinColumn:
+        name: id_image
+        referencedColumnName: id

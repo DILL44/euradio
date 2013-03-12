@@ -1,0 +1,20 @@
+RadioSolution\ProgramBundle\Entity\ExceptionalBroadcast:
+  type: entity
+  table: program__exceptionalbroadcast
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    time_start:
+      type: datetime
+    duration:
+      type: time
+  manyToOne:
+    Emission:
+      targetEntity: RadioSolution\ProgramBundle\Entity\Emission
+      inversedBy: ExceptionalBroadcast
+      cascade: [all]
+      joinColumn:
+        name: emission_id
+        referencedColumnName: id

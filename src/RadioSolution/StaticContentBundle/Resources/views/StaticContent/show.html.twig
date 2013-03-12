@@ -1,0 +1,63 @@
+<div class="article">
+<h1>{{ entity.name }}</h1>
+
+
+<div class="" style="float:left; margin-right:15px;">
+	{% if entity.getImage() %}
+			{%media entity.getImage() ,'medium' %}
+	{% endif %}
+</div><p style="font-weight:bold;">{{ entity.introduction }}</p>
+<br clear="all" />
+
+<p>{{ entity.body|raw }}</p>
+</div>
+
+
+<script type='text/javascript'>
+$(document).ready(function() {
+	$('.article audio').each(function(index) {
+
+		var src = $(this).attr('src');
+		
+		if(src != ""){
+			
+			$(this).html('');
+			
+			
+	
+			if(src.substr((src.length-3), 3) == 'ogg'){
+	
+				var oggsource = '<source src="'+src+'" type="audio/ogg">';
+				var mp3source = '<source src="'+src.substr(0, (src.length-4))+'" type="audio/mpeg">';
+				var qtfallback = 'QT_WriteOBJECT("'+src.substr(0, (src.length-4))+'", "300", "30", "")';
+				
+			}else{
+				
+				var oggsource = '<source src="'+src+'.ogg" type="audio/ogg">';
+				var mp3source = '<source src="'+src+'" type="audio/mpeg">';
+				var qtfallbackContent = 'QT_WriteOBJECT("'+src+'", "300", "30", "");';
+		
+			}
+	
+			var qtfallbackContent = '<a href="'+src+'" target="_blank"><img src="http://www.euradionantes.eu/images/timeline/play.png" /></a>';
+	
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.innerHTML = qtfallbackContent;
+		
+			$(this).append(oggsource);
+			$(this).append(mp3source);
+			$(this).append(qtfallbackContent);
+	
+			
+			$(this).removeAttr('src');
+			$(this).removeAttr('type');
+			$(this).removeAttr('width');
+			$(this).removeAttr('height');
+			$(this).attr('tabindex', 0);
+			$(this).attr('controls', 'controls');
+		}
+	});
+	  
+});
+</script>

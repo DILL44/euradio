@@ -1,0 +1,4 @@
+<nav id="navigation">
+{% set menuItem = knp_menu_get('MenuBundle:Builder:mainMenu',{}, {'idmenu':idmenu })%}
+{{ knp_menu_render(menuItem) }}
+</nav>

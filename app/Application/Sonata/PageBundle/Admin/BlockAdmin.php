@@ -1,0 +1,206 @@
+<?php
+
+/*
+ * This file is part of the Sonata package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Application\Sonata\PageBundle\Admin;
+
+use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Validator\ErrorElement;
+
+use Sonata\CacheBundle\Cache\CacheManagerInterface;
+
+use Sonata\BlockBundle\Block\BlockServiceManagerInterface;
+
+/**
+ * Admin class for the Block model
+ *
+ * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ */
+class BlockAdmin extends Admin
+{
+    protected $parentAssociationMapping = 'page';
+
+    protected $blockManager;
+
+    protected $cacheManager;
+
+    protected $inValidate = false;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('savePosition', 'save-position');
+        $collection->add('view', $this->getRouterIdParameter().'/view');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->addIdentifier('id', null, array('label' => 'Id'))
+            ->add('block_name', null, array('label' => 'Nom')) 
+            ->add('type', null, array('label' => 'Type'))
+            ->add('parent', null, array('label' => 'Bloc parent'))
+            ->add('enabled', null, array('label' => 'Activé'))				//Application\Sonata\PageBundle\Admin 'template' => 'ApplicationSonataPageBundle:BlockAdmin:list_BlockParent.html.twig'
+            //->add('updatedAt', null, array('label' => 'Mis à jour'))
+            ->add('position', null, array('label' => 'Position'))
+
+        ; 
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+        	->add('block_name')
+            ->add('enabled')
+            //->add('type')
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $block = $this->getSubject();
+
+        $isContainerRoot = $block && $block->getType() == 'sonata.page.block.container' && !$this->hasParentFieldDescription();
+        $isStandardBlock = $block && $block->getType() != 'sonata.page.block.container' && !$this->hasParentFieldDescription();
+
+        if ($isContainerRoot || $isStandardBlock) {
+            $service = $this->blockManager->get($block);
+
+            if ($block->getId() > 0) {
+            	$formMapper->add('block_name');
+                $service->buildEditForm($formMapper, $block);
+            } else {
+            	$formMapper->add('block_name');
+                $service->buildCreateForm($formMapper, $block);
+            }
+        } else {
+
+            $formMapper
+            	->add('id','text', array('read_only' => true))
+            	->add('block_name','text', array('data' =>'new'))
+                ->add('type', 'sonata_block_service_choice', array(
+                    'context' => 'cms'
+                ))
+                ->add('enabled')
+                ->add('position')
+            	
+            ;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validate(ErrorElement $errorElement, $block)
+    {
+        if ($this->inValidate) {
+            return;
+        }
+
+        // As block can be nested, we only need to validate the main block, no the children
+        $this->inValidate = true;
+        $this->blockManager->validate($errorElement, $block);
+        $this->inValidate = false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getObject($id)
+    {
+        $subject = parent::getObject($id);
+
+        if ($subject) {
+            $service = $this->blockManager->get($subject);
+            $subject->setSettings(array_merge($service->getDefaultSettings(), $subject->getSettings()));
+
+            $service->load($subject);
+        }
+
+        return $subject;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($object)
+    {
+        // fix weird bug with setter object not being call
+        $object->setChildren($object->getChildren());
+        $object->getPage()->setEdited(true);
+
+        $this->blockManager->get($object)->preUpdate($object);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postUpdate($object)
+    {
+        $service = $this->blockManager->get($object);
+
+        $this->cacheManager->invalidate($service->getCacheKeys($object));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($object)
+    {
+        $this->blockManager->get($object)->prePersist($object);
+
+        $object->getPage()->setEdited(true);
+
+        // fix weird bug with setter object not being call
+        $object->setChildren($object->getChildren());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function postPersist($object)
+    {
+        $service = $this->blockManager->get($object);
+
+        $this->cacheManager->invalidate($service->getCacheKeys($object));
+    }
+
+    /**
+     * @param \Sonata\BlockBundle\Block\BlockServiceManagerInterface $blockManager
+     */
+    public function setBlockManager(BlockServiceManagerInterface $blockManager)
+    {
+        $this->blockManager = $blockManager;
+    }
+
+    /**
+     * @param \Sonata\CacheBundle\Cache\CacheManagerInterface $cacheManager
+     */
+    public function setCacheManager(CacheManagerInterface $cacheManager)
+    {
+        $this->cacheManager = $cacheManager;
+    }
+}

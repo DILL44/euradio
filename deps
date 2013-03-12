@@ -1,4 +1,5 @@
 #Symfony base
+
 [symfony]
     git=http://github.com/symfony/symfony.git
     version=origin/2.0
@@ -62,8 +63,10 @@
     git=http://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
     version=origin/2.0
+	  	
 
 #other bundles
+
 [gaufrette]
     git=https://github.com/sonata-project/Gaufrette.git
     target=/gaufrette
@@ -75,7 +78,7 @@
 [FacebookSDK]
     git=git://github.com/facebook/facebook-php-sdk.git
     target=/facebook
-    
+
 [twitteroauth]
     git=git://github.com/kertz/twitteroauth.git 
     target=/twitteroauth
@@ -99,6 +102,7 @@
 [EWZRecaptchaBundle]
     git=http://github.com/excelwebzone/EWZRecaptchaBundle.git
     target=/bundles/EWZ/Bundle/RecaptchaBundle
+    version=2.0
 
 [TinymceBundle]
     git=git://github.com/stfalcon/TinymceBundle.git
@@ -144,12 +148,14 @@
 [SensioBuzzBundle]
     git=http://github.com/sensio/SensioBuzzBundle.git
     target=bundles/Sensio/Bundle/BuzzBundle
+	  	
 
 #Knp
+
 [KnpMarkdownBundle]
     git=http://github.com/KnpLabs/KnpMarkdownBundle.git
-    target=/bundles/Knp/Bundle/MarkdownBundle
-    
+    target=/bundles/Knp/Bundle/MarkdownBundle	  	
+
 [KnpMenuBundle]
     git=https://github.com/KnpLabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
@@ -157,16 +163,17 @@
 [KnpMenu]
     git=https://github.com/KnpLabs/KnpMenu.git
     target=/knp/menu
-    
+
 [knp-components]
     git=http://github.com/KnpLabs/knp-components.git
 
 [KnpPaginatorBundle]
     git=http://github.com/KnpLabs/KnpPaginatorBundle.git
     target=bundles/Knp/Bundle/PaginatorBundle
+	  	
 
-    
 #FOS    
+
 [FOSTwitterBundle]
     git=https://github.com/FriendsOfSymfony/FOSTwitterBundle.git
     target=/bundles/FOS/TwitterBundle
@@ -185,39 +192,44 @@
 [FOSCommentBundle]
     git=https://github.com/FriendsOfSymfony/FOSCommentBundle.git
     target=bundles/FOS/CommentBundle
-    
+	  	
+
 #Sonata
+
 [SonataDoctrineORMAdminBundle]
     git=http://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
-    target=/bundles/Sonata/DoctrineORMAdminBundle
+    target=/bundles/Sonata/DoctrineORMAdminBundle	  	
 
 [SonataNewsBundle]
     git=https://github.com/sonata-project/SonataNewsBundle.git
-    target=/bundles/Sonata/NewsBundle
+    target=/bundles/Sonata/NewsBundle	  	
 
 [SonataMediaBundle]
-    git=https://github.com/sonata-project/SonataMediaBundle.git
+    git=https://github.com/DILL44/SonataMediaBundle.git
     target=/bundles/Sonata/MediaBundle
 
 [SonatajQueryBundle]
     git=http://github.com/sonata-project/SonatajQueryBundle.git
-    target=/bundles/Sonata/jQueryBundle
+    target=/bundles/Sonata/jQueryBundle	  	
 
 [SonataUserBundle]
     git=http://github.com/sonata-project/SonataUserBundle.git
     target=/bundles/Sonata/UserBundle
+	  	
 
 [SonataAdminBundle]
     git=http://github.com/sonata-project/SonataAdminBundle.git
     target=/bundles/Sonata/AdminBundle
-    
+
 [SonataCacheBundle]
     git=http://github.com/sonata-project/SonataCacheBundle.git
     target=/bundles/Sonata/CacheBundle
+	  	
 
 [SonataBlockBundle]
     git=http://github.com/sonata-project/SonataBlockBundle.git
     target=/bundles/Sonata/BlockBundle
+ 	  	
 
 [SonataPageBundle]
     git=http://github.com/sonata-project/SonataPageBundle.git
@@ -230,21 +242,26 @@
 [SonataEasyExtendsBundle]
     git=http://github.com/sonata-project/SonataEasyExtendsBundle.git
     target=/bundles/Sonata/EasyExtendsBundle
-    
+ 	  	
+
 [SonataNotificationBundle]
     git=git://github.com/sonata-project/SonataNotificationBundle.git
     target=/bundles/Sonata/NotificationBundle
     version=origin/2.0
-    
+
 [SonataFormatterBundle]
     git=http://github.com/sonata-project/SonataFormatterBundle.git
-    target=/bundles/Sonata/FormatterBundle
-    version=origin/2.0
+	target=/bundles/Sonata/FormatterBundle
+	version=origin/2.0
 
 [SonataIntlBundle]
-    git=https://github.com/sonata-project/SonataIntlBundle
-    target=/bundles/Sonata/IntlBundle
+	git=https://github.com/sonata-project/SonataIntlBundle
+	target=/bundles/Sonata/IntlBundle
 
 [SonataDoctrineExtensions]
-    git=http://github.com/sonata-project/sonata-doctrine-extensions.git
-    target=/bundles/Sonata/sonata-doctrine-extensions
+	git=http://github.com/sonata-project/sonata-doctrine-extensions.git
+	target=/bundles/Sonata/sonata-doctrine-extensions
+	
+[IHQSContactBundle]
+    git=git://github.com/ihqs/ContactBundle.git
+    target=bundles/IHQS/ContactBundle

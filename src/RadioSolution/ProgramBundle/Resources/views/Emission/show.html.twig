@@ -1,0 +1,32 @@
+	<section class="entry group">
+		<div class="entry-content emission">
+
+		
+		<div style="position:absolute;right:0;top:0;">
+			<br/>
+			<a style="float:right;" title="S'abonner à notre flux RSS." class="icn-orange rss" href="/rss/emission/{{ entity.slug }}" target="_blank">S'abonner à notre flux RSS.</a><br/><br/>
+			{{ socialButtons() }}
+		</div>
+		
+		<h3>{{ entity.name }}</h3> 
+		<div class="picture-infos">			
+				{% if entity.media() %}
+					{%thumbnail entity.media ,'medium'%}
+				{% else %}
+					<img src="/upload/default.jpg" alt="podcast à la une" />
+				{% endif %}
+				Type: {{ entity.frequency }}<br/><br/>
+				Rubrique: {{ entity.theme }}<br/><br/>
+		{# Responsables: {{ entity.group }} #}
+		</div>
+				<div class="descriptif-emission">
+				{{ entity.description|raw }}
+				</div>
+						<div class="block group">
+					<h3>Derniers podcasts</h3>
+					
+					{% render 'PodcastBundle:Podcast:emission' with {'id': entity.id, 'page': app.request.get('page'), 'title': entity.name~'- Emission - Eur@dionantes'} %}
+					
+				</div>
+</div>
+</section>

@@ -1,0 +1,265 @@
+
+<div class="inner-wrap" >
+<div class="page-content " >
+	<section class="entry group" >
+		<div class="entry-content programme">
+			<h3 style="text-align: center;"><a href="/programmes?week={{ weekNumber - 1}}" id="prev_week">&lt; </a>Programmes de la semaine {{ weekNumber }}<a href="/programmes?week={{ weekNumber + 1}}" id="next_week"> &gt;</a></h3>
+			
+			<ul class='tabs' style="margin-left:30px;">
+				<li><a href='#tab1'>Lundi</a></li>
+				<li><a href='#tab2'>Mardi</a></li>
+				<li><a href='#tab3'>Mercredi</a></li>
+				<li><a href='#tab4'>Jeudi</a></li>
+				<li><a href='#tab5'>Vendredi</a></li>
+				<li><a href='#tab6'>Samedi</a></li>
+				<li><a href='#tab7'>Dimanche</a></li>
+			</ul>
+			{% for i in 1..7 %}
+			<div id='tab{{ i }}' >
+			<br/>
+				{% set date = false %}
+				{% set tot = false %}
+				{% set am = false %}
+				{% set pm = false %}
+				{% set soir = false %}
+				{% set nuit = false %}
+				{% for entity in entities %}
+					{% if entity.timeStart|date('N') == i %}{% set date = entity.timeStart %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')<'07:00:00' and entity.timeStart|date('N')==i %}{% set tot = true %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')>'07:00:00' and entity.timeStart|date('H:i:s')<'12:00:00' and entity.timeStart|date('N')==i %}{% set am = true %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')>'12:00:00' and entity.timeStart|date('H:i:s')<'18:00:00' and entity.timeStart|date('N')==i %}{% set pm = true %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')>'18:00:00' and entity.timeStart|date('H:i:s')<'21:00:00' and entity.timeStart|date('N')==i %}{% set soir = true %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')>'21:00:00' and entity.timeStart|date('H:i:s')<'23:59:59' and entity.timeStart|date('N')==i %}{% set nuit = true %}{% endif %}
+				{% endfor %}
+				<ol class="full-day">
+				<br clear="all"/>
+				{% if date %}
+					<h2 style="margin-left:30px;">{{ date|localizeddate('full', 'none', 'fr-FR')|capitalize }}</h2>
+				{% endif %}
+				{% if tot %}
+					<li id="tot" class="group">
+						<div class="header">
+							<h4>Tôt</h4>
+						</div>
+						<ol class="">
+					    {% for entity in entities %}
+					 			{% if entity.timeStart|date('H:i:s')<'07:00:00' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+											{% if app.security.isGranted(['ROLE_RADIOSOLUTION_PROGRAM_PROGRAM_EDITOR']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+											
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+						
+				  		{% endfor %}								
+						</ol>
+					</li><!-- fin de tôt -->
+				{% endif %}
+				{% if am %}
+					<li id="matinee" class="group">
+						<div class="header">
+							<h4>Matin&eacute;e</h4>
+						</div>
+						<ol class="">
+							{% for entity in entities %}
+					 			{% if entity.timeStart|date('H:i:s')>'07:00:00' and entity.timeStart|date('H:i:s')<'12:00:00' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+											{% if app.security.isGranted(['ROLE_RADIOSOLUTION_PROGRAM_PROGRAM_EDITOR']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+											
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+				 			{% endfor %}						
+						</ol>
+					</li><!-- fin de la matinée -->
+				{% endif %}
+				{% if pm %}					
+					<li id="aprem" class="group">
+						<div class="header">
+							<h4>Après-midi</h4>
+						</div>
+						<ol class="">
+						{% for entity in entities %}
+					 			{% if entity.timeStart|date('H:i:s')>'12:00:00' and entity.timeStart|date('H:i:s')<'18:00:00' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+											{% if app.security.isGranted(['ROLE_RADIOSOLUTION_PROGRAM_PROGRAM_EDITOR']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+																						
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>											
+										</div>
+									</li>	
+					 			{% endif %}
+				 		{% endfor %}						
+						</ol>
+					</li><!-- fin de l'après-midi -->
+				{% endif %}
+				{% if soir %}					
+					
+					<li id="soiree" class="group">
+						<div class="header">
+							<h4>Soirée</h4>
+						</div>
+						<ol class="">
+						{% for entity in entities %}
+					 			{% if entity.timeStart|date('H:i:s')>'18:00:00' and entity.timeStart|date('H:i:s')<'21:00:00' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+											{% if app.security.isGranted(['ROLE_RADIOSOLUTION_PROGRAM_PROGRAM_EDITOR']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+											
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+				 		{% endfor %}							
+						</ol>
+					</li><!-- fin de la soirée -->
+				{% endif %}
+				{% if nuit %}
+					
+					<li id="nuit" class="group">
+						<div class="header">
+							<h4>Nuit</h4>
+						</div>
+						<ol class="">
+						{% for entity in entities %}
+
+					 			{% if entity.timeStart|date('H:i:s')>'21:00:00' and entity.timeStart|date('H:i:s')<'23:59:59' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+											{% if app.security.isGranted(['ROLE_RADIOSOLUTION_PROGRAM_PROGRAM_EDITOR']) %}
+												<div class="podcast_add">
+													<a href="/admin/radiosolution/program/program/{{entity.id}}/edit" target="_blank">Ajouter un postcast</a>
+												</div>
+											{% endif %}
+											
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+				 		{% endfor %}								
+						</ol>
+					</li><!-- fin de la nuit -->
+				{% endif %}
+				</ol>
+			</div><!-- fin du jour -->
+		{%   endfor %}
+		</div>				
+	</section>
+	</div>
+	</div>
+	<script>
+	
+// Wait until the DOM has loaded before querying the document
+$(document).ready(function(){
+	$('ul.tabs').each(function(){
+		// For each set of tabs, we want to keep track of
+		// which tab is active and it's associated content
+		var $active, $content, $links = $(this).find('a');
+		// If the location.hash matches one of the links, use that as the active tab.
+		// If no match is found, use the first link as the initial active tab.
+		// $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+		
+		//$active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+
+		$active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[{{  "now"|date('N') - 1}}]);
+		
+		//$active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]');
+		
+		$active.addClass('active');
+		$content = $($active.attr('href'));
+		// Hide the remaining content
+		$links.not($active).each(function () {
+		$($(this).attr('href')).hide();
+		});
+		// Bind the click event handler
+		$(this).on('click', 'a', function(e){
+		// Make the old tab inactive.
+		$active.removeClass('active');
+		$content.hide();
+		// Update the variables with the new link and content
+		$active = $(this);
+		$content = $($(this).attr('href'));
+		// Make the tab active.
+		$active.addClass('active');
+		$content.show();
+		// Prevent the anchor's default click action
+		e.preventDefault();
+		});
+	});
+});
+</script> 

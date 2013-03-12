@@ -1,0 +1,133 @@
+	<aside class="widget group lastspodcasts">
+	{% if posts %}
+		
+		<a href="/blogs"><h3><< Retour au blog</h3></a>
+		<h4>Derniers posts</h4>
+		<div class="blogs-container">
+            <ul id="blogs"> 
+			{% for post in posts %}
+			<li>
+				<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
+					<div class="image">
+				        {% if post.getImage() %}
+				        	{%media post.getImage() ,'medium'%}
+				        {% else %}
+				        	<img src="/uploads/default.jpg" alt=""/>
+				        {% endif %} 
+					<h2><span>{{ post.title }}</span></h2>
+				</div>
+				</a>
+				
+				<div class="heure-podcast">
+					<span>
+						{{ post.getPublicationDateStart()|date('d/m/') }}<br/>
+						{{ post.getPublicationDateStart()|date('Y') }}<br/>
+						{{ post.getPublicationDateStart()|date('H') }}H{{ post.getPublicationDateStart()|date('i') }}
+					</span>
+				</div>				
+				
+				<span class="titre-post">
+					<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
+						{{ post.getAbstract() | truncate(80, true, "...")  }}
+					</a>
+				</span>
+				
+				<div class="plus">
+					<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">lire la suite</a>
+				</div>
+				
+			</li>		
+			{% endfor %}
+            </ul>
+        </div>
+        	
+	{% endif %}
+	{% if emission %}
+		<a href="/emission/{{ emission.getSlug() }}"><h3><< {{ emission }}</h3></a>
+		<h4>Dans la même émission</h4>	
+	
+	
+		<div class="blogs-container">
+            <ul id="blogs"> 
+			{% for post in emiPosts %}
+			<li>
+				<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
+					<div class="image">
+				        {% if post.getImage() %}
+				        	{%media post.getImage() ,'medium'%}
+				        {% else %}
+				        	<img src="/uploads/default.jpg" alt=""/>
+				        {% endif %} 
+						<h2><span>{{ post.title }}</span></h2>
+					</div>
+				</a>
+				
+				
+				<div class="heure-podcast">
+					<span>
+						{{ post.getPodcast().realtimestart|date('d/m/') }}<br/>
+						{{ post.getPodcast().realtimestart|date('Y') }}<br/>
+						{{ post.getPodcast().realtimestart|date('H') }}H{{ post.getPodcast().realtimestart|date('i') }}
+					</span>
+				</div>				
+				
+				<span class="titre-post">
+					<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
+						{{ post.getAbstract() | truncate(80, true, "...")  }}
+					</a>
+				</span>
+				<div class="plus">
+					<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">lire la suite</a>
+				</div>
+				
+			</li>		
+			{% endfor %}
+            </ul>
+        </div>
+
+	{% endif %}
+	{% if category %}
+		<a href="/blog/category/{{ category.getSlug() }}"><h3><< {{ category }}</h3></a>
+		<h4>Dans la même catégorie</h4>		
+	
+		<div class="blogs-container">
+            <ul id="blogs"> 
+			{% for post in catPosts %}
+			<li>
+				<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
+					<div class="image">
+				        {% if post.getImage() %}
+				        	{%media post.getImage() ,'medium'%}
+				        {% else %}
+				        	<img src="/uploads/default.jpg" alt=""/>
+				        {% endif %} 
+					<h2><span>{{ post.title }}</span></h2>
+				</div>
+				</a>
+				
+				<div class="heure-podcast">
+					<span>
+						{{ post.getPublicationDateStart()|date('d/m/') }}<br/>
+						{{ post.getPublicationDateStart()|date('Y') }}<br/>
+						{{ post.getPublicationDateStart()|date('H') }}H{{ post.getPublicationDateStart()|date('i') }}
+					</span>
+				</div>				
+				
+				<span class="titre-post">
+					<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">
+						{{ post.getAbstract() | truncate(80, true, "...")  }}
+					</a>
+				</span>
+				
+				<div class="plus">
+					<a href="/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">lire la suite</a>
+				</div>
+				
+				
+			</li>		
+			{% endfor %}
+            </ul>
+        </div>
+
+	{% endif %}
+</aside>

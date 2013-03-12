@@ -1,0 +1,279 @@
+
+<script src="{{ asset('bundles/sonatajquery/jquery-1.7.1.js') }}" type="text/javascript"></script>
+
+          <script type="text/javascript">
+            //<![CDATA[
+                
+                var myListener = new Object();
+                /**
+                 * Initialisation
+                 */
+                myListener.onInit = function()
+                {
+                    this.position = 0;
+                    play();
+                };
+                /**
+                 * Update
+                 */
+                myListener.onUpdate = function()
+                {
+                    
+                    var isPlaying = (this.isPlaying == "true");
+                    
+                };
+                
+                function setPosition()
+                {
+                    var position = document.getElementById("inputPosition").value;
+                    getFlashObject().SetVariable("method:setPosition", position);
+                }
+                
+                function setVolume()
+                {
+                    var volume = document.getElementById("inputVolume").value;
+                    getFlashObject().SetVariable("method:setVolume", volume);
+                }
+
+                function switchSound()
+                {
+                	if (myListener.position == 0) {
+                		play()
+                	}else{
+						stop();
+						myListener.position == 0
+                	}
+                }
+                
+                function play()
+                {
+                                 
+                    getFlashObject().SetVariable("method:setUrl", "http://80.82.229.202:80/euradio.mp3");
+                    getFlashObject().SetVariable("method:play", "");
+                    getFlashObject().SetVariable("enabled", "true");
+                }
+                
+                function pause()
+                {
+                    getFlashObject().SetVariable("method:pause", "");
+                }
+                
+                function stop()
+                {
+                    getFlashObject().SetVariable("method:stop", "");
+                }
+                
+                
+                function getFlashObject()
+                {
+                    return document.getElementById("myFlash");
+                }
+
+                
+                $(document).ready(function(){
+
+                	var hasFlash = false;
+                	try {
+                	  var fo = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+                	  if(fo) hasFlash = true;
+                	}catch(e){
+                	  if(navigator.mimeTypes ["application/x-shockwave-flash"] != undefined) hasFlash = true;
+                	}
+                	                    
+                	if(hasFlash){
+                		
+                		$('#streamingHTML5').hide();
+               		
+	                	$('#play_btn').click(function(){
+	                	
+	                		switchSound();
+	                		
+	                		if(myListener.position == 0){
+	                    		
+	                			$(this).removeClass("paused");
+	                		}else{
+	                    		
+	                			$(this).addClass("paused");
+	                		}
+	
+	                	});
+	                	
+	                	updateOnair();
+	                	setInterval('updateOnair()', 10000	);
+	
+                	}else{
+                    	
+                		$('#play_btn').hide();
+                		$('#streamingHTML5').show();
+                		$('#streamingHTML5 audio').play();
+                    }
+             	   
+				});
+
+                function updateOnair()
+                {
+                	jQuery.get('http://www.euradionantes.eu/uploads/onair/now_playing.txt', function(data) {
+             		   $("#nowplaying").html(data);
+             		});                    
+                }
+
+                
+                
+
+				
+            //]]>
+            </script>
+            <!--[if IE]>
+            <script type="text/javascript" event="FSCommand(command,args)" for="myFlash">
+            eval(args);
+            </script>
+            <![endif]-->
+
+            
+    
+
+ 
+    
+	<div id="player-top">
+		
+		<div id="streaming">
+			<a id="play_btn" href="#"></a>
+		</div>
+		
+		<div id="streamingHTML5">
+			<audio controls="controls">
+				<source src="http://80.82.229.202:80/euradio.mp3" type="audio/mpeg" />
+			</audio>
+		</div>
+		
+		<div id="nowplaying"></div>
+
+<!--
+		{% for entity in currentProgram %}
+		{% if  entity.getId() %}
+		<div class="program-pic" style="background:url('{% if entity. emission .media() %} {% path entity.emission.media ,'medium'%}{% else %}/upload/default.jpg{% endif %}');">
+			<a id="play_btn" href="#" style="display:block; width:100%; height:100%; background:url('/images/ecoutePlayerBackground.png');">
+			</a>
+		</div>
+		<div class="on-air">{% if somethingNow %}ON AIR{% else %}NEXT{% endif %}</div>
+		
+		<div class="program-title">{{ entity.getNameEmission()|raw}}</div>
+		<div class="program-infos">
+			<p><strong>De {{ entity.timeStart|date("G:i") }} &agrave; {{ entity.timeStop|date("G:i") }}</strong><br/>
+			{{ entity.getDescriptionEmission()|striptags|truncate(375)|raw }}
+		</div>
+		{% endif %}
+		{% endfor %}
+		-->
+	</div>        
+   
+	</div>
+
+  <div id="timeline-embed" style="width: 960px;"></div>
+  
+  <script type="text/javascript">
+  var test=getEmission();
+   var timeline_config = {
+    width: "980px",
+    height: "100%",
+    source: test,
+           embed_id:           'timeline-embed',               //OPTIONAL USE A DIFFERENT DIV ID FOR EMBED
+           start_at_end:       false,                          //OPTIONAL START AT LATEST DATE
+           start_at_slide:     '{{ nowSlide }}',                            //OPTIONAL START AT SPECIFIC SLIDE
+           start_zoom_adjust:  '0',                            //OPTIONAL TWEAK THE DEFAULT ZOOM LEVEL
+           hash_bookmark:      true,                           //OPTIONAL LOCATION BAR HASHES
+           debug:              true,                           //OPTIONAL DEBUG TO CONSOLE
+           lang:               'fr',                           //OPTIONAL LANGUAGE
+           start_zoom_adjust:	'2',
+           
+   }
+
+	function getEmission(){
+	   var test={
+		    "timeline":
+		    {
+		        "headline":"Programme du {{ "now"|date("m/d/Y") }}",
+		        "type":"default",
+		        "text":"",
+				"startDate":"{{ "now"|date("Y,m,d,G,i")  }}", 
+		        "date": [
+	            	{% for entity in json %}
+					{
+		                "startDate":"{{ entity.created_at|date("Y,m,d,G,i") }}",
+		                "headline":"{{entity.user.name}}",
+		                "text":"{% autoescape 'js' %}<br/>{{ entity.text}}{% endautoescape %}",
+		                "tag":"",
+		                "asset": {
+		                    "media":"/images/tweet.png",
+		                    "credit":"",
+		                    "caption":""
+		                }
+		            },
+		            {% endfor %}
+	            	{% for entity in program %}
+					{
+						{% if entity.getImageEmission() %}
+							{% set imgMedium %}{%path entity.getImageEmission(), 'medium' %}{% endset %}
+							{% set imgSmall %}{% endset %}
+						{% endif %}
+						
+		                "startDate":"{{ entity.timeStart|date("Y,m,d,G,i") }}",
+		                "endDate":"{{ entity.timeStop|date("Y,m,d,G,i") }}",
+		                "headline":"<a href=\"/emission/{{entity.slug}}\" target=\"_parent\">{{ entity.getNameEmission()|raw }}</a>",
+		                "text":"{% autoescape 'js' %}
+		                	<div class=\"slide-image\"><a href=\"/emission/{{entity.slug}}\" target=\"_parent\"><img src=\"{{ imgMedium }}\" /></a></div><div class=\"slide-text\"><span class=\"emission-title\"><a href=\"/emission/{{entity.slug}}\" target=\"_parent\"><h4>{{ entity.getNameEmission()|raw }}</h4></a></span><span class=\"custom-date\">De {{ entity.timeStart|date("G:i") }} &agrave; {{ entity.timeStop|date("G:i") }}</span><p>{{ entity.getDescriptionEmission()|striptags|truncate(250) }}</p></div>{% endautoescape %}",
+		                "tag":"",
+		                "asset": {
+		                    "media":"{{ imgMedium|e('js') }}",
+		                    "thumbnail":"{%path entity.getImageEmission(), 'small' %}",
+		                    "credit":"",
+		                    "caption":""
+		                }
+		            },
+		            {% endfor %}
+			        {
+		                "startDate":"{{dateStop|date("Y,m,d,G,i")  }}",
+		                "headline":"Fin des programmes",
+		                "text":"",
+		                "tag":"",
+		                "asset": {
+		                    "media":"",
+		                    "credit":"",
+		                    "caption":""
+		                }
+		            }
+
+		        ],
+		        "era": [
+	            	{% for entity in program %}
+		            {
+		                "startDate":"{{ entity.timeStart|date("Y,m,d,G,i")  }}",
+		                "endDate":"{{ entity.timeStop|date("Y,m,d,G,i")  }}",
+		                "headline":"",
+		                "text":"<p></p>",
+		                "tag":""
+		            },
+	                {% endfor %}
+	        		{
+		                "startDate":"{{dateStop|date("Y,m,d,G,i")  }}",
+		                "endDate":"{{dateStop|date("Y,m,d,G,i")  }}",
+		                "headline":"",
+		                "text":"<p></p>",
+		                "tag":""
+		            }
+		        ]
+		    }
+		};
+	return test;	
+};
+
+
+</script>
+<script src="{{ asset('bundles/podcast/compiled/js/storyjs-embed.js') }}" type="text/javascript"></script>
+            <object class="playerpreview" id="myFlash" type="application/x-shockwave-flash" data="/js/player_mp3_js.swf" width="1" height="1">
+                <param name="movie" value="/js/player_mp3_js.swf" />
+                <param name="AllowScriptAccess" value="always" />
+                <param name="FlashVars" value="listener=myListener&amp;interval=500" />
+            </object>
+
+		

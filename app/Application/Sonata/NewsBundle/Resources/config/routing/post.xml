@@ -5,8 +5,18 @@
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
 
+<<<<<<< HEAD
     <route id="appsonata_view_blog" pattern="/blog">
         <default key="_controller">ApplicationSonataNewsBundle:Blog:index</default>
     </route>
 
+=======
+    <route id="appsonata_view_blog" pattern="">
+        <default key="_controller">ApplicationSonataNewsBundle:Post:index</default>
+    </route>
+    <route id="post_rss" pattern="rss.{_format}">
+        <default key="_controller">ApplicationSonataNewsBundle:Post:rss</default>
+        <default key="_format">xml</default>
+    </route>
+>>>>>>> master
 </routes>

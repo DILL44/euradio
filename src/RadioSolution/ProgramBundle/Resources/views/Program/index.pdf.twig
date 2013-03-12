@@ -1,0 +1,189 @@
+<pdf>
+    <dynamic-page>
+<div class="inner-wrap" >
+<div class="page-content group">
+	<section class="entry group" >
+		<div class="entry-content programme" >
+			<h3><!-- <a href="/programmes/{{ weekNumber - 1}}">< --></a>Programmes de la semaine {{ weekNumber }}<!-- <a href="/programmes/{{ weekNumber + 1}}">></a>--></h3>
+			
+			{% for i in 1..7 %}
+			<div id='tab{{ i }}' >
+			<br/>
+				{% set date = false %}
+				{% set tot = false %}
+				{% set am = false %}
+				{% set pm = false %}
+				{% set soir = false %}
+				{% set nuit = false %}
+				{% for entity in entities %}
+					{% if entity.timeStart|date('N') == i %}{% set date = entity.timeStart %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')<'07:00:00' and entity.timeStart|date('N')==i %}{% set tot = true %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')>'07:00:00' and entity.timeStart|date('H:i:s')<'12:00:00' and entity.timeStart|date('N')==i %}{% set am = true %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')>'12:00:00' and entity.timeStart|date('H:i:s')<'18:00:00' and entity.timeStart|date('N')==i %}{% set pm = true %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')>'18:00:00' and entity.timeStart|date('H:i:s')<'21:00:00' and entity.timeStart|date('N')==i %}{% set soir = true %}{% endif %}
+					{% if entity.timeStart|date('H:i:s')>'21:00:00' and entity.timeStart|date('H:i:s')<'23:59:59' and entity.timeStart|date('N')==i %}{% set nuit = true %}{% endif %}
+				{% endfor %}
+				<ol class="full-day">
+				<br clear="all"/>
+				{% if date %}
+					<h2 style="margin-left:30px;">{{ date|localizeddate('full', 'none')|capitalize }}</h2>
+				{% endif %}
+				{% if tot %}
+					<li id="tot" class="group">
+						<div class="header">
+							<h4>Tôt</h4>
+						</div>
+						<ol class="">
+					    {% for entity in entities %}
+					 			{% if entity.timeStart|date('H:i:s')<'07:00:00' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+						
+				  		{% endfor %}								
+						</ol>
+					</li><!-- fin de tôt -->
+				{% endif %}
+				{% if am %}
+					<li id="matinee" class="group">
+						<div class="header">
+							<h4>Matin&eacute;e</h4>
+						</div>
+						<ol class="">
+							{% for entity in entities %}
+					 			{% if entity.timeStart|date('H:i:s')>'07:00:00' and entity.timeStart|date('H:i:s')<'12:00:00' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+				 			{% endfor %}						
+						</ol>
+					</li><!-- fin de la matinée -->
+				{% endif %}
+				{% if pm %}					
+					<li id="aprem" class="group">
+						<div class="header">
+							<h4>Après-midi</h4>
+						</div>
+						<ol class="">
+						{% for entity in entities %}
+					 			{% if entity.timeStart|date('H:i:s')>'12:00:00' and entity.timeStart|date('H:i:s')<'18:00:00' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+				 		{% endfor %}						
+						</ol>
+					</li><!-- fin de l'après-midi -->
+				{% endif %}
+				{% if soir %}					
+					
+					<li id="soiree" class="group">
+						<div class="header">
+							<h4>Soirée</h4>
+						</div>
+						<ol class="">
+						{% for entity in entities %}
+					 			{% if entity.timeStart|date('H:i:s')>'18:00:00' and entity.timeStart|date('H:i:s')<'21:00:00' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+				 		{% endfor %}							
+						</ol>
+					</li><!-- fin de la soirée -->
+				{% endif %}
+				{% if nuit %}
+					
+					<li id="nuit" class="group">
+						<div class="header">
+							<h4>Nuit</h4>
+						</div>
+						<ol class="">
+						{% for entity in entities %}
+
+					 			{% if entity.timeStart|date('H:i:s')>'21:00:00' and entity.timeStart|date('H:i:s')<'23:59:59' and entity.timeStart|date('N')==i %}
+									<li class="item">
+										<div class="time">
+											{{ entity.timeStart|date('H:i:s') }}<br/>
+											{{ entity.timeStop|date('H:i:s') }}
+										</div>										
+										<div class="image-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{% if entity.getImageEmission() %}{%thumbnail entity.getImageEmission(), 'small' %}{% endif %}
+											</a>
+										</div>		
+										<div class="details title-emission_programme">
+											<a href="/emission/{{entity.getSlug}}">
+												{{ entity.emission.name }}
+											</a>
+										</div>
+									</li>	
+					 			{% endif %}
+				 		
+				 		{% endfor %}								
+						</ol>
+					</li><!-- fin de la nuit -->
+				{% endif %}
+				</ol>
+			</div><!-- fin du jour -->
+		{%   endfor %}
+		</div>				
+	</section>
+	</div>
+	</div>
+   </dynamic-page>
+</pdf>

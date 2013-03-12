@@ -1,0 +1,3 @@
+{% for post in posts %}
+<li><a href="http://{{ domain }}/blog/{{ post.getYear() }}/{{ post.getMonth() }}/{{ post.getDay() }}/{{ post.getSlug() }}">{{ post.title|truncate(40) }}</a></li>		
+{% endfor %}

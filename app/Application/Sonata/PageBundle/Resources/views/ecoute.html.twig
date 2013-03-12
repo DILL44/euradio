@@ -1,0 +1,37 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<!DOCTYPE html>
+<html {{ sonata_seo_html_attributes() }}>  
+<head>
+        {{ sonata_seo_title() }} 
+        {{ sonata_seo_metadatas() }}
+        
+
+    <!-- Style-->
+    <style>
+      html, body {
+       height:100%;
+       padding: 0px;
+       margin: 0px;
+      }
+    </style>
+     <link rel="stylesheet" href="{{ asset('bundles/podcast/compiled/css/timeline.css') }}" type="text/css" media="all" >
+    <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  </head>
+ 		<header id="header">	
+		</header>
+<body>
+ {% block body %}{% endblock %}
+  <script src="{{ asset('bundles/podcast/compiled/js/storyjs-embed.js') }}" type="text/javascript"></script>
+      </body>
+</html>

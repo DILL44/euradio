@@ -1,0 +1,7 @@
+parameters:
+#    static_content.example.class: RadioSolution\StaticContentBundle\Example
+
+services:
+#    static_content.example:
+#        class: %static_content.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

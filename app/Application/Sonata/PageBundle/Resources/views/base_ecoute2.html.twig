@@ -1,0 +1,42 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<!DOCTYPE html>
+<html {{ sonata_seo_html_attributes() }}>
+    <head>
+
+        {#{ sonata_seo_title() }#}
+        <title>Euradion@ntes - Ecoutez la radio</title>
+        
+        <link rel="SHORTCUT ICON" href="/images/favicon.ico">
+        
+        {{ sonata_seo_metadatas() }}
+
+        {% block page_stylesheets %}
+                 <link rel="stylesheet" href="{{ asset('bundles/podcast/compiled/css/timeline.css') }}" type="text/css" media="all" >
+        {% endblock %}
+    <style>
+      html, body {
+       height:100%;
+       padding: 0px;
+       margin: 0px;
+      }
+    </style>
+    			
+    	
+    </head>
+    
+    <body class="sonata-bc home">
+        {% block page_container %}{% endblock %}
+
+
+    </body>
+</html>

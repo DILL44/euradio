@@ -1,0 +1,71 @@
+	<section class="entry group">
+		<div class="entry-content emission">
+<h3>Tous les podcasts du {{ date }}</h3>
+<div class="dropdowns">
+<h4>Emission</h4>
+<form action="{{ path(app.request.attributes.get('_route'),{'date':date}) }}"  method="get">
+<select  data-placeholder="Choisir une émission(s)" style="width:300px;"  class="chzn-select" tabindex="8" name="emission">
+<option value="">Toutes les &eacute;mission</option>
+{% for emission in emissions  %}
+<option value="{{ emission.id }}">{{ emission.name }}</option>
+{% endfor %}
+</select>
+<input class="btn-selectionner" type="submit" value="Sélectionner">
+</form>
+</div>
+    {% set class = 'first'%}
+    <div class="block group">
+		<div class="navigation">
+	    	{{ pagination.render()|raw }}
+		</div>						
+		<ul class="gallery-list group">
+    {% for entity in pagination %}
+		    <li class="{{ class }}">
+		    
+				<a href="/blog/{{ entity.getSlug() }}">
+					<figure>
+						<div class="image">
+							{%media entity.getPostImage() ,'medium' with {'title': entity.getPostTitle()}%}
+							<h2>
+								<span>{{ entity.getPostTitle() }}</span>
+							</h2>
+						</div>
+					</figure>
+				</a>
+				<audio controls="controls" preload="none" >
+					<source src="{% path entity.filePodcast, 'reference' %}.ogg" type="audio/ogg" />
+					<source src="{% path entity.filePodcast, 'reference' %}" type="audio/mpeg" />
+					Your browser does not support the audio tag.
+				</audio>	
+				{% if entity.realtimestart %}
+				<div class="heure-podcast">
+					<span>
+						{{ entity.realtimestart|date('d/m/') }}<br/>
+						{{ entity.realtimestart|date('Y') }}<br/>
+						{{ entity.realtimestart|date('H') }}H{{ entity.realtimestart|date('i') }}
+					</span>
+				</div>
+				{% endif %}	
+									
+				<span class="titre-post">
+					<a href="/blog/{{ entity.getSlug() }}">{{ entity.getPostAbstract() | truncate(80, true, "...")  }}</a>
+				</span>
+				<div class="plus">
+					<a href="/blog/{{ entity.getSlug() }}">lire la suite</a>
+				</div>
+			</li>
+			
+			{% if  class == 'first'%}
+				{% set class = ''%}
+			{% else %}
+				{% set class = 'first'%}
+			{% endif %}
+    {% endfor %}
+    </ul>
+    <div class="navigation">
+    	{{ pagination.render()|raw }}
+	</div>
+</div>
+</div>
+</section>
+

@@ -1,0 +1,11 @@
+<div class="sld-container">
+	<div id="main-slider" class="flexslider">
+		<ul class="slides group">
+			{% for entity in entities %}
+				<li class="sld-item group">
+					<a href="{{ entity.link }}">{% media  entity.image ,'pub' %}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div> <!-- .flexslider -->
+</div>

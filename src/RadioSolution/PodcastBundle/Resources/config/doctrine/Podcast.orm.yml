@@ -1,0 +1,36 @@
+RadioSolution\PodcastBundle\Entity\Podcast:
+  type: entity
+  table: podcast__podcast
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    real_time_start:
+      type: datetime
+    home_page:
+      type: boolean
+      default: false
+    dlAuth:
+      type: boolean
+      default: true      
+  oneToOne:
+    filePodcast:
+      targetEntity: Application\Sonata\MediaBundle\Entity\Media
+      joinColumn:
+        name: id_media_podcast
+        referencedColumnName: id
+    post:
+      targetEntity: Application\Sonata\NewsBundle\Entity\Post
+      inversedBy: podcast
+      joinColumn:
+        name: post_id
+        referencedColumnName: id
+    program:
+      targetEntity: RadioSolution\ProgramBundle\Entity\Program
+      mappedBy: podcast
+
+      

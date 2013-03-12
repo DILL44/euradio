@@ -1,5 +1,10 @@
 # app/config/security.yml
+parameters:
+    # ... other parameters
+    security.acl.permission.map.class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
 security:
+    acl:
+        connection: default
     factories:
           - "%kernel.root_dir%/../vendor/bundles/FOS/TwitterBundle/Resources/config/security_factories.xml"
           - "%kernel.root_dir%/../vendor/bundles/FOS/FacebookBundle/Resources/config/security_factories.xml"
@@ -55,18 +60,22 @@ security:
                 check_path:     /admin/login_check
                 failure_path:   /admin/login
                 use_referer:    true
+<<<<<<< HEAD
                 default_target_path: /admin/dashboard 
+=======
+                default_target_path: /admin/dashboard        
+                always_use_default_target_path: true 
+>>>>>>> master
             logout:
                 path:           /admin/logout
                 target:         /admin/login
-
             anonymous:    true
         main:
             switch_user:        true
             context:            user
             pattern:            .*
             form_login:
-                provider:       fos_userbundle
+                target_path_parameter: /article/les-partenaires
                 login_path:     /login
                 use_forward:    false
                 check_path:     /login_check

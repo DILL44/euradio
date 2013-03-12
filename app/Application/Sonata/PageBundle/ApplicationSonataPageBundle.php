@@ -11,6 +11,7 @@
 namespace Application\Sonata\PageBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use RadioSolution\MenuBundle\Menu\Builder;
 
 
 /**

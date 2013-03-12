@@ -1,0 +1,36 @@
+RadioSolution\StaticContentBundle\Entity\StaticContent:
+  type: entity
+  table: static_content
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+      length: 100
+    introduction:
+      type: string
+      length: 255
+    body:
+      type: text
+    date_add:
+      type: datetime
+    slug:
+      type: string
+    order_content:
+      type: integer
+      default: 10
+  oneToOne:
+    image:
+      targetEntity: Application\Sonata\MediaBundle\Entity\Media
+      joinColumn:
+        name: id_image
+        referencedColumnName: id
+  manyToOne:
+    categoryStaticContent:
+      targetEntity: CategoryStaticContent
+      inversedBy: staticContent
+      joinColumn:
+        name: id_category
+        referencedColumnName: id

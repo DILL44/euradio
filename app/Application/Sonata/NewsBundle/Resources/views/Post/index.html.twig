@@ -1,0 +1,44 @@
+{#
+
+/*
+ * This file is part of the Sonata package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+#}
+	<section class="entry group">
+	<h3>Le blog d'Eur@dionantes</h3>
+	<a style="position:relative; float:right; top:-38px;" title="S'abonner à  notre flux RSS." class="icn-orange rss" href="/blogs/rss" target="_blank">
+		S'abonner à  notre flux RSS.
+	</a>
+	 <div class="block group">
+		<div class="navigation">
+	    	{{ pager.render()|raw }}
+		</div>
+	{% for post in pager %}
+		<article class="entry-item group">
+			<figure class="entry-thumb group">
+				<a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">
+					{% if post.getImage() %}{% thumbnail post.getImage() ,'medium'%}{% else %}<img src="/uploads/default.jpg" alt="podcast Ã  la une" />{% endif %}
+				</a>
+			</figure>
+			<div class="entry-content">
+				<div class="entry-meta">
+					<h1><a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}">{{ post.title }}</a></h1>
+					<time>{{ post.publicationDateStart  | date('j/m/Y') }}, {{ post.publicationDateStart | date('G') }}h{{ post.publicationDateStart | date('i') }}</time>
+					<a  class="comment-no">{{ post.commentsCount }}</a>
+				</div>
+				{{ post.abstract }}
+				<a href="{{ url('sonata_news_view', { 'permalink': sonata_news_permalink(post) }) }}" class="ci-read-more">Lire la suite</a>
+			</div>
+		</article>
+	{% endfor %}
+	<div class="navigation">
+	    {{ pager.render()|raw }}
+	</div>	
+	</div>
+	</section>

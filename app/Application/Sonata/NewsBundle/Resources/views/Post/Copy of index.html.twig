@@ -1,0 +1,53 @@
+<h1>Post list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Abstract</th>
+            <th>Content</th>
+            <th>Rawcontent</th>
+            <th>Contentformatter</th>
+            <th>Enabled</th>
+            <th>Slug</th>
+            <th>Publicationdatestart</th>
+            <th>Commentsenabled</th>
+            <th>Commentscloseat</th>
+            <th>Commentsdefaultstatus</th>
+            <th>Commentscount</th>
+            <th>Createdat</th>
+            <th>Updatedat</th>
+            <th>Id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('post_show', { 'id': entity.id }) }}">{{ entity.title }}</a></td>
+            <td>{{ entity.abstract }}</td>
+            <td>{{ entity.content }}</td>
+            <td>{{ entity.rawContent }}</td>
+            <td>{{ entity.contentFormatter }}</td>
+            <td>{{ entity.enabled }}</td>
+            <td>{{ entity.slug }}</td>
+            <td>{% if entity.publicationDateStart %}{{ entity.publicationDateStart|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.commentsEnabled }}</td>
+            <td>{% if entity.commentsCloseAt %}{{ entity.commentsCloseAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.commentsDefaultStatus }}</td>
+            <td>{{ entity.commentsCount }}</td>
+            <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            <td>{{ entity.id }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('post_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

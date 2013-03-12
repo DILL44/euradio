@@ -1,0 +1,15 @@
+RadioSolution\RSSAgregatorBundle\Entity\RSSfile:
+  type: entity
+  table: rss_agregator
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    name:
+      type: string
+    enable:
+      type: boolean
+      nullable: TRUE
+    url:
+      type: string
