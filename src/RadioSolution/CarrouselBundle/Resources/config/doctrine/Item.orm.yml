@@ -1,0 +1,48 @@
+RadioSolution\CarrouselBundle\Entity\Item:
+  type: entity
+  table: carousel__item
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    order_int:
+      type: integer
+  oneToOne:
+    category_static_content:
+      targetEntity: RadioSolution\StaticContentBundle\Entity\CategoryStaticContent
+      nullable: true
+      joinColumn:
+        name: category_static_content_id
+        referencedColumnName: id
+    static_content:
+      targetEntity: RadioSolution\StaticContentBundle\Entity\StaticContent
+      nullable: true
+      joinColumn:
+        name: static_content_id
+        referencedColumnName: id
+    emission:
+      targetEntity: RadioSolution\ProgramBundle\Entity\Emission
+      nullable: true
+      joinColumn:
+        name: emission_id
+        referencedColumnName: id
+    podcast:
+      targetEntity: RadioSolution\PodcastBundle\Entity\Podcast
+      nullable: true
+      joinColumn:
+        name: podcast_id
+        referencedColumnName: id
+    custum_item:
+      targetEntity: CustomItem
+      nullable: true
+      joinColumn:
+        name: custum_item_id
+        referencedColumnName: id
+  manyToOne:
+    slider:
+      targetEntity: Slider   
+      inversedBy: item
+      joinColumn:
+        name: slider_id
+        referencedColumnName: id

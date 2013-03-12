@@ -1,0 +1,23 @@
+	{% if currentCategory %}
+		<a href="/blogs"><h3><< Retour au blogs </h3></a>
+	{% endif %}
+            
+	<aside class="widget group">
+		<h3>{% if currentCategory %}Autres catégories{% else %}Catégories de blog{% endif %}</h3>		
+		<div class="blogs-container">
+            <ul id="blogs">            
+				{% for category in categories %}
+					<li><a href="/blog/category/{{ category.slug }}">
+					<div class="image">
+					{% render "ApplicationSonataNewsBundle:Blog:LastPost"with {'idCategory': category.id } %} 
+					<h2><span>{{ category.name }}</span></h2>
+					</div>
+					</a></li>		
+				{% endfor %}
+            </ul>
+            <ul class="programs-nav">
+                <li><a href="#" class="up">Haut</a></li>
+                <li><a href="#" class="down">Bas</a></li>
+            </ul>
+        </div>
+	</aside>

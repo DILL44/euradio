@@ -1,0 +1,15 @@
+RadioSolution\CarrouselBundle\Entity\Slider:
+  type: entity
+  table: carousel__carousel
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    title:
+      type: string
+      length: 100
+  oneToMany:
+    item:
+      targetEntity: Item
+      mappedBy: slider
