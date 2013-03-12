@@ -1,7 +1,0 @@
-parameters:
-#    euradio_menu.example.class: Euradio\MenuBundle\Example
-
-services:
-#    euradio_menu.example:
-#        class: %euradio_menu.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

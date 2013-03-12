@@ -1,3 +1,0 @@
-EuradioMenuBundle_homepage:
-    pattern:  /euradio/{name}
-    defaults: { _controller: EuradioMenuBundle:Default:index }
